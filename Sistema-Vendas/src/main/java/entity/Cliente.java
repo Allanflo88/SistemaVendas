@@ -11,14 +11,20 @@ public class Cliente extends Pessoa{
     private double limiteDisp;
     private ArrayList<Pedido> pedidos;
     
-    public Cliente(String cpf, String nome, double limiteCred) {
-        super(cpf, nome);
-        this.limiteCred = limiteCred;
-        limiteDisp = limiteCred;
-        pedidos = new ArrayList<Pedido>();
-    }
 
-    public double getLimiteCred() {
+    public ArrayList<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(ArrayList<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public void setLimiteCred(double limiteCred) {
+		this.limiteCred = limiteCred;
+	}
+
+	public double getLimiteCred() {
         return limiteCred;
     }
 

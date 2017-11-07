@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="Sistema-Vendas" transaction-type="RESOURCE_LOCAL">
+		<class>entity.Produto</class>
+		<class>entity.Cliente</class>
+		<class>entity.ItemPedido</class>
+		<class>entity.Pedido</class>
+		<class>entity.Vendedor</class>
+		<class>entity.Pessoa</class>
+		<class>entity.ItemPedidoID</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/SistemaVendas;create=true"/>
+			<property name="javax.persistence.jdbc.user" value="user"/>
+			<property name="javax.persistence.jdbc.password" value="pwd"/>
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+		</properties>
+	</persistence-unit>
+</persistence>

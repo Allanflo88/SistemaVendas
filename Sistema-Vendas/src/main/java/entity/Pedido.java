@@ -3,12 +3,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
 @Entity
 public class Pedido implements Serializable{
 	private static final long serialVersionUID = 1L;
-    private int numero;
+    
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int numero;
+	
     private String dataEmissaoPedido;
     private String dataPagto;
     private boolean status;
@@ -16,14 +23,22 @@ public class Pedido implements Serializable{
     private Vendedor vendedor;
     private ArrayList<ItemPedido> itensPedidos;
 
-    public Pedido(int numero, String dataEmissaoPedido) {
-        this.numero = numero;
-        this.dataEmissaoPedido = dataEmissaoPedido;
-        itensPedidos = new ArrayList<ItemPedido>();
-        status = false;
-    }
-    
-    public String getDataPagto() {
+    public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+
+	public void setDataEmissaoPedido(String dataEmissaoPedido) {
+		this.dataEmissaoPedido = dataEmissaoPedido;
+	}
+
+
+	public void setItensPedidos(ArrayList<ItemPedido> itensPedidos) {
+		this.itensPedidos = itensPedidos;
+	}
+
+
+	public String getDataPagto() {
         return dataPagto;
     }
 

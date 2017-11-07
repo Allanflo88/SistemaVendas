@@ -3,23 +3,34 @@ package entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
 @Entity
 public class Produto implements Serializable{
 	private static final long serialVersionUID = 1L;
-    private int codigo;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int codigo;
+	
     private String descricao;
     private int qtdeDisponivel;
     private double precoUnit;
     private int estoqueMin;
 
-    public Produto(int codigo, String descricao) {
-        this.codigo = codigo;
-        this.descricao = descricao;
-    }
-    
-    public int getQtdeDisponivel() {
+
+    public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public int getQtdeDisponivel() {
         return qtdeDisponivel;
     }
     

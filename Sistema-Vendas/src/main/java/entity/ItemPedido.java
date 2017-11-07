@@ -3,22 +3,27 @@ package entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+
 
 
 @Entity
+@IdClass(ItemPedidoID.class)
 public class ItemPedido implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
+	@Id private Produto produto;
+	@Id private Pedido pedido;
     private int numeroItem;
     private int qtdeVendida;
-    private Pedido pedido;
-    private Produto produto;
+    
+    
+    public void setNumeroItem(int numeroItem) {
+		this.numeroItem = numeroItem;
+	}
 
-    public ItemPedido(int numeroItem, int qtdeVendida) {
-        this.numeroItem = numeroItem;
-        this.qtdeVendida = qtdeVendida;
-    }
-
-    public int getQtdeVendida() {
+	public int getQtdeVendida() {
         return qtdeVendida;
     }
     
@@ -31,20 +36,27 @@ public class ItemPedido implements Serializable{
         return numeroItem;
     }
 
-    public Pedido getPedido() {
-        return pedido;
-    }
+	public Produto getProduto() {
+		return produto;
+	}
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+		produto.setQtdeDisponivel(produto.getQtdeDisponivel() - qtdeVendida);
+	}
 
-    public Produto getProduto() {
-        return produto;
-    }
+	public Pedido getPedido() {
+		return pedido;
+	}
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-        produto.setQtdeDisponivel(produto.getQtdeDisponivel() - qtdeVendida);
-    }
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+		
+	}
+    
+    
+    
+    
 }
+
+
