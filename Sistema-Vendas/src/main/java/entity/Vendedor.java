@@ -1,14 +1,13 @@
-package com.poo.model;
+package entity;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Airton Brasil 0030481611002
- * @author Allan Flores 0030481611001
- * @author Caique Siqueira 0030481611009
- */
+import javax.persistence.Entity;
+
+
+@Entity
 public class Vendedor extends Pessoa{
+	private static final long serialVersionUID = 1L;
     private double salarioBase;
     private double comissao;
     private ArrayList<Pedido> pedidos;

@@ -1,12 +1,14 @@
-package com.poo.model;
+package entity;
 
-/**
- *
- * @author Airton Brasil 0030481611002
- * @author Allan Flores 0030481611001
- * @author Caique Siqueira 0030481611009
- */
-public class Pessoa {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+
+
+@Entity
+public class Pessoa implements Serializable{
+	private static final long serialVersionUID = 1L;
+
     private String cpf;
     private String nome;
     private String endereco;

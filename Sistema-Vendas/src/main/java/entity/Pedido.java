@@ -1,14 +1,13 @@
-package com.poo.model;
-
+package entity;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- *
- * @author Airton Brasil 0030481611002
- * @author Allan Flores 0030481611001
- * @author Caique Siqueira 0030481611009
- */
-public class Pedido {
+import javax.persistence.Entity;
+
+
+@Entity
+public class Pedido implements Serializable{
+	private static final long serialVersionUID = 1L;
     private int numero;
     private String dataEmissaoPedido;
     private String dataPagto;

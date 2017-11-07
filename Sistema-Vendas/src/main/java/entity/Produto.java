@@ -1,12 +1,13 @@
-package com.poo.model;
+package entity;
 
-/**
- *
- * @author Airton Brasil 0030481611002
- * @author Allan Flores 0030481611001
- * @author Caique Siqueira 0030481611009
- */
-public class Produto {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+
+
+@Entity
+public class Produto implements Serializable{
+	private static final long serialVersionUID = 1L;
     private int codigo;
     private String descricao;
     private int qtdeDisponivel;
