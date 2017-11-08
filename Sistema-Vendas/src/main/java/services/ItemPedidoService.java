@@ -7,8 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-
-import entity.Cliente;
 import entity.ItemPedido;
 
 public class ItemPedidoService {
@@ -33,7 +31,31 @@ public class ItemPedidoService {
 	public void setItemPedidos(List<ItemPedido> itemPedidos) {
 		this.itemPedidos = itemPedidos;
 	}
+	public void Salvar(ItemPedido itemPedido) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(itemPedido);
+		em.getTransaction().commit();
+		em.close();
+	}
+	public void excluir(ItemPedido itemPedido) {
+		ItemPedido rmv;
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		rmv = em.find(ItemPedido.class, itemPedido);
+		em.remove(rmv);
+		em.getTransaction().commit();
+		em.close();
+		
+	}
 	
+	public void atualizar(ItemPedido itemPedido) {;
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(itemPedido);
+		em.getTransaction().commit();
+		em.close();
+	}
 	
 
 }

@@ -30,7 +30,30 @@ public class ProdutoService {
 	public void setProdutos(ArrayList<Produto> produtos) {
 		this.produtos = produtos;
 	}
+	public void Salvar(Produto produto) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(produto);
+		em.getTransaction().commit();
+		em.close();
+	}
+	public void excluir(Produto produto) {
+		Produto rmv;
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		rmv = em.find(Produto.class, produto.getCodigo());
+		em.remove(rmv);
+		em.getTransaction().commit();
+		em.close();
+		
+	}
 	
-	
+	public void atualizar(Produto produto) {;
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(produto);
+		em.getTransaction().commit();
+		em.close();
+	}
 
 }
