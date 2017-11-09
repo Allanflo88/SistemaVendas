@@ -8,52 +8,53 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import entity.Produto;
 
-public class ProdutoService {
-	private Produto produto;
-	private List<Produto> produtos = new ArrayList<Produto>();
+public class ProdutoService extends Service {
 	
-	protected static EntityManagerFactory emf = Persistence.createEntityManagerFactory("SistemaVendas");
-	
-	public Produto getProduto() {
-		return produto;
-	}
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
+	@SuppressWarnings("unchecked")
 	public List<Produto> getProdutos() {
 		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("Select * From Produto;", Produto.class);
-		produtos = q.getResultList();
-		em.close();
-		return produtos;
+		try {
+			Query q = em.createQuery("Select * From Produto;", Produto.class);
+			return q.getResultList();
+		} finally {
+			em.close();
+		}
 	}
-	public void setProdutos(ArrayList<Produto> produtos) {
-		this.produtos = produtos;
-	}
+	
 	public void Salvar(Produto produto) {
 		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(produto);
-		em.getTransaction().commit();
-		em.close();
+		try {
+			em.getTransaction().begin();
+			em.persist(produto);
+			em.getTransaction().commit();
+		} finally {
+			em.close();
+		}
 	}
+	
 	public void excluir(Produto produto) {
-		Produto rmv;
 		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		rmv = em.find(Produto.class, produto.getCodigo());
-		em.remove(rmv);
-		em.getTransaction().commit();
-		em.close();
+		try {
+			Produto rmv;
+			em.getTransaction().begin();
+			rmv = em.find(Produto.class, produto.getCodigo());
+			em.remove(rmv);
+			em.getTransaction().commit();
+		} finally { 
+			em.close();
+		}
 		
 	}
 	
-	public void atualizar(Produto produto) {;
+	public void atualizar(Produto produto) {
 		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.merge(produto);
-		em.getTransaction().commit();
-		em.close();
+		try {
+			em.getTransaction().begin();
+			em.merge(produto);
+			em.getTransaction().commit();
+		} finally {
+			em.close();
+		}
 	}
 
 }
