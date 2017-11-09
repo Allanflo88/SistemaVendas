@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -19,8 +21,11 @@ public class Pedido implements Serializable{
     private String dataEmissaoPedido;
     private String dataPagto;
     private boolean status;
+    @ManyToOne
     private Cliente cliente;
+    @ManyToOne
     private Vendedor vendedor;
+    @OneToMany(mappedBy="pedido")
     private ArrayList<ItemPedido> itensPedidos;
 
     public void setNumero(int numero) {

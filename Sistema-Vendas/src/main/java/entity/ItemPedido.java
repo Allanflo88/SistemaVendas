@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 
 
@@ -13,8 +15,8 @@ import javax.persistence.IdClass;
 public class ItemPedido implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Id private Produto produto;
-	@Id private Pedido pedido;
+	@Id @OneToOne private Produto produto;
+	@Id @ManyToOne private Pedido pedido;
     private int numeroItem;
     private int qtdeVendida;
     

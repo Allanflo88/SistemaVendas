@@ -3,6 +3,7 @@ package entity;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -10,6 +11,7 @@ public class Vendedor extends Pessoa{
 	private static final long serialVersionUID = 1L;
     private double salarioBase;
     private double comissao;
+    @OneToMany(mappedBy="vendedor")
     private ArrayList<Pedido> pedidos;
 
     
