@@ -10,52 +10,51 @@ import javax.persistence.Query;
 
 import entity.Pedido;
 
-public class PedidoService {
-	private Pedido pedido = new Pedido();
-	private List<Pedido> pedidos = new ArrayList<>();
+public class PedidoService extends Service{
 	
-	protected static EntityManagerFactory emf = Persistence.createEntityManagerFactory("SistemaVendas");
-	
-	public Pedido getPedido() {
-		return pedido;
-	}
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
-	}
+	@SuppressWarnings("unchecked")
 	public List<Pedido> getPedidos() {
 		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("select * from Pedido", Pedido.class);
-		pedidos = q.getResultList();
-		return pedidos;
+		try {
+			Query q = em.createQuery("select * from Pedido", Pedido.class);
+			return q.getResultList();
+		} finally {
+			em.close();
+		}
 	}
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
+	
 	public void Salvar(Pedido pedido) {
 		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(pedido);
-		em.getTransaction().commit();
-		em.close();
+		try {
+			em.getTransaction().begin();
+			em.persist(pedido);
+			em.getTransaction().commit();
+		} finally {
+			em.close();
+		}
 	}
+	
 	public void excluir(Pedido pedido) {
-		Pedido rmv;
 		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		rmv = em.find(Pedido.class, pedido.getNumero());
-		em.remove(rmv);
-		em.getTransaction().commit();
-		em.close();
-		
+		try {
+			Pedido rmv;
+			em.getTransaction().begin();
+			rmv = em.find(Pedido.class, pedido.getNumero());
+			em.remove(rmv);
+			em.getTransaction().commit();
+		} finally {
+			em.close();
+		}
 	}
 	
 	public void atualizar(Pedido pedido) {;
 		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.merge(pedido);
-		em.getTransaction().commit();
-		em.close();
+		try {
+			em.getTransaction().begin();
+			em.merge(pedido);
+			em.getTransaction().commit();
+		} finally {
+			em.close();
+		}
 	}
-	
-
 }
