@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import entity.ItemPedido;
+import entity.ItemPedidoID;
 
 public class ItemPedidoService {
 	private ItemPedido itemPedido = new ItemPedido();
@@ -37,7 +38,7 @@ public class ItemPedidoService {
 		em.getTransaction().commit();
 		em.close();
 	}
-	public void excluir(ItemPedido itemPedido) {
+	public void excluir(ItemPedidoID itemPedido) {
 		ItemPedido rmv;
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
