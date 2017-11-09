@@ -15,72 +15,7 @@
 
 	<ui:define name="principal">
 	  
-	  <h1><p:outputLabel value="#{msg['']}"/></h1>
 	  
-	  <h:form id="formCliente">	
-	  <p:panelGrid columns="2">
-     
-       </h:form>
-
-   <br/>
-   
-   
-   <h3><p:outputLabel value="#{msg['']}" /> </h3>
-   <h:form id="formTableCliente">
-   
-    <p:dataTable
-                value="#{clienteMB.clientes}"
-                var="aux"
-                id="tabelaCliente"
-            
-                editable="true"
-            
-                paginator="true"
-                rows="5"
-                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                rowsPerPageTemplate="5,10,15"
-                
-                emptyMessage="#{msg['']}">
-      
-      <p:ajax event="rowEdit" listener="#{Cliente.onRowEdit}" update="tabelaAluno" />
-      
-      <p:column headerText="#{msg['']}" filterBy="#{aux.cpf}">
-        <p:outputLabel value="#{aux.cpf}" />
-      </p:column>
-      
-      
-      
-      <p:column headerText="#{msg['']}" filterBy="#{aux.nome}">
-    
-    			<p:cellEditor>
-					<f:facet name="output">
-						<p:outputLabel value="#{aux.nome}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText id="clienteNome" value="#{aux.nome}"
-							style="width:100%" />
-					</f:facet>
-				</p:cellEditor>
-	  </p:column>
-      
-      <p:column style="width:70px" headerText="#{msg['']}">
-					
-					<p:rowEditor />
-					
-					<p:commandLink id="remover" styleClass="ui-icon ui-icon-trash"
-						style="text-align:center"
-						actionListener="#{clienteMB.excluir(aux)}"
-						update="tabelaCliente" />
-	  </p:column>
-
-      
-      
-   </p:dataTable>	
-
-	</h:form>
-
-	
-   	   
 	</ui:define>
 </ui:composition>
 
