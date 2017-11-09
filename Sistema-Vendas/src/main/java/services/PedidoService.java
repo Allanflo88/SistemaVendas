@@ -19,7 +19,7 @@ public class PedidoService extends Service{
 		}
 	}
 	
-	public void Salvar(Pedido pedido) {
+	public void salvar(Pedido pedido) {
 		EntityManager em = emf.createEntityManager();
 		try {
 			em.getTransaction().begin();
