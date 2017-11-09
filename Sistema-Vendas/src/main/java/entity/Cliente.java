@@ -3,12 +3,14 @@ package entity;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cliente extends Pessoa{
 	private static final long serialVersionUID = 1L;
     private double limiteCred;
     private double limiteDisp;
+    @OneToMany(mappedBy="cliente")
     private ArrayList<Pedido> pedidos;
     
 
