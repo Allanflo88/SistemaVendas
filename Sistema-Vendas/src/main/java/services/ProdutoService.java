@@ -1,10 +1,7 @@
 package services;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import entity.Produto;
 
@@ -21,7 +18,7 @@ public class ProdutoService extends Service {
 		}
 	}
 	
-	public void Salvar(Produto produto) {
+	public void salvar(Produto produto) {
 		EntityManager em = emf.createEntityManager();
 		try {
 			em.getTransaction().begin();
