@@ -18,32 +18,39 @@ public class ClienteMB {
 	public Cliente getCliente() {
 		return cliente;
 	}
+	
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
 	public List<Cliente> getClientes() {
 		if(clientes == null) {
 			clientes = service.getClientes();
 		}
 		return clientes;
 	}
+	
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
+	
 	public ClienteService getService() {
 		return service;
 	}
+	
 	public void setService(ClienteService service) {
 		this.service = service;
 	}
+	
 	public void salvar(Cliente cliente) {
-		service.Salvar(cliente);
+		service.salvar(cliente);
 		cliente = new Cliente();
 	}
+	
 	public void excluir(Cliente cliente) {
 		service.excluir(cliente);
-		
 	}
+	
 	public void atualizar(RowEditEvent event) {
 		Cliente cliente = (Cliente) event.getObject();
 		service.atualizar(cliente);
