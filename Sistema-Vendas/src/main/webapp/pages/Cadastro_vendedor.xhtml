@@ -17,16 +17,20 @@
 		<h:form id="formVendedor">
 			<p:panelGrid columns="2">
 				<p:outputLabel value="CPF:"/>
-				<p:inputMask mask="999.999.999-99" value="#{vendedorMB.vendedor.cpf}"/>
+				<p:inputMask mask="999.999.999-99" value="#{vendedorMB.vendedor.cpf}" size="15" placeholder="CPF"/>
 				
 				<p:outputLabel value="Nome:"/>
-				<p:inputText value="#{vendedorMB.vendedor.nome}"/>
+				<p:inputText value="#{vendedorMB.vendedor.nome}" size="50" placeholder="Nome completo"/>
 				
 				<p:outputLabel value="Salario base:"/>
-				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}"/>
+				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10">
+					<f:convertNumber pattern="0.00"/> 
+				</p:inputNumber>
 				
 				<p:outputLabel value="Comissao:"/>
-				<p:inputNumber value="#{vendedorMB.vendedor.comissao}"/>
+				<p:inputNumber value="#{vendedorMB.vendedor.comissao}" size="10">
+					<f:convertNumber pattern="0.00"/> 
+				</p:inputNumber>
 			</p:panelGrid>
 			<p:panelGrid columns="3">
 				<p:outputLabel value="Telefone:"/>
