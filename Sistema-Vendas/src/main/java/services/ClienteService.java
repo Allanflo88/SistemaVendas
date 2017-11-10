@@ -1,13 +1,16 @@
 package services;
 
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
 import javax.persistence.Query;
 import entity.Cliente;
 
-public class ClienteService extends Service {
-	
+public class ClienteService extends Service{
+
+
 	@SuppressWarnings("unchecked")
 	public List<Cliente> getClientes() {
 		EntityManager em = emf.createEntityManager();

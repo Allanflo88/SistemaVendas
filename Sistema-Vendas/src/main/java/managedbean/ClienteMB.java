@@ -42,7 +42,7 @@ public class ClienteMB {
 		this.service = service;
 	}
 	
-	public void salvar(Cliente cliente) {
+	public void salvar() {
 		service.salvar(cliente);
 		cliente = new Cliente();
 	}

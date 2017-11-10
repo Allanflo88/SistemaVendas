@@ -8,7 +8,7 @@ public class Service {
 	protected static EntityManagerFactory emf;
 	
 	public Service(){
-		emf = Persistence.createEntityManagerFactory("SistemaVendas");
+		emf = Persistence.createEntityManagerFactory("Sistema-Vendas");
 	}
 	
 }

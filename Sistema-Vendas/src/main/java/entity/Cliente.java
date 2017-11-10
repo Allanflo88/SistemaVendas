@@ -4,17 +4,19 @@ import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
+@PrimaryKeyJoinColumn(name="cpf")
 public class Cliente extends Pessoa{
 	private static final long serialVersionUID = 1L;
     private double limiteCred;
     private double limiteDisp;
     @OneToMany(mappedBy="cliente")
     private ArrayList<Pedido> pedidos;
-    
+   
 
-    public ArrayList<Pedido> getPedidos() {
+	public ArrayList<Pedido> getPedidos() {
 		return pedidos;
 	}
 

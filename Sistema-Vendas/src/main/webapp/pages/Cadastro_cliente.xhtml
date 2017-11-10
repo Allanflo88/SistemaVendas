@@ -14,8 +14,54 @@
 	
 
 	<ui:define name="principal">
-	  
-	  
+		<h:form id="formCliente">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="CPF:"/>
+				<p:inputMask mask="999.999.999-99" value="#{clienteMB.cliente.cpf}"/>
+				
+				<p:outputLabel value="Nome:"/>
+				<p:inputText value="#{clienteMB.cliente.nome}"/>
+				
+				<p:outputLabel value="Limite de credito:"/>
+				<p:inputText value="#{clienteMB.cliente.limiteCred}"/>
+			</p:panelGrid>
+			<p:panelGrid columns="3">
+				<p:outputLabel value="Telefone:"/>
+				<p:inputMask mask="(99)" value="#{clienteMB.cliente.ddd}" maxlength="2" size="2" placeholder="DDD" />
+				<p:inputMask mask="9 9999-9999" value="#{clienteMB.cliente.telefone}" maxlength="9" size="9"/>
+			</p:panelGrid>
+			<p:panelGrid columns="5">
+				<p:outputLabel value="Endereço:"/>
+				<p:inputText value="#{clienteMB.cliente.endereco}" placeholder="Endereço"/>
+				<p:inputMask mask="99999-999" value="#{clienteMB.cliente.cep}" placeholder="CEP" maxlength="8" size="8"/>
+				<p:inputText value="#{clienteMB.cliente.cidade}" placeholder="Cidade"/>
+				<p:selectOneMenu value="#{clienteMB.cliente.uf}" style="width">
+					<f:selectItem itemLabel="SP" itemValue="SP"/>
+					<f:selectItem itemLabel="RJ" itemValue="RJ"/>
+				</p:selectOneMenu>
+			</p:panelGrid>
+			<p:commandButton value="Salvar" action="#{clienteMB.salvar}" update="@all"/>
+		</h:form>
+		<h:form id="formTableCliente">
+			<p:dataGrid id="tableCliente" var="aux" value="#{clienteMB.clientes}">
+				<p:column headerText="CPF">
+					<h:outputText value="#{aux.cpf}"/>
+				</p:column>
+				
+				<p:column headerText="Nome">
+					<h:outputText value="#{aux.nome}"/>
+				</p:column>
+				
+				<p:column headerText="limite Credito">
+					<h:outputText value="#{aux.limitecred}"/>
+				</p:column>
+				
+				<p:column headerText="Limite Disponivel">
+					<h:outputText value="#{aux.limitedisp}"/>
+				</p:column>
+				
+			</p:dataGrid>
+		</h:form>
 	</ui:define>
 </ui:composition>
 

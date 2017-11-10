@@ -9,14 +9,14 @@ import javax.persistence.Embeddable;
 public class ItemPedidoID implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Pedido pedido;
-    private Produto produto;
+	private int pedido;
+    private int produto;
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((pedido == null) ? 0 : pedido.hashCode());
-		result = prime * result + ((produto == null) ? 0 : produto.hashCode());
+		result = prime * result + pedido;
+		result = prime * result + produto;
 		return result;
 	}
 	@Override
@@ -28,19 +28,14 @@ public class ItemPedidoID implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		ItemPedidoID other = (ItemPedidoID) obj;
-		if (pedido == null) {
-			if (other.pedido != null)
-				return false;
-		} else if (!pedido.equals(other.pedido))
+		if (pedido != other.pedido)
 			return false;
-		if (produto == null) {
-			if (other.produto != null)
-				return false;
-		} else if (!produto.equals(other.produto))
+		if (produto != other.produto)
 			return false;
 		return true;
 	}
-
+	
+    
     
 
 }
