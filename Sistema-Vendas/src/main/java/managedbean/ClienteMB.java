@@ -1,6 +1,5 @@
 package managedbean;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -12,7 +11,6 @@ import services.ClienteService;
 @SessionScoped
 public class ClienteMB {
 	private Cliente cliente = new Cliente();
-	private List<Cliente> clientes;
 	private ClienteService service = new ClienteService();
 	
 	public Cliente getCliente() {
@@ -25,10 +23,6 @@ public class ClienteMB {
 	
 	public List<Cliente> getClientes() {
 		return service.getClientes();
-	}
-	
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
 	}
 	
 	public ClienteService getService() {
