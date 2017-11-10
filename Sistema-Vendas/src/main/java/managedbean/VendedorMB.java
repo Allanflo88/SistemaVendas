@@ -1,22 +1,16 @@
 package managedbean;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import org.primefaces.event.RowEditEvent;
-
 import entity.Vendedor;
 import services.VendedorService;
-
 
 @ManagedBean
 @SessionScoped
 public class VendedorMB {
 	private Vendedor vendedor = new Vendedor();
-	private List<Vendedor> vendedores = new ArrayList<>();
 	private VendedorService service = new VendedorService();
 	
 	public Vendedor getVendedor() {
@@ -29,10 +23,6 @@ public class VendedorMB {
 	
 	public List<Vendedor> getVendedores() {
 		return service.getVendedores();
-	}
-	
-	public void setVendedores(List<Vendedor> vendedores) {
-		this.vendedores = vendedores;
 	}
 	
 	public VendedorService getService() {
