@@ -12,7 +12,7 @@ public class PedidoService extends Service{
 	public List<Pedido> getPedidos() {
 		EntityManager em = emf.createEntityManager();
 		try {
-			Query q = em.createQuery("select * from Pedido", Pedido.class);
+			Query q = em.createQuery("select p from Pedido p", Pedido.class);
 			return q.getResultList();
 		} finally {
 			em.close();

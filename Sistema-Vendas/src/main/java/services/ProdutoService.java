@@ -11,7 +11,7 @@ public class ProdutoService extends Service {
 	public List<Produto> getProdutos() {
 		EntityManager em = emf.createEntityManager();
 		try {
-			Query q = em.createQuery("Select * From Produto;", Produto.class);
+			Query q = em.createQuery("Select p From Produto p", Produto.class);
 			return q.getResultList();
 		} finally {
 			em.close();
