@@ -11,7 +11,7 @@ public class VendedorService extends Service {
 	public List<Vendedor> getVendedores() {
 		EntityManager em = emf.createEntityManager();
 		try {
-			Query q = em.createQuery("select * from Vendedor", Vendedor.class);
+			Query q = em.createQuery("select c from Vendedor c", Vendedor.class);
 			return q.getResultList();
 		} finally {
 			em.close();

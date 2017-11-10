@@ -28,10 +28,7 @@ public class VendedorMB {
 	}
 	
 	public List<Vendedor> getVendedores() {
-		if(vendedores == null) {
-			vendedores = service.getVendedores();
-		}
-		return vendedores;
+		return service.getVendedores();
 	}
 	
 	public void setVendedores(List<Vendedor> vendedores) {
@@ -46,7 +43,7 @@ public class VendedorMB {
 		this.service = service;
 	}
 	
-	public void salvar(Vendedor vendedor) {
+	public void salvar() {
 		service.salvar(vendedor);
 		vendedor = new Vendedor();
 	}

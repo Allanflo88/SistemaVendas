@@ -9,7 +9,7 @@
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 	
 	<ui:define name="title">
-		<h:outputText value="#{msg['']}" />
+		<h:outputText value="#{msg['pages.Cadastro_cliente.title']}" />
 	</ui:define>
 	
 
@@ -43,7 +43,7 @@
 			<p:commandButton value="Salvar" action="#{clienteMB.salvar}" update="@all"/>
 		</h:form>
 		<h:form id="formTableCliente">
-			<p:dataGrid id="tableCliente" var="aux" value="#{clienteMB.clientes}">
+			<p:dataTable id="tableCliente" var="aux" value="#{clienteMB.clientes}">
 				<p:column headerText="CPF">
 					<h:outputText value="#{aux.cpf}"/>
 				</p:column>
@@ -53,14 +53,14 @@
 				</p:column>
 				
 				<p:column headerText="limite Credito">
-					<h:outputText value="#{aux.limitecred}"/>
+					<h:outputText value="#{aux.limiteCred}"/>
 				</p:column>
 				
 				<p:column headerText="Limite Disponivel">
-					<h:outputText value="#{aux.limitedisp}"/>
+					<h:outputText value="#{aux.limiteDisp}"/>
 				</p:column>
 				
-			</p:dataGrid>
+			</p:dataTable>
 		</h:form>
 	</ui:define>
 </ui:composition>

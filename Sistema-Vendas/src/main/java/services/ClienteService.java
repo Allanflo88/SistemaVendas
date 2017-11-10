@@ -15,7 +15,7 @@ public class ClienteService extends Service{
 	public List<Cliente> getClientes() {
 		EntityManager em = emf.createEntityManager();
 		try {
-			Query q = em.createQuery("select * from Cliente", Cliente.class);
+			Query q = em.createQuery("select c from Cliente c", Cliente.class);
 			return q.getResultList();
 		} finally {
 			em.close();

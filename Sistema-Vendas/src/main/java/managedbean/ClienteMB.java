@@ -12,7 +12,7 @@ import services.ClienteService;
 @SessionScoped
 public class ClienteMB {
 	private Cliente cliente = new Cliente();
-	private List<Cliente> clientes = new ArrayList<>();
+	private List<Cliente> clientes;
 	private ClienteService service = new ClienteService();
 	
 	public Cliente getCliente() {
@@ -24,10 +24,7 @@ public class ClienteMB {
 	}
 	
 	public List<Cliente> getClientes() {
-		if(clientes == null) {
-			clientes = service.getClientes();
-		}
-		return clientes;
+		return service.getClientes();
 	}
 	
 	public void setClientes(List<Cliente> clientes) {
