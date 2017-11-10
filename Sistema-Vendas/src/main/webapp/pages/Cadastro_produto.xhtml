@@ -1,0 +1,64 @@
+
+<ui:composition template="TemplateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+	
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.CadastroProduto.title']}" />
+	</ui:define>
+	
+
+	<ui:define name="principal">
+		<h:form id="formProduto">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Descrição"/>				
+				<p:inputText value="#{produtoMB.produto.descricao}" size="60" placeholder="Descrição do produto"/>
+				
+				<p:outputLabel value="Preço unitário:"/>
+				<p:inputNumber value="#{produtoMB.produto.precoUnit}" size="15"/>
+			</p:panelGrid>
+				
+			<p:panelGrid columns="4">					
+				<p:outputLabel value="Quantidade disponível:"/>
+				<p:inputText value="#{produtoMB.produto.qtdeDisponivel}" />
+				
+				<p:outputLabel value="Estoque mínimo:"/>
+				<p:inputText value="#{produtoMB.produto.estoqueMin}"/>
+			</p:panelGrid>
+			<p:commandButton value="Salvar" action="#{produtoMB.salvar}" update="formProduto, formTableProduto"/>
+		</h:form>
+		<h:form id="formTableProduto">
+			<p:dataTable id="tableProduto" var="aux" value="#{produtoMB.produtos}">
+				<p:column headerText="Código">
+					<h:outputText value="#{aux.codigo}"/>
+				</p:column>
+				
+				<p:column headerText="Descrição">
+					<h:outputText value="#{aux.descricao}"/>
+				</p:column>
+				
+				<p:column headerText="Preço unitário">
+					<h:outputText value="#{aux.precoUnit}">
+						<f:convertNumber pattern="R$ #,##0.00" />
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Qtde. Disponível">
+					<h:outputText value="#{aux.qtdeDisponivel}"/>
+				</p:column>
+				
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
