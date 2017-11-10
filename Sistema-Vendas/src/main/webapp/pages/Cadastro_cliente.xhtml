@@ -36,8 +36,7 @@
 				<p:inputMask mask="99999-999" value="#{clienteMB.cliente.cep}" placeholder="CEP" maxlength="8" size="8"/>
 				<p:inputText value="#{clienteMB.cliente.cidade}" placeholder="Cidade"/>
 				<p:selectOneMenu value="#{clienteMB.cliente.uf}" style="width">
-					<f:selectItem itemLabel="SP" itemValue="SP"/>
-					<f:selectItem itemLabel="RJ" itemValue="RJ"/>
+					<f:selectItems value="#{uFMB.listaUF}" />
 				</p:selectOneMenu>
 			</p:panelGrid>
 			<p:commandButton value="Salvar" action="#{clienteMB.salvar}" update="@all"/>
