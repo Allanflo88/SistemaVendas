@@ -19,50 +19,50 @@
 				<p:outputLabel value="CPF:"/>
 				<p:inputMask mask="999.999.999-99" value="#{vendedorMB.vendedor.cpf}" size="15" placeholder="CPF"/>
 				
-				<p:outputLabel value="Nome:"/>
-				<p:inputText value="#{vendedorMB.vendedor.nome}" size="50" placeholder="Nome completo"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.nome']}"/>
+				<p:inputText value="#{vendedorMB.vendedor.nome}" size="50" placeholder="#{msg['pages.Cadastro_vendedor.nome.placeholder']}"/>
 				
-				<p:outputLabel value="Salario base:"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.SalBase']}"/>
 				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10">
 					<f:convertNumber pattern="0.00"/> 
 				</p:inputNumber>
 				
-				<p:outputLabel value="Comissao:"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Comissao']}"/>
 				<p:inputNumber value="#{vendedorMB.vendedor.comissao}" size="10">
 					<f:convertNumber pattern="0.00"/> 
 				</p:inputNumber>
 			</p:panelGrid>
 			<p:panelGrid columns="3">
-				<p:outputLabel value="Telefone:"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Telefone']}"/>
 				<p:inputMask mask="(99)" value="#{vendedorMB.vendedor.ddd}" maxlength="2" size="2" placeholder="DDD" />
 				<p:inputMask mask="9 9999-9999" value="#{vendedorMB.vendedor.telefone}" maxlength="9" size="9"/>
 			</p:panelGrid>
 			<p:panelGrid columns="5">
-				<p:outputLabel value="Endereço:"/>
-				<p:inputText value="#{vendedorMB.vendedor.endereco}" placeholder="Endereço"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Endereco']}"/>
+				<p:inputText value="#{vendedorMB.vendedor.endereco}" placeholder="#{msg['pages.Cadastro_vendedor.Endereco.placeholder']}"/>
 				<p:inputMask mask="99999-999" value="#{vendedorMB.vendedor.cep}" placeholder="CEP" maxlength="8" size="8"/>
-				<p:inputText value="#{vendedorMB.vendedor.cidade}" placeholder="Cidade"/>
+				<p:inputText value="#{vendedorMB.vendedor.cidade}" placeholder="#{msg['pages.Cadastro_vendedor.Endereco.Cidade.placeholder']}"/>
 				<p:selectOneMenu value="#{vendedorMB.vendedor.uf}" style="width">
 					<f:selectItems value="#{uFMB.listaUF}" />
 				</p:selectOneMenu>
 			</p:panelGrid>
-			<p:commandButton value="Salvar" action="#{vendedorMB.salvar}" update="@all"/>
+			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}" action="#{vendedorMB.salvar}" update="@all"/>
 		</h:form>
 		<h:form id="formTableVendedor">
 			<p:dataTable id="tableVendedor" var="aux" value="#{vendedorMB.vendedores}">
-				<p:column headerText="CPF">
+				<p:column headerText="CPF:">
 					<h:outputText value="#{aux.cpf}"/>
 				</p:column>
 				
-				<p:column headerText="Nome">
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.nome']}">
 					<h:outputText value="#{aux.nome}"/>
 				</p:column>
 				
-				<p:column headerText="Comissao">
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.Comissao']}">
 					<h:outputText value="#{aux.comissao}"/>
 				</p:column>
 				
-				<p:column headerText="Salario base">
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.SalBase']}">
 					<h:outputText value="#{aux.salarioBase}"/>
 				</p:column>
 				
