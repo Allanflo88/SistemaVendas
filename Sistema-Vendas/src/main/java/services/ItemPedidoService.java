@@ -4,7 +4,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import entity.ItemPedido;
-import entity.ItemPedidoID;
 
 public class ItemPedidoService extends Service {
 
@@ -30,12 +29,12 @@ public class ItemPedidoService extends Service {
 		}
 	}
 	
-	public void excluir(ItemPedidoID itemPedido) {
+	public void excluir(ItemPedido itemPedido) {
 		EntityManager em = emf.createEntityManager();
 		try {
 			ItemPedido rmv;
 			em.getTransaction().begin();
-			rmv = em.find(ItemPedido.class, itemPedido);
+			rmv = em.find(ItemPedido.class, itemPedido.getId());
 			em.remove(rmv);
 			em.getTransaction().commit();
 		} finally {
