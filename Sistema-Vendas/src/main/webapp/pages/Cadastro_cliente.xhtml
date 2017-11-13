@@ -39,7 +39,10 @@
 					<f:selectItems value="#{uFMB.listaUF}" />
 				</p:selectOneMenu>
 			</p:panelGrid>
-			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}" action="#{clienteMB.salvar}" update="@all"/>
+			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}" action="#{clienteMB.salvar}" update="@all" disabled="#{clienteMB.edicao}"/>
+			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}" action="#{clienteMB.atualizar}" update="@all" disabled="#{clienteMB.criacao}" />
+			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}" action="#{clienteMB.excluir}" update="@all" disabled="#{clienteMB.criacao}"/>
+			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}" action="#{clienteMB.cancelar}" update="@all"/>
 		</h:form>
 		<h:form id="formTableCliente">
 			<p:dataTable id="tableCliente" var="aux" value="#{clienteMB.clientes}">
@@ -60,10 +63,7 @@
 				</p:column>
 				
 				<p:column style="width:32px;text-align: center">
-					<p:commandButton update="formTableCliente, formCliente" icon="ui-icon-edit" title="Edit">
-                		<f:setPropertyActionListener value="#{aux}" target="#{clienteMB.cliente}" />
-	            	</p:commandButton>
-	            	<p:commandButton update="formTableCliente, formCliente" icon="ui-icon-delete" title="Delete">
+					<p:commandButton update="formTableCliente, formCliente" icon="ui-icon-edit" title="Edit" value="Selecionar" action="#{clienteMB.selecionar}">
                 		<f:setPropertyActionListener value="#{aux}" target="#{clienteMB.cliente}" />
 	            	</p:commandButton>
 		        </p:column>

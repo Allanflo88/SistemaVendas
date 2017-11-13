@@ -12,6 +12,7 @@ import services.ClienteService;
 public class ClienteMB {
 	private Cliente cliente = new Cliente();
 	private ClienteService service = new ClienteService();
+	private boolean edicao = false;
 	
 	public Cliente getCliente() {
 		return cliente;
@@ -33,18 +34,49 @@ public class ClienteMB {
 		this.service = service;
 	}
 	
+	public boolean isCriacao() {
+		return !edicao;
+	}
+
+	public void setCriacao(boolean criacao) {
+		this.edicao = !criacao;
+	}
+
+	public boolean isEdicao() {
+		return edicao;
+	}
+
+	public void setEdicao(boolean edicao) {
+		this.edicao = edicao;
+	}
+
 	public void salvar() {
 		service.salvar(cliente);
 		cliente = new Cliente();
 	}
 	
-	public void excluir(Cliente cliente) {
+	public void excluir() {
 		service.excluir(cliente);
+		cancelar();
 	}
 	
 	public void atualizar(RowEditEvent event) {
 		Cliente cliente = (Cliente) event.getObject();
 		service.atualizar(cliente);
+	}
+	
+	public void selecionar() {
+		edicao = true;
+	}
+	
+	public void cancelar(){
+		edicao = false;
+		cliente = new Cliente();
+	}
+	
+	public void atualizar() {
+		service.atualizar(cliente);
+		cancelar();
 	}
 	
 }
