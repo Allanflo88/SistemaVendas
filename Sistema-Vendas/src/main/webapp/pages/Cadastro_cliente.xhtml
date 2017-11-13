@@ -59,6 +59,15 @@
 					<h:outputText value="#{aux.limiteDisp}"/>
 				</p:column>
 				
+				<p:column style="width:32px;text-align: center">
+					<p:commandButton update="formTableCliente, formCliente" icon="ui-icon-edit" title="Edit">
+                		<f:setPropertyActionListener value="#{aux}" target="#{clienteMB.cliente}" />
+	            	</p:commandButton>
+	            	<p:commandButton update="formTableCliente, formCliente" icon="ui-icon-delete" title="Delete">
+                		<f:setPropertyActionListener value="#{aux}" target="#{clienteMB.cliente}" />
+	            	</p:commandButton>
+		        </p:column>
+				
 			</p:dataTable>
 		</h:form>
 	</ui:define>
