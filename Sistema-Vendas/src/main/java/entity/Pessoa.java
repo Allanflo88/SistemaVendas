@@ -26,7 +26,10 @@ public class Pessoa implements Serializable{
 
 
     public void setCpf(String cpf) {
-		this.cpf = cpf;
+    	if(validaCPF(cpf)) {
+    		this.cpf = cpf;
+    	}
+		
 	}
 
 	public void setNome(String nome) {
@@ -87,5 +90,33 @@ public class Pessoa implements Serializable{
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+    
+    public boolean validaCPF(String cpf) {
+    	cpf = cpf.replace("-","").replaceAll(".","");
+    	int[] vetor = new int[11];
+    	int dig1 = Integer.parseInt(cpf.substring(8,9));
+    	int dig2 = Integer.parseInt(cpf.substring(9,10));
+    	int i = 2;
+    	for(int c = 0;c < cpf.length();c++) {
+    		vetor[c] = Integer.parseInt(cpf.substring(c, c+1)) * i;
+    		i++;
+    	}
+    	if(dig1 == 1) {
+    		i = 2;
+    		for(int c = 0;c < cpf.length();c++) {
+        		vetor[c] = Integer.parseInt(cpf.substring(c, c+1)) * i;
+        		i++;
+        	}
+    		if(dig2 == 1) {
+    			return true;
+    		}
+    		else {
+    			return false;
+    		}
+    	}
+    	else {
+    		return false;
+    	}
     }
 }

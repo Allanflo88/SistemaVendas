@@ -7,66 +7,76 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui2="http://java.sun.com/jsf/facelets"
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
-	
+
 	<ui:define name="title">
 		<h:outputText value="#{msg['pages.Cadastro_cliente.title']}" />
 	</ui:define>
-	
+
 
 	<ui:define name="principal">
 		<h:form id="formVendedor">
 			<p:panelGrid columns="2">
-				<p:outputLabel value="CPF:"/>
-				<p:inputMask mask="999.999.999-99" value="#{vendedorMB.vendedor.cpf}" size="15" placeholder="CPF"/>
-				
-				<p:outputLabel value="Nome:"/>
-				<p:inputText value="#{vendedorMB.vendedor.nome}" size="50" placeholder="Nome completo"/>
-				
-				<p:outputLabel value="Salario base:"/>
-				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10">
-					<f:convertNumber pattern="0.00"/> 
+				<p:outputLabel value="CPF:" />
+				<p:inputMask mask="999.999.999-99" id="cpf"
+					value="#{vendedorMB.vendedor.cpf}" size="15" placeholder="CPF" required="true"/>
+
+				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.nome']}" />
+				<p:inputText value="#{vendedorMB.vendedor.nome}" size="50"
+					placeholder="#{msg['pages.Cadastro_vendedor.nome.placeholder']}" required="true" />
+
+				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.SalBase']}" />
+				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10" required="true">
+					<f:convertNumber pattern="0.00" />
 				</p:inputNumber>
-				
-				<p:outputLabel value="Comissao:"/>
+
+				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Comissao']}" />
 				<p:inputNumber value="#{vendedorMB.vendedor.comissao}" size="10">
-					<f:convertNumber pattern="0.00"/> 
+					<f:convertNumber pattern="0.00" />
 				</p:inputNumber>
 			</p:panelGrid>
 			<p:panelGrid columns="3">
-				<p:outputLabel value="Telefone:"/>
-				<p:inputMask mask="(99)" value="#{vendedorMB.vendedor.ddd}" maxlength="2" size="2" placeholder="DDD" />
-				<p:inputMask mask="9 9999-9999" value="#{vendedorMB.vendedor.telefone}" maxlength="9" size="9"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Telefone']}" />
+				<p:inputMask mask="(99)" value="#{vendedorMB.vendedor.ddd}"
+					maxlength="2" size="2" placeholder="DDD" />
+				<p:inputMask mask="9 9999-9999"
+					value="#{vendedorMB.vendedor.telefone}" maxlength="9" size="9" />
 			</p:panelGrid>
 			<p:panelGrid columns="5">
-				<p:outputLabel value="Endereço:"/>
-				<p:inputText value="#{vendedorMB.vendedor.endereco}" placeholder="Endereço"/>
-				<p:inputMask mask="99999-999" value="#{vendedorMB.vendedor.cep}" placeholder="CEP" maxlength="8" size="8"/>
-				<p:inputText value="#{vendedorMB.vendedor.cidade}" placeholder="Cidade"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Endereco']}" />
+				<p:inputText value="#{vendedorMB.vendedor.endereco}"
+					placeholder="#{msg['pages.Cadastro_vendedor.Endereco.placeholder']}" />
+				<p:inputMask mask="99999-999" value="#{vendedorMB.vendedor.cep}"
+					placeholder="CEP" maxlength="8" size="8" />
+				<p:inputText value="#{vendedorMB.vendedor.cidade}"
+					placeholder="#{msg['pages.Cadastro_vendedor.Endereco.Cidade.placeholder']}" />
 				<p:selectOneMenu value="#{vendedorMB.vendedor.uf}" style="width">
 					<f:selectItems value="#{uFMB.listaUF}" />
 				</p:selectOneMenu>
 			</p:panelGrid>
-			<p:commandButton value="Salvar" action="#{vendedorMB.salvar}" update="@all"/>
+			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
+				action="#{vendedorMB.salvar}" update="@all" />
 		</h:form>
 		<h:form id="formTableVendedor">
-			<p:dataTable id="tableVendedor" var="aux" value="#{vendedorMB.vendedores}">
-				<p:column headerText="CPF">
-					<h:outputText value="#{aux.cpf}"/>
+			<p:dataTable id="tableVendedor" var="aux"
+				value="#{vendedorMB.vendedores}">
+				<p:column headerText="CPF:">
+					<h:outputText value="#{aux.cpf}" />
 				</p:column>
-				
-				<p:column headerText="Nome">
-					<h:outputText value="#{aux.nome}"/>
+
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.nome']}">
+					<h:outputText value="#{aux.nome}" />
 				</p:column>
-				
-				<p:column headerText="Comissao">
-					<h:outputText value="#{aux.comissao}"/>
+
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.Comissao']}">
+					<h:outputText value="#{aux.comissao}" />
 				</p:column>
-				
-				<p:column headerText="Salario base">
-					<h:outputText value="#{aux.salarioBase}"/>
+
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.SalBase']}">
+					<h:outputText value="#{aux.salarioBase}" />
 				</p:column>
-				
+
 			</p:dataTable>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>
