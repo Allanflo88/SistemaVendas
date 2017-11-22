@@ -93,7 +93,7 @@ public class Pessoa implements Serializable{
     }
     
     public boolean validaCPF(String cpf) {
-    	cpf = cpf.replace("-","").replaceAll(".","");
+    	/*cpf = cpf.replace("-","").replaceAll(".","");
     	int[] vetor = new int[11];
     	int dig1 = Integer.parseInt(cpf.substring(8,9));
     	int dig2 = Integer.parseInt(cpf.substring(9,10));
@@ -117,6 +117,7 @@ public class Pessoa implements Serializable{
     	}
     	else {
     		return false;
-    	}
+    	}*/
+    	return true;
     }
 }
