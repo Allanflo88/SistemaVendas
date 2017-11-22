@@ -55,6 +55,9 @@
 			</p:panelGrid>
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
 				action="#{vendedorMB.salvar}" update="@all" />
+			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}" action="#{vendedorMB.atualizar}" update="@all" />
+			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}" action="#{vendedorMB.excluir}" update="@all"/>
+			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}" action="#{vendedorMB.cancelar}" update="@all"/>
 		</h:form>
 		<h:form id="formTableVendedor">
 			<p:dataTable id="tableVendedor" var="aux"

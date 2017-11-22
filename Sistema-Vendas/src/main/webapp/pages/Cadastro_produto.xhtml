@@ -17,24 +17,27 @@
 		<h:form id="formProduto">
 			<p:panelGrid columns="2">
 				<p:outputLabel value="#{msg['pages.Cadastro_produto.descricao']}"/>				
-				<p:inputText value="#{produtoMB.produto.descricao}" size="60" placeholder="Descrição do produto"/>
+				<p:inputText value="#{produtoMB.produto.descricao}" size="60" placeholder="#{msg['pages.Cadastro_produto.descricao.placeholder']}"/>
 				
-				<p:outputLabel value="Preço unitário:"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_produto.precoUni']}"/>
 				<p:inputNumber value="#{produtoMB.produto.precoUnit}" size="15"/>
 			</p:panelGrid>
 				
 			<p:panelGrid columns="4">					
-				<p:outputLabel value="Quantidade disponível:"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_produto.qtdDisp']}"/>
 				<p:inputText value="#{produtoMB.produto.qtdeDisponivel}" />
 				
-				<p:outputLabel value="Estoque mínimo:"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_produto.estqMin']}"/>
 				<p:inputText value="#{produtoMB.produto.estoqueMin}"/>
 			</p:panelGrid>
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}" action="#{produtoMB.salvar}" update="@all"/>
+			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}" action="#{produtoMB.atualizar}" update="@all"/>
+			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}" action="#{produtoMB.excluir}" update="@all"/>
+			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}" action="#{produtoMB.cancelar}" update="@all"/>
 		</h:form>
 		<h:form id="formTableProduto">
 			<p:dataTable id="tableProduto" var="aux" value="#{produtoMB.produtos}">
-				<p:column headerText="Código">
+				<p:column headerText="#{msg['pages.Cadastro_produto.codigo']}">
 					<h:outputText value="#{aux.codigo}"/>
 				</p:column>
 				
@@ -42,13 +45,13 @@
 					<h:outputText value="#{aux.descricao}"/>
 				</p:column>
 				
-				<p:column headerText="Preço unitário">
+				<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}">
 					<h:outputText value="#{aux.precoUnit}">
 						<f:convertNumber pattern="R$ #,##0.00" />
 					</h:outputText>
 				</p:column>
 				
-				<p:column headerText="Qtde. Disponível">
+				<p:column headerText="#{msg['pages.Cadastro_produto.qtdDisp']}">
 					<h:outputText value="#{aux.qtdeDisponivel}"/>
 				</p:column>
 				
