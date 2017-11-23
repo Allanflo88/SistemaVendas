@@ -7,67 +7,88 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui2="http://java.sun.com/jsf/facelets"
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
-	
+
 	<ui:define name="title">
 		<h:outputText value="#{msg['pages.Cadastro_cliente.title']}" />
 	</ui:define>
-	
+
 
 	<ui:define name="principal">
 		<h:form id="formCliente">
 			<p:panelGrid columns="2">
 				<p:outputLabel value="CPF:" />
-				<p:inputMask mask="999.999.999-99" value="#{clienteMB.cliente.cpf}" size="15" placeholder="CPF"/>
-				
-				<p:outputLabel value="#{msg['pages.Cadastro_cliente.nome']}"/>
-				<p:inputText value="#{clienteMB.cliente.nome}" size="50" placeholder="#{msg['pages.Cadastro_cliente.nome.placeholder']}" />
-				
-				<p:outputLabel value="#{msg['pages.Cadastro_cliente.LimCredit']}"/>
-				<p:inputText value="#{clienteMB.cliente.limiteCred}"/>
+				<p:inputMask mask="999.999.999-99" value="#{clienteMB.cliente.cpf}"
+					size="15" placeholder="CPF" />
+
+				<p:outputLabel value="#{msg['pages.Cadastro_cliente.nome']}" />
+				<p:inputText value="#{clienteMB.cliente.nome}" size="50"
+					placeholder="#{msg['pages.Cadastro_cliente.nome.placeholder']}" />
+
+				<p:outputLabel value="#{msg['pages.Cadastro_cliente.LimCredit']}" />
+				<p:inputText value="#{clienteMB.cliente.limiteCred}" />
 			</p:panelGrid>
 			<p:panelGrid columns="3">
-				<p:outputLabel value="#{msg['pages.Cadastro_cliente.Telefone']}"/>
-				<p:inputMask mask="(99)" value="#{clienteMB.cliente.ddd}" maxlength="2" size="2" placeholder="DDD" />
-				<p:inputMask mask="9 9999-9999" value="#{clienteMB.cliente.telefone}" maxlength="9" size="9"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_cliente.Telefone']}" />
+				<p:inputMask mask="(99)" value="#{clienteMB.cliente.ddd}"
+					maxlength="2" size="2" placeholder="DDD" />
+				<p:inputMask mask="9 9999-9999"
+					value="#{clienteMB.cliente.telefone}" maxlength="9" size="9" />
 			</p:panelGrid>
 			<p:panelGrid columns="5">
-				<p:outputLabel value="#{msg['pages.Cadastro_cliente.Endereco']}"/>
-				<p:inputText value="#{clienteMB.cliente.endereco}" placeholder="#{msg['pages.Cadastro_cliente.Endereco.placeholder']}" size="30"/>
-				<p:inputMask mask="99999-999" value="#{clienteMB.cliente.cep}" placeholder="CEP" maxlength="8" size="8"/>
-				<p:inputText value="#{clienteMB.cliente.cidade}" placeholder="#{msg['pages.Cadastro_cliente.Endereco.Cidade.placeholder']}"/>
+				<p:outputLabel value="#{msg['pages.Cadastro_cliente.Endereco']}" />
+				<p:inputText value="#{clienteMB.cliente.endereco}"
+					placeholder="#{msg['pages.Cadastro_cliente.Endereco.placeholder']}"
+					size="30" />
+				<p:inputMask mask="99999-999" value="#{clienteMB.cliente.cep}"
+					placeholder="CEP" maxlength="8" size="8" />
+				<p:inputText value="#{clienteMB.cliente.cidade}"
+					placeholder="#{msg['pages.Cadastro_cliente.Endereco.Cidade.placeholder']}" />
 				<p:selectOneMenu value="#{clienteMB.cliente.uf}" style="width">
 					<f:selectItems value="#{uFMB.listaUF}" />
 				</p:selectOneMenu>
 			</p:panelGrid>
-			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}" action="#{clienteMB.salvar}" update="@all" disabled="#{clienteMB.edicao}"/>
-			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}" action="#{clienteMB.atualizar}" update="@all" disabled="#{clienteMB.criacao}" />
-			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}" action="#{clienteMB.excluir}" update="@all" disabled="#{clienteMB.criacao}"/>
-			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}" action="#{clienteMB.cancelar}" update="@all"/>
+			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
+				action="#{clienteMB.salvar}" update="@all"
+				disabled="#{clienteMB.edicao}" />
+			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
+				action="#{clienteMB.atualizar}" update="@all"
+				disabled="#{clienteMB.criacao}" />
+			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
+				action="#{clienteMB.excluir}" update="@all"
+				disabled="#{clienteMB.criacao}" />
+			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
+				action="#{clienteMB.cancelar}" update="@all" />
 		</h:form>
 		<h:form id="formTableCliente">
-			<p:dataTable id="tableCliente" var="aux" value="#{clienteMB.clientes}">
+			<p:dataTable id="tableCliente" var="aux"
+				value="#{clienteMB.clientes}" rows="10" paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15">
 				<p:column headerText="CPF:">
-					<h:outputText value="#{aux.cpf}"/>
+					<h:outputText value="#{aux.cpf}" />
 				</p:column>
-				
+
 				<p:column headerText="#{msg['pages.Cadastro_cliente.nome']}">
-					<h:outputText value="#{aux.nome}"/>
+					<h:outputText value="#{aux.nome}" />
 				</p:column>
-				
+
 				<p:column headerText="#{msg['pages.Cadastro_cliente.LimCredit']}">
-					<h:outputText value="#{aux.limiteCred}"/>
+					<h:outputText value="#{aux.limiteCred}" />
 				</p:column>
-				
+
 				<p:column headerText="#{msg['pages.Cadastro_cliente.LimDisp']}">
-					<h:outputText value="#{aux.limiteDisp}"/>
+					<h:outputText value="#{aux.limiteDisp}" />
 				</p:column>
-				
+
 				<p:column style="width:32px;text-align: center">
-					<p:commandButton update="formTableCliente, formCliente" icon="ui-icon-edit" title="Edit" value="Selecionar" action="#{clienteMB.selecionar}">
-                		<f:setPropertyActionListener value="#{aux}" target="#{clienteMB.cliente}" />
-	            	</p:commandButton>
-		        </p:column>
-				
+					<p:commandButton update="formTableCliente, formCliente"
+						icon="ui-icon-edit" title="Edit" value="Selecionar"
+						action="#{clienteMB.selecionar}">
+						<f:setPropertyActionListener value="#{aux}"
+							target="#{clienteMB.cliente}" />
+					</p:commandButton>
+				</p:column>
+
 			</p:dataTable>
 		</h:form>
 	</ui:define>
