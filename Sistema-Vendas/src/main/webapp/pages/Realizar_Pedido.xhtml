@@ -31,6 +31,15 @@
 				<p:outputLabel value="Vendedor:" />
 				<p:inputText value="" />
 			</p:panelGrid>
+			<p:panelGrid columns="2">
+				<f:facet name="header">Adicionar item</f:facet>
+				
+				<p:outputLabel value="Produto"/>
+				<p:selectOneButton/>
+				
+				<p:outputLabel value="Quantidade"/>
+				<p:inputNumber value=""/>
+			</p:panelGrid>
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
 				update="@all" />
 			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
