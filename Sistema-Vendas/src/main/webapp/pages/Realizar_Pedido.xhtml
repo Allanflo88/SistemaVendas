@@ -1,0 +1,51 @@
+
+<ui:composition template="TemplateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.Realizar_Pedido.title']}" />
+	</ui:define>
+
+
+	<ui:define name="principal">
+		<h:form id="formPedido">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Pedido:" />
+				<p:inputNumber value="" disabled="true" />
+
+				<p:outputLabel value="Data de emissão:" />
+				<p:inputMask mask="  /  /    " value="" />
+
+				<p:outputLabel value="Data de pagamento:" />
+				<p:inputMask mask="  /  /    " value="" />
+
+				<p:outputLabel value="Cliente:" />
+				<p:inputText value="" />
+
+				<p:outputLabel value="Vendedor:" />
+				<p:inputText value="" />
+			</p:panelGrid>
+			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
+				update="@all" />
+			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
+				update="@all" />
+			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
+				update="@all" />
+			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
+				update="@all" />
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
