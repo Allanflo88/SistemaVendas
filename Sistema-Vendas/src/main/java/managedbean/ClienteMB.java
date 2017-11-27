@@ -26,14 +26,6 @@ public class ClienteMB {
 		return service.getClientes();
 	}
 	
-	public ClienteService getService() {
-		return service;
-	}
-	
-	public void setService(ClienteService service) {
-		this.service = service;
-	}
-	
 	public boolean isCriacao() {
 		return !edicao;
 	}

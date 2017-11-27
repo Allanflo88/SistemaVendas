@@ -12,6 +12,7 @@ import services.VendedorService;
 public class VendedorMB {
 	private Vendedor vendedor = new Vendedor();
 	private VendedorService service = new VendedorService();
+	private boolean edicao = false;
 	
 	public Vendedor getVendedor() {
 		return vendedor;
@@ -25,13 +26,22 @@ public class VendedorMB {
 		return service.getVendedores();
 	}
 	
-	public VendedorService getService() {
-		return service;
+	public boolean isCriacao() {
+		return !edicao;
 	}
-	
-	public void setService(VendedorService service) {
-		this.service = service;
+
+	public void setCriacao(boolean criacao) {
+		this.edicao = !criacao;
 	}
+
+	public boolean isEdicao() {
+		return edicao;
+	}
+
+	public void setEdicao(boolean edicao) {
+		this.edicao = edicao;
+	}
+
 	
 	public void salvar() {
 		service.salvar(vendedor);
@@ -46,4 +56,19 @@ public class VendedorMB {
 		Vendedor vendedor = (Vendedor) event.getObject();
 		service.atualizar(vendedor);
 	}
+	
+	public void selecionar() {
+		edicao = true;
+	}
+	
+	public void cancelar(){
+		edicao = false;
+		vendedor = new Vendedor();
+	}
+	
+	public void atualizar() {
+		service.atualizar(vendedor);
+		cancelar();
+	}
+	
 }

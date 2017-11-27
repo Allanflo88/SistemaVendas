@@ -12,6 +12,7 @@ import services.ProdutoService;
 public class ProdutoMB {
 	private Produto produto = new Produto();
 	private ProdutoService service = new ProdutoService();
+	private boolean edicao = false;
 	
 	public Produto getProduto() {
 		return produto;
@@ -25,6 +26,22 @@ public class ProdutoMB {
 		return service.getProdutos();
 	}
 	
+	public boolean isCriacao() {
+		return !edicao;
+	}
+
+	public void setCriacao(boolean criacao) {
+		this.edicao = !criacao;
+	}
+
+	public boolean isEdicao() {
+		return edicao;
+	}
+
+	public void setEdicao(boolean edicao) {
+		this.edicao = edicao;
+	}
+	
 	public void salvar() {
 		service.salvar(produto);
 		produto = new Produto();
@@ -32,11 +49,26 @@ public class ProdutoMB {
 	
 	public void excluir(Produto produto) {
 		service.excluir(produto);
+		cancelar();
 	}
 	
 	public void atualizar(RowEditEvent event) {
 		Produto prod = (Produto) event.getObject();
 		service.atualizar(prod);
+	}
+	
+	public void selecionar() {
+		edicao = true;
+	}
+	
+	public void cancelar(){
+		edicao = false;
+		produto = new Produto();
+	}
+	
+	public void atualizar() {
+		service.atualizar(produto);
+		cancelar();
 	}
 	
 }
