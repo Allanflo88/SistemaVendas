@@ -61,5 +61,9 @@ public class Produto implements Serializable{
     public String getDescricao() {
         return descricao;
     }
+    @Override
+    public String toString() {
+    	return descricao;
+    }
     
 }
