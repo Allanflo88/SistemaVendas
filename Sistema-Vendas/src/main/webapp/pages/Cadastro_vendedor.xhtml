@@ -27,15 +27,11 @@
 					required="true" />
 
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.SalBase']}" />
-				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10"
-					required="true">
-					<f:convertNumber pattern="0.00" />
-				</p:inputNumber>
+				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10" 
+					required="true" />
 
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Comissao']}" />
-				<p:inputNumber value="#{vendedorMB.vendedor.comissao}" size="10">
-					<f:convertNumber pattern="0.00" />
-				</p:inputNumber>
+				<p:inputNumber value="#{vendedorMB.vendedor.comissao}" size="10" />
 			</p:panelGrid>
 			<p:panelGrid columns="3">
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Telefone']}" />
@@ -57,11 +53,14 @@
 				</p:selectOneMenu>
 			</p:panelGrid>
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
-				action="#{vendedorMB.salvar}" update="@all" />
+				action="#{vendedorMB.salvar}" update="@all" 
+				disabled="#{clienteMB.edicao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
-				action="#{vendedorMB.atualizar}" update="@all" />
+				action="#{vendedorMB.atualizar}" update="@all" 
+				disabled="#{clienteMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
-				action="#{vendedorMB.excluir}" update="@all" />
+				action="#{vendedorMB.excluir}" update="@all" 
+				disabled="#{clienteMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				action="#{vendedorMB.cancelar}" update="@all" />
 		</h:form>

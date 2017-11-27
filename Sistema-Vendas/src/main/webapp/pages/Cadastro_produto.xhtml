@@ -32,11 +32,14 @@
 				<p:inputText value="#{produtoMB.produto.estoqueMin}" />
 			</p:panelGrid>
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
-				action="#{produtoMB.salvar}" update="@all" />
+				action="#{produtoMB.salvar}" update="@all" 
+				disabled="#{clienteMB.edicao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
-				action="#{produtoMB.atualizar}" update="@all" />
+				action="#{produtoMB.atualizar}" update="@all" 
+				disabled="#{clienteMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
-				action="#{produtoMB.excluir}" update="@all" />
+				action="#{produtoMB.excluir}" update="@all" 
+				disabled="#{clienteMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				action="#{produtoMB.cancelar}" update="@all" />
 		</h:form>
