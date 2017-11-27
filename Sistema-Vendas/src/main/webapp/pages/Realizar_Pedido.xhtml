@@ -17,28 +17,30 @@
 		<h:form id="formPedido">
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Pedido:" />
-				<p:inputNumber value="" disabled="true" />
+				<p:inputNumber value="#{pedidoMB.pedido.numero}" disabled="true" />
 
 				<p:outputLabel value="Data de emissão:" />
-				<p:inputMask mask="  /  /    " value="" />
+				<p:inputMask mask="  /  /    " value="#{pedidoMB.pedido.dataEmissaoPedido}" />
 
 				<p:outputLabel value="Data de pagamento:" />
-				<p:inputMask mask="  /  /    " value="" />
+				<p:inputMask mask="  /  /    " value="#{pedidoMB.pedido.dataPagto}" />
 
 				<p:outputLabel value="Cliente:" />
-				<p:inputText value="" />
+				<p:inputText value="#{pedidoMB.pedido.cliente}" />
 
 				<p:outputLabel value="Vendedor:" />
-				<p:inputText value="" />
+				<p:inputText value="#{pedidoMB.pedido.vendedor}" />
 			</p:panelGrid>
 			<p:panelGrid columns="2">
 				<f:facet name="header">Adicionar item</f:facet>
 				
 				<p:outputLabel value="Produto"/>
-				<p:selectOneButton/>
+				<p:selectOneMenu value="#{itemPedidoMB.itemPedido.produto}">
+					<f:selectItems value="#{produtoMB.produtos}"/>
+				</p:selectOneMenu>
 				
 				<p:outputLabel value="Quantidade"/>
-				<p:inputNumber value=""/>
+				<p:inputNumber value="#{itemPedidoMB.itemPedido.qtdeVendida}"/>
 			</p:panelGrid>
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
 				update="@all" />
