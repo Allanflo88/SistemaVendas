@@ -30,7 +30,7 @@ public class PedidoMB {
 		this.service = service;
 	}
 	public List<Pedido> getPedidos() {
-		return pedidos;
+		return service.getPedidos();
 	}
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;

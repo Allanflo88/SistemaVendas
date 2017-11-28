@@ -20,16 +20,20 @@
 				<p:inputNumber value="#{pedidoMB.pedido.numero}" disabled="true" />
 
 				<p:outputLabel value="Data de emissão:" />
-				<p:inputMask mask="  /  /    " value="#{pedidoMB.pedido.dataEmissaoPedido}" />
+				<p:inputMask mask="99/99/9999" value="#{pedidoMB.pedido.dataEmissaoPedido}" />
 
 				<p:outputLabel value="Data de pagamento:" />
-				<p:inputMask mask="  /  /    " value="#{pedidoMB.pedido.dataPagto}" />
+				<p:inputMask mask="99/99/9999" value="#{pedidoMB.pedido.dataPagto}" />
 
 				<p:outputLabel value="Cliente:" />
-				<p:inputText value="#{pedidoMB.pedido.cliente}" />
+				<p:selectOneMenu value="#{pedidoMB.pedido.cliente}">
+					<f:selectItems value="#{clienteMB.clientes}"/>
+				</p:selectOneMenu>
 
 				<p:outputLabel value="Vendedor:" />
-				<p:inputText value="#{pedidoMB.pedido.vendedor}" />
+				<p:selectOneMenu value="#{pedidoMB.pedido.vendedor}">
+					<f:selectItems value="#{vendedorMB.vendedores}"/>
+				</p:selectOneMenu>
 			</p:panelGrid>
 			<p:panelGrid columns="2">
 				<f:facet name="header">Adicionar item</f:facet>
@@ -42,7 +46,7 @@
 				<p:outputLabel value="Quantidade"/>
 				<p:inputNumber value="#{itemPedidoMB.itemPedido.qtdeVendida}"/>
 			</p:panelGrid>
-			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
+			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}" action="#{pedidoMB.salvar()}"
 				update="@all" />
 			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
 				update="@all" />
@@ -50,6 +54,24 @@
 				update="@all" />
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				update="@all" />
+		</h:form>
+		<h:form id="formTableItens">
+			<p:dataGrid var="aux" value="#{itemPedidoMB.itensPedido}">
+				<p:column headerText="iD"> 
+					<h:outputText value="#{aux.id}"/>
+				</p:column>
+				<p:column headerText="Produto"> 
+					<h:outputText value="#{aux.produto}"/>
+				</p:column>
+				<p:column headerText="Quantidade"> 
+					<h:outputText value="#{aux.qtdevendida}"/>
+				</p:column>
+			</p:dataGrid>
+			<p:dataGrid var="a" value="#{pedidoMB.pedidos}">
+				<p:column headerText="ID pedido">
+					<h:outputText value="#{a.numero}"/>
+				</p:column>
+			</p:dataGrid>
 		</h:form>
 
 	</ui:define>
