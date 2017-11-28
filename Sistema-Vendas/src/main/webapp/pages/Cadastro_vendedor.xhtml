@@ -16,6 +16,7 @@
 	<ui:define name="principal">
 		<h:form id="formVendedor">
 			<p:panelGrid columns="2">
+				<f:facet name="header">Vendedor</f:facet>
 				<p:outputLabel value="CPF:" />
 				<p:inputMask mask="999.999.999-99" id="cpf"
 					value="#{vendedorMB.vendedor.cpf}" size="15" placeholder="CPF"

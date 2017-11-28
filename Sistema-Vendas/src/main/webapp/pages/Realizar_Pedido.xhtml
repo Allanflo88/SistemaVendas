@@ -16,38 +16,40 @@
 	<ui:define name="principal">
 		<h:form id="formPedido">
 			<p:panelGrid columns="2">
+				<f:facet name="header">Pedido</f:facet>
 				<p:outputLabel value="Pedido:" />
-				<p:inputNumber value="#{pedidoMB.pedido.numero}" disabled="true" />
+				<p:inputText id="Pedido" value="#{pedidoMB.pedido.numero}" />
 
 				<p:outputLabel value="Data de emissão:" />
-				<p:inputMask mask="99/99/9999" value="#{pedidoMB.pedido.dataEmissaoPedido}" />
+				<p:inputMask mask="99/99/9999"
+					value="#{pedidoMB.pedido.dataEmissaoPedido}" />
 
 				<p:outputLabel value="Data de pagamento:" />
 				<p:inputMask mask="99/99/9999" value="#{pedidoMB.pedido.dataPagto}" />
 
 				<p:outputLabel value="Cliente:" />
 				<p:selectOneMenu value="#{pedidoMB.pedido.cliente}">
-					<f:selectItems value="#{clienteMB.clientes}"/>
+					<f:selectItems value="#{clienteMB.clientes}" />
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Vendedor:" />
 				<p:selectOneMenu value="#{pedidoMB.pedido.vendedor}">
-					<f:selectItems value="#{vendedorMB.vendedores}"/>
+					<f:selectItems value="#{vendedorMB.vendedores}" />
 				</p:selectOneMenu>
 			</p:panelGrid>
 			<p:panelGrid columns="2">
 				<f:facet name="header">Adicionar item</f:facet>
-				
-				<p:outputLabel value="Produto"/>
+
+				<p:outputLabel value="Produto" />
 				<p:selectOneMenu value="#{itemPedidoMB.itemPedido.produto}">
-					<f:selectItems value="#{produtoMB.produtos}"/>
+					<f:selectItems value="#{produtoMB.produtos}" />
 				</p:selectOneMenu>
-				
-				<p:outputLabel value="Quantidade"/>
-				<p:inputNumber value="#{itemPedidoMB.itemPedido.qtdeVendida}"/>
+
+				<p:outputLabel value="Quantidade" />
+				<p:inputNumber value="#{itemPedidoMB.itemPedido.qtdeVendida}" />
 			</p:panelGrid>
-			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}" action="#{pedidoMB.salvar()}"
-				update="@all" />
+			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
+				action="#{pedidoMB.salvar()}" update="@all" />
 			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
 				update="@all" />
 			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
@@ -56,20 +58,20 @@
 				update="@all" />
 		</h:form>
 		<h:form id="formTableItens">
-			<p:dataGrid var="aux" value="#{itemPedidoMB.itensPedido}">
-				<p:column headerText="iD"> 
-					<h:outputText value="#{aux.id}"/>
+			<p:dataGrid var="aux" value="#{itemPedidoMB.listarPedido(Pedido)}">
+				<p:column headerText="iD">
+					<h:outputText value="#{aux.id}" />
 				</p:column>
-				<p:column headerText="Produto"> 
-					<h:outputText value="#{aux.produto}"/>
+				<p:column headerText="Produto">
+					<h:outputText value="#{aux.produto}" />
 				</p:column>
-				<p:column headerText="Quantidade"> 
-					<h:outputText value="#{aux.qtdevendida}"/>
+				<p:column headerText="Quantidade">
+					<h:outputText value="#{aux.qtdevendida}" />
 				</p:column>
 			</p:dataGrid>
 			<p:dataGrid var="a" value="#{pedidoMB.pedidos}">
 				<p:column headerText="ID pedido">
-					<h:outputText value="#{a.numero}"/>
+					<h:outputText value="#{a.numero}" />
 				</p:column>
 			</p:dataGrid>
 		</h:form>

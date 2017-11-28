@@ -1,13 +1,8 @@
 package managedbean;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import org.primefaces.event.RowEditEvent;
-
 import entity.Pedido;
 import services.PedidoService;
 
@@ -16,7 +11,7 @@ import services.PedidoService;
 public class PedidoMB {
 	private Pedido pedido = new Pedido();
 	private PedidoService service = new PedidoService();
-	private List<Pedido> pedidos = new ArrayList<>();
+
 	public Pedido getPedido() {
 		return pedido;
 	}
@@ -31,9 +26,6 @@ public class PedidoMB {
 	}
 	public List<Pedido> getPedidos() {
 		return service.getPedidos();
-	}
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
 	}
 	
 	public void salvar() {
