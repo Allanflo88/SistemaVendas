@@ -51,7 +51,6 @@
 					max="#{itemPedidoMB.itemPedido.produto.qtdeDisponivel - itemPedidoMB.itemPedido.produto.estoqueMin}" />
 				<!-- <p:inputNumber value="#{itemPedidoMB.itemPedido.qtdeVendida}" /> --> 
 			</p:panelGrid>
-			<p:commandButton value="A" action="#{itemPedidoMB.imprimeProduto}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
 				action="#{pedidoMB.salvar()}" update="@all" />
 			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
