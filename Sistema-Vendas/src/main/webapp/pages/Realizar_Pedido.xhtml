@@ -37,7 +37,7 @@
 					<f:selectItems value="#{vendedorMB.vendedores}" />
 				</p:selectOneMenu>
 			</p:panelGrid>
-			<p:panelGrid columns="2">
+			<p:panelGrid columns="4">
 				<f:facet name="header">Adicionar item</f:facet>
 
 				<p:outputLabel value="Produto" />
@@ -46,8 +46,12 @@
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Quantidade" />
-				<p:inputNumber value="#{itemPedidoMB.itemPedido.qtdeVendida}" />
+				<p:spinner value="#{itemPedidoMB.itemPedido.qtdeVendida}" 
+					min="0"
+					max="#{itemPedidoMB.itemPedido.produto.qtdeDisponivel - itemPedidoMB.itemPedido.produto.estoqueMin}" />
+				<!-- <p:inputNumber value="#{itemPedidoMB.itemPedido.qtdeVendida}" /> --> 
 			</p:panelGrid>
+			<p:commandButton value="A" action="#{itemPedidoMB.imprimeProduto}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
 				action="#{pedidoMB.salvar()}" update="@all" />
 			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
