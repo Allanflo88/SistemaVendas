@@ -1,0 +1,40 @@
+
+<ui:composition template="TemplateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+
+	<ui:define name="title">
+		<h:outputText value="Consultar pedidos" />
+	</ui:define>
+
+
+	<ui:define name="principal">
+		<h:form id="formTableItens">
+			<p:dataTable var="a" value="#{pedidoMB.pedidos}">
+				<p:column headerText="ID">
+					<h:outputText value="#{a.numero}" />
+				</p:column>
+				<p:column headerText="Emissão">
+					<h:outputText value="#{a.dataEmissaoPedido}" />
+				</p:column>
+				<p:column headerText="Pagamento">
+					<h:outputText value="#{a.dataPagto}" />
+				</p:column>
+				<p:column headerText="Cliente">
+					<h:outputText value="#{a.cliente.nome}" />
+				</p:column>
+				<p:column headerText="Vendedor">
+					<h:outputText value="#{a.vendedor.nome}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+

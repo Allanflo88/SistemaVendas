@@ -19,7 +19,6 @@ public class ItemPedido implements Serializable{
 	private int Id;
 	@ManyToOne private Produto produto;
 	private Pedido pedido;
-    private int numeroItem;
     private int qtdeVendida;
     
     
@@ -31,10 +30,6 @@ public class ItemPedido implements Serializable{
 		Id = id;
 	}
 
-	public void setNumeroItem(int numeroItem) {
-		this.numeroItem = numeroItem;
-	}
-
 	public int getQtdeVendida() {
         return qtdeVendida;
     }
@@ -42,10 +37,6 @@ public class ItemPedido implements Serializable{
     public void setQtdeVendida(int qtdeVendida) {
         produto.setQtdeDisponivel(produto.getQtdeDisponivel() + (this.qtdeVendida - qtdeVendida));
         this.qtdeVendida = qtdeVendida;
-    }
-    
-    public int getNumeroItem() {
-        return numeroItem;
     }
 
 	public Produto getProduto() {
