@@ -47,7 +47,7 @@ public class ProdutoMB {
 		produto = new Produto();
 	}
 	
-	public void excluir(Produto produto) {
+	public void excluir() {
 		service.excluir(produto);
 		cancelar();
 	}

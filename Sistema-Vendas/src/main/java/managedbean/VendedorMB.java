@@ -48,8 +48,9 @@ public class VendedorMB {
 		vendedor = new Vendedor();
 	}
 	
-	public void excluir(Vendedor vendedor) {
+	public void excluir() {
 		service.excluir(vendedor);
+		cancelar();
 	}
 	
 	public void atualizar(RowEditEvent event) {
