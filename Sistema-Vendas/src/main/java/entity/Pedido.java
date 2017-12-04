@@ -25,8 +25,7 @@ public class Pedido implements Serializable{
     private Cliente cliente;
     @ManyToOne
     private Vendedor vendedor;
-    @OneToMany(mappedBy="pedido")
-    private ArrayList<ItemPedido> itensPedidos;
+
 
     public void setNumero(int numero) {
 		this.numero = numero;
@@ -36,12 +35,6 @@ public class Pedido implements Serializable{
 	public void setDataEmissaoPedido(String dataEmissaoPedido) {
 		this.dataEmissaoPedido = dataEmissaoPedido;
 	}
-
-
-	public void setItensPedidos(ArrayList<ItemPedido> itensPedidos) {
-		this.itensPedidos = itensPedidos;
-	}
-
 
 	public String getDataPagto() {
         return dataPagto;
@@ -68,10 +61,6 @@ public class Pedido implements Serializable{
         return dataEmissaoPedido;
     }
     
-    public ArrayList<ItemPedido> getItensPedidos() {
-        return itensPedidos;
-    }
-    
     public Cliente getCliente() {
         return cliente;
     }
@@ -87,10 +76,5 @@ public class Pedido implements Serializable{
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
     }
-    
-    public void addItemPedido(ItemPedido item){
-        itensPedidos.add(item);
-        item.setPedido(this);
-        cliente.setLimiteDisp(cliente.getLimiteDisp() - (item.getQtdeVendida() * item.getProduto().getPrecoUnit()));
-    }
+
 }

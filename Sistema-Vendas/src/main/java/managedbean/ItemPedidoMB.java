@@ -57,18 +57,4 @@ public class ItemPedidoMB {
 		service.atualizar(itemPedido);
 	}
 
-	public List<ItemPedido> listarPedido(Pedido pedido) {
-		List<ItemPedido> produtoPedido = new ArrayList<>();
-
-		Iterator<ItemPedido> lista = service.getItemPedidos().iterator();
-
-		while (lista.hasNext()) {
-			if (lista.next().getPedido() == pedido) {
-				produtoPedido.add(lista.next());
-			}
-		}
-
-		return produtoPedido;
-	}
-
 }

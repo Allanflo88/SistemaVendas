@@ -45,4 +45,6 @@ public class Vendedor extends Pessoa{
         pedidos.add(pedido);
         pedido.setVendedor(this);
     }
+    
+    
 }
