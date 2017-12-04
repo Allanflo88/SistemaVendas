@@ -61,7 +61,7 @@
 					<p:commandButton value="Alterar" update="@all" />
 					<p:commandButton value="Remover" update="@all" />
 				</p:panelGrid>
-					<p:dataTable var="aux" value="#{itemPedidoMB.listarItens(Pedido)}" >
+					<p:dataTable var="aux" value="#{itemPedidoMB.listarItens(Pedido)}" scrollable="true" scrollHeight="150" >
 						<p:column headerText="Descrição">
 							<h:outputText value="#{aux.produto.descricao}"/>
 						</p:column>
@@ -85,39 +85,26 @@
 						update="@all" />
 				</p:panelGrid>
 			</p:panelGrid>
-<<<<<<< HEAD
-
-=======
-			<p:panelGrid columns="4">
-				<f:facet name="header">Adicionar item</f:facet>
-
-				<p:outputLabel value="Produto" />
-				<p:selectOneMenu value="#{itemPedidoMB.itemPedido.produto}">
-					<f:selectItems value="#{produtoMB.produtos}" />
-				</p:selectOneMenu>
-
-				<p:outputLabel value="Quantidade" />
-				<p:spinner value="#{itemPedidoMB.itemPedido.qtdeVendida}" 
-					min="0"
-					max="#{itemPedidoMB.itemPedido.produto.qtdeDisponivel - itemPedidoMB.itemPedido.produto.estoqueMin}" />
-				<!-- <p:inputNumber value="#{itemPedidoMB.itemPedido.qtdeVendida}" /> --> 
-			</p:panelGrid>
-			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
-				action="#{pedidoMB.salvar()}" update="@all" />
-			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
-				update="@all" />
-			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
-				update="@all" />
-			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
-				update="@all" />
->>>>>>> 1654b5d7acdce471ab607541e9c633578a623e83
 		</h:form>
 		<h:form id="formTableItens">
-			<p:dataGrid var="a" value="#{pedidoMB.pedidos}">
-				<p:column headerText="ID pedido">
+			<p:dataTable var="a" value="#{pedidoMB.pedidos}">
+				<p:column headerText="ID">
 					<h:outputText value="#{a.numero}" />
 				</p:column>
-			</p:dataGrid>
+				<p:column headerText="Emissão">
+					<h:outputText value="#{a.dataEmissaoPedido}" />
+				</p:column>
+				<p:column headerText="Pagamento">
+					<h:outputText value="#{a.dataPagto}" />
+				</p:column>
+				<p:column headerText="Cliente">
+					<h:outputText value="#{a.cliente.nome}" />
+				</p:column>
+				<p:column headerText="Vendedor">
+					<h:outputText value="#{a.vendedor.nome}" />
+				</p:column>
+				
+			</p:dataTable>
 		</h:form>
 
 	</ui:define>
