@@ -56,5 +56,10 @@ public class ItemPedidoMB {
 	public void atualizar() {
 		service.atualizar(itemPedido);
 	}
+	public List<ItemPedido> listarItens(Pedido pedido){
+		List<ItemPedido> itens = service.getItemPedidos();
+		
+		return itens;
+	}
 
 }

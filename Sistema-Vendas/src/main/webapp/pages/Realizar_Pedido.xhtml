@@ -16,52 +16,76 @@
 	<ui:define name="principal">
 		<h:form id="formPedido">
 			<p:panelGrid columns="2">
-				<f:facet name="header">Pedido</f:facet>
-				<p:outputLabel value="Pedido:" />
-				<p:inputText id="Pedido" value="#{pedidoMB.pedido.numero}" />
+				<p:panelGrid columns="2">
+					<f:facet name="header">Pedido</f:facet>
+					<p:outputLabel value="Pedido:" />
+					<p:inputText id="Pedido" value="#{pedidoMB.pedido.numero}" />
 
-				<p:outputLabel value="Data de emissão:" />
-				<p:inputMask mask="99/99/9999"
-					value="#{pedidoMB.pedido.dataEmissaoPedido}" />
+					<p:outputLabel value="Data de emissão:" />
+					<p:inputMask mask="99/99/9999"
+						value="#{pedidoMB.pedido.dataEmissaoPedido}" />
 
-				<p:outputLabel value="Data de pagamento:" />
-				<p:inputMask mask="99/99/9999" value="#{pedidoMB.pedido.dataPagto}" />
+					<p:outputLabel value="Data de pagamento:" />
+					<p:inputMask mask="99/99/9999" value="#{pedidoMB.pedido.dataPagto}" />
 
-				<p:outputLabel value="Cliente:" />
-				<p:selectOneMenu value="#{pedidoMB.pedido.cliente}"
-					converter="converterCliente">
-					<f:selectItems value="#{clienteMB.clientes}" var="aux"
-						itemValue="#{aux}" itemLabel="#{aux.nome}" />
-				</p:selectOneMenu>
+					<p:outputLabel value="Cliente:" />
+					<p:selectOneMenu value="#{pedidoMB.pedido.cliente}"
+						converter="converterCliente">
+						<f:selectItems value="#{clienteMB.clientes}" var="aux"
+							itemValue="#{aux}" itemLabel="#{aux.nome}" />
+					</p:selectOneMenu>
 
-				<p:outputLabel value="Vendedor:" />
-				<p:selectOneMenu value="#{pedidoMB.pedido.vendedor}"
-					converter="converterVendedor">
-					<f:selectItems value="#{vendedorMB.vendedores}" var="aux"
-						itemValue="#{aux}" itemLabel="#{aux.nome}" />
-				</p:selectOneMenu>
+					<p:outputLabel value="Vendedor:" />
+					<p:selectOneMenu value="#{pedidoMB.pedido.vendedor}"
+						converter="converterVendedor">
+						<f:selectItems value="#{vendedorMB.vendedores}" var="aux"
+							itemValue="#{aux}" itemLabel="#{aux.nome}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+				<p:panelGrid>
+					<p:panelGrid columns="2">
+						<f:facet name="header">Adicionar item</f:facet>
+
+						<p:outputLabel value="Produto" />
+						<p:selectOneMenu value="#{itemPedidoMB.itemPedido.produto}"
+							converter="converterProduto">
+							<f:selectItems value="#{produtoMB.produtos}" var="aux"
+								itemValue="#{aux}" itemLabel="#{aux.descricao}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="Quantidade" />
+						<p:inputNumber value="#{itemPedidoMB.itemPedido.qtdeVendida}" />
+					</p:panelGrid>
+					<p:panelGrid>
+					<p:commandButton value="Adicionar" update="@all" />
+					<p:commandButton value="Alterar" update="@all" />
+					<p:commandButton value="Remover" update="@all" />
+				</p:panelGrid>
+					<p:dataTable var="aux" value="#{itemPedidoMB.listarItens(Pedido)}" >
+						<p:column headerText="Descrição">
+							<h:outputText value="#{aux.produto.descricao}"/>
+						</p:column>
+						<p:column headerText="Valor Unitário">
+							<h:outputText value="#{aux.produto.precoUnit}"/>
+						</p:column>
+						<p:column headerText="Quantidade">
+							<h:outputText value="#{aux.qtdeVendida}"/>
+						</p:column>
+					</p:dataTable>
+				</p:panelGrid>
+
+				<p:panelGrid>
+					<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
+						action="#{pedidoMB.salvar()}" update="@all" />
+					<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
+						update="@all" />
+					<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
+						update="@all" />
+					<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
+						update="@all" />
+				</p:panelGrid>
 			</p:panelGrid>
-			<p:panelGrid columns="2">
-				<f:facet name="header">Adicionar item</f:facet>
 
-				<p:outputLabel value="Produto" />
-				<p:selectOneMenu value="#{itemPedidoMB.itemPedido.produto}"
-					converter="converterProduto">
-					<f:selectItems value="#{produtoMB.produtos}" var="aux"
-						itemValue="#{aux}" itemLabel="#{aux.descricao}" />
-				</p:selectOneMenu>
-
-				<p:outputLabel value="Quantidade" />
-				<p:inputNumber value="#{itemPedidoMB.itemPedido.qtdeVendida}" />
-			</p:panelGrid>
-			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
-				action="#{pedidoMB.salvar()}" update="@all" />
-			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
-				update="@all" />
-			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
-				update="@all" />
-			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
-				update="@all" />
 		</h:form>
 		<h:form id="formTableItens">
 			<p:dataGrid var="a" value="#{pedidoMB.pedidos}">
