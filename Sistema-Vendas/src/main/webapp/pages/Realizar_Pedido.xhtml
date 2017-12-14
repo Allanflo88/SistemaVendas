@@ -21,11 +21,10 @@
 				<p:inputText id="Pedido" value="#{pedidoMB.pedido.numero}" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataEmissao']}" />
-				<p:inputMask mask="99/99/9999"
-					value="#{pedidoMB.pedido.dataEmissaoPedido}" />
+				<p:calendar value="#{pedidoMB.pedido.dataEmissaoPedido}" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataPagamento']}" />
-				<p:inputMask mask="99/99/9999" value="#{pedidoMB.pedido.dataPagto}" />
+				<p:calendar value="#{pedidoMB.pedido.dataPagto}" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.cliente']}" />
 				<p:selectOneMenu value="#{pedidoMB.pedido.cliente}"
@@ -41,15 +40,12 @@
 						itemValue="#{aux}" itemLabel="#{aux.nome}" />
 				</p:selectOneMenu>
 			</p:panelGrid>
-			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
-				action="#{pedidoMB.salvar}" update="@all" />
-			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
-				update="@all" />
-			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
-				update="@all" />
-			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
-				update="@all" />
 		</h:form>
+		
+		<h:form>
+			<p:messages id="msgs" showDetail="true" autoUpdate="true" closable="true" />
+		</h:form>
+		
 		<h:form id="addItens">
 			<p:panelGrid>
 				<p:panelGrid columns="2">
@@ -63,7 +59,7 @@
 					</p:selectOneMenu>
 
 					<p:outputLabel value="#{msg['pages.Realizar_pedido.additem.quantidade']}" />
-					<p:inputNumber value="#{pedidoMB.item.qtdeVendida}" />
+					<p:spinner value="#{pedidoMB.item.qtdeVendida}" min="1" max="#{pedidoMB.qtdProduto}" />
 				</p:panelGrid>
 				<p:commandButton value="#{msg['pages.comuns.form.adicionar']}" action="#{pedidoMB.addItem}"
 					update=":addItens" />
@@ -82,6 +78,22 @@
 					<p:outputLabel value="#{aux.qtdeVendida}" />
 				</p:column>
 			</p:dataTable>
+		</h:form>
+		
+		<h:form>
+			<p:messages id="msgs" showDetail="true" autoUpdate="true" closable="true" />
+		</h:form>
+		
+		<br></br>
+		<h:form id="buttons">
+			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
+				action="#{pedidoMB.salvar}" update="@all" />
+			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
+				update="@all" />
+			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
+				update="@all" />
+			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
+				update="@all" />
 		</h:form>
 
 	</ui:define>
