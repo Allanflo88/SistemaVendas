@@ -1,11 +1,13 @@
 package entity;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -23,12 +25,12 @@ public class Pedido implements Serializable{
     private Cliente cliente;
     @ManyToOne
     private Vendedor vendedor;
-
+    @OneToMany(mappedBy="pedido")
+    private List<ItemPedido> itensPedidos;
 
     public void setNumero(int numero) {
 		this.numero = numero;
 	}
-
 
 	public void setDataEmissaoPedido(String dataEmissaoPedido) {
 		this.dataEmissaoPedido = dataEmissaoPedido;
@@ -75,6 +77,12 @@ public class Pedido implements Serializable{
         this.vendedor = vendedor;
     }
     
+    public List<ItemPedido> getItensPedidos(){
+    	return itensPedidos;
+    }
     
+    public void setItensPedidos(List<ItemPedido> itensPedidos){
+    	this.itensPedidos = itensPedidos;
+    }
 
 }
