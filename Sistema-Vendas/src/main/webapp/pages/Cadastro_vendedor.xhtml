@@ -16,15 +16,15 @@
 	<ui:define name="principal">
 		<h:form id="formVendedor">
 			<p:panelGrid columns="2">
-				<f:facet name="header">Vendedor</f:facet>
+				<f:facet name="header"><h:outputText value="#{msg['pages.Cadastro_vendedor.facet']}"/></f:facet>
 				<p:outputLabel value="CPF:" />
 				<p:inputMask mask="999.999.999-99" id="cpf"
 					value="#{vendedorMB.vendedor.cpf}" size="15" placeholder="CPF"
 					required="true" />
 
-				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.nome']}" />
+				<p:outputLabel value="#{msg['pages.comuns.form.nome']}" />
 				<p:inputText value="#{vendedorMB.vendedor.nome}" size="50"
-					placeholder="#{msg['pages.Cadastro_vendedor.nome.placeholder']}"
+					placeholder="#{msg['pages.comuns.form.nome.placeholder']}"
 					required="true" />
 
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.SalBase']}" />
@@ -35,20 +35,20 @@
 				<p:inputNumber value="#{vendedorMB.vendedor.comissao}" size="10" />
 			</p:panelGrid>
 			<p:panelGrid columns="3">
-				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Telefone']}" />
+				<p:outputLabel value="#{msg['pages.comuns.form.Telefone']}" />
 				<p:inputMask mask="(99)" value="#{vendedorMB.vendedor.ddd}"
 					maxlength="2" size="2" placeholder="DDD" />
 				<p:inputMask mask="9 9999-9999"
 					value="#{vendedorMB.vendedor.telefone}" maxlength="9" size="9" />
 			</p:panelGrid>
 			<p:panelGrid columns="5">
-				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Endereco']}" />
+				<p:outputLabel value="#{msg['pages.comuns.form.Endereco']}" />
 				<p:inputText value="#{vendedorMB.vendedor.endereco}"
-					placeholder="#{msg['pages.Cadastro_vendedor.Endereco.placeholder']}" />
+					placeholder="#{msg['pages.comuns.form.Endereco.placeholder']}" />
 				<p:inputMask mask="99999-999" value="#{vendedorMB.vendedor.cep}"
 					placeholder="CEP" maxlength="8" size="8" />
 				<p:inputText value="#{vendedorMB.vendedor.cidade}"
-					placeholder="#{msg['pages.Cadastro_vendedor.Endereco.Cidade.placeholder']}" />
+					placeholder="#{msg['pages.comuns.form.Endereco.Cidade.placeholder']}" />
 				<p:selectOneMenu value="#{vendedorMB.vendedor.uf}" style="width">
 					<f:selectItems value="#{uFMB.listaUF}" />
 				</p:selectOneMenu>
@@ -74,7 +74,7 @@
 					<h:outputText value="#{aux.cpf}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_vendedor.nome']}">
+				<p:column headerText="#{msg['pages.comuns.form.nome']}">
 					<h:outputText value="#{aux.nome}" />
 				</p:column>
 

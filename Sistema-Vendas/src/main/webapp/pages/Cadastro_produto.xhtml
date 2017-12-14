@@ -16,7 +16,7 @@
 	<ui:define name="principal">
 		<h:form id="formProduto">
 			<p:panelGrid columns="2">
-				<f:facet name="header">Produto</f:facet>
+				<f:facet name="header"><h:outputText value="#{msg['pages.Cadastro_produto.facet']}"/></f:facet>
 				<p:outputLabel value="#{msg['pages.Cadastro_produto.descricao']}" />
 				<p:inputText value="#{produtoMB.produto.descricao}" size="60"
 					placeholder="#{msg['pages.Cadastro_produto.descricao.placeholder']}" />

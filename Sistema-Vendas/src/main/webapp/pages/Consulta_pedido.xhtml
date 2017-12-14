@@ -9,27 +9,27 @@
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 
 	<ui:define name="title">
-		<h:outputText value="Consultar pedidos" />
+		<h:outputText value="#{msg['pages.Realizar_Pedido.title']}" />
 	</ui:define>
 
 
 	<ui:define name="principal">
 		<h:form id="formTableItens">
 			<p:dataTable var="a" value="#{pedidoMB.pedidos}">
-				<f:facet name="header">Pedidos</f:facet>
+				<f:facet name="header"><h:outputText value="#{msg['pages.Realizar_pedido.facet']}"/></f:facet>
 				<p:column headerText="ID">
 					<h:outputText value="#{a.numero}" />
 				</p:column>
-				<p:column headerText="Emissão">
+				<p:column headerText="#{msg['pages.Consultar_pedido.emissao']}">
 					<h:outputText value="#{a.dataEmissaoPedido}" />
 				</p:column>
-				<p:column headerText="Pagamento">
+				<p:column headerText="#{msg['pages.Consultar_pedido.pagamento']}">
 					<h:outputText value="#{a.dataPagto}" />
 				</p:column>
-				<p:column headerText="Cliente">
+				<p:column headerText="#{msg['pages.Cadastro_cliente.facet']}">
 					<h:outputText value="#{a.cliente.nome}" />
 				</p:column>
-				<p:column headerText="Vendedor">
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.facet']}">
 					<h:outputText value="#{a.vendedor.nome}" />
 				</p:column>
 

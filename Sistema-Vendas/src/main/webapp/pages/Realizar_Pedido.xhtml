@@ -16,25 +16,25 @@
 	<ui:define name="principal">
 		<h:form id="formPedido">
 			<p:panelGrid columns="2">
-				<f:facet name="header">Pedido</f:facet>
-				<p:outputLabel value="Pedido:" />
+				<f:facet name="header"><h:outputText value="#{msg['pages.Realizar_pedido.facet']}"/></f:facet>
+				<p:outputLabel value="#{msg['pages.Realizar_pedido.pedido']}" />
 				<p:inputText id="Pedido" value="#{pedidoMB.pedido.numero}" />
 
-				<p:outputLabel value="Data de emissão:" />
+				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataEmissao']}" />
 				<p:inputMask mask="99/99/9999"
 					value="#{pedidoMB.pedido.dataEmissaoPedido}" />
 
-				<p:outputLabel value="Data de pagamento:" />
+				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataPagamento']}" />
 				<p:inputMask mask="99/99/9999" value="#{pedidoMB.pedido.dataPagto}" />
 
-				<p:outputLabel value="Cliente:" />
+				<p:outputLabel value="#{msg['pages.Realizar_pedido.cliente']}" />
 				<p:selectOneMenu value="#{pedidoMB.pedido.cliente}"
 					converter="converterCliente">
 					<f:selectItems value="#{clienteMB.clientes}" var="aux"
 						itemValue="#{aux}" itemLabel="#{aux.nome}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="Vendedor:" />
+				<p:outputLabel value="#{msg['pages.Realizar_pedido.vendedor']}" />
 				<p:selectOneMenu value="#{pedidoMB.pedido.vendedor}"
 					converter="converterVendedor">
 					<f:selectItems value="#{vendedorMB.vendedores}" var="aux"
@@ -53,34 +53,32 @@
 		<h:form id="addItens">
 			<p:panelGrid>
 				<p:panelGrid columns="2">
-					<f:facet name="header">Adicionar item</f:facet>
+					<f:facet name="header"><h:outputText value="#{msg['pages.Realizar_pedido.additem.facet']}"/></f:facet>
 
-					<p:outputLabel value="Produto" />
+					<p:outputLabel value="#{msg['pages.Realizar_pedido.additem.produto']}" />
 					<p:selectOneMenu value="#{pedidoMB.item.produto}"
 						converter="converterProduto">
 						<f:selectItems value="#{produtoMB.produtos}" var="aux"
 							itemValue="#{aux}" itemLabel="#{aux.descricao}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel value="Quantidade" />
+					<p:outputLabel value="#{msg['pages.Realizar_pedido.additem.quantidade']}" />
 					<p:inputNumber value="#{pedidoMB.item.qtdeVendida}" />
 				</p:panelGrid>
-				<!-- Modificar método salvar para inserir número do pedido -->
-				<p:commandButton value="Adicionar" action="#{pedidoMB.addItem}"
+				<p:commandButton value="#{msg['pages.comuns.form.adicionar']}" action="#{pedidoMB.addItem}"
 					update=":addItens" />
-				<p:commandButton value="Alterar" update="@all" />
-				<p:commandButton value="Remover" update="@all" />
+				<p:commandButton value="#{msg['pages.comuns.form.alterar']}" update="@all" />
+				<p:commandButton value="#{msg['pages.comuns.form.remover']}" update="@all" />
 			</p:panelGrid>
-			<!-- Alterar DataTable para receber apenas os itens do pedido -->
 			<p:dataTable id="listaItens" var="aux"
 				value="#{pedidoMB.itens}">
-				<p:column headerText="Descrição">
+				<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}">
 					<p:outputLabel value="#{aux.produto.descricao}" />
 				</p:column>
-				<p:column headerText="Preço">
+				<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}">
 					<p:outputLabel value="#{aux.produto.precoUnit}" />
 				</p:column>
-				<p:column headerText="Quantidade">
+				<p:column headerText="#{msg['pages.Realizar_pedido.additem.quantidade']}">
 					<p:outputLabel value="#{aux.qtdeVendida}" />
 				</p:column>
 			</p:dataTable>
