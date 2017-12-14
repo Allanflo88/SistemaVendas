@@ -21,7 +21,9 @@
 				</f:facet>
 				<p:outputLabel value="CPF:" />
 				<p:inputMask mask="999.999.999-99" value="#{clienteMB.cliente.cpf}"
-					size="15" placeholder="CPF" />
+					size="15" placeholder="CPF">
+					<f:validator validatorId="pessoaValidator" />
+				</p:inputMask>
 
 				<p:outputLabel value="#{msg['pages.comuns.form.nome']}" />
 				<p:inputText value="#{clienteMB.cliente.nome}" size="50"
@@ -62,6 +64,10 @@
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				action="#{clienteMB.cancelar}" update="@all" />
 		</h:form>
+		<h:form>
+			<p:messages id="msgs" showDetail="true" autoUpdate="true" closable="true" />
+		</h:form>
+		
 		<h:form id="formTableCliente">
 			<p:dataTable id="tableCliente" var="aux"
 				value="#{clienteMB.clientes}" rows="10" paginator="true"

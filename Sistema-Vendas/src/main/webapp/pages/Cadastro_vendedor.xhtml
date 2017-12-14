@@ -20,7 +20,9 @@
 				<p:outputLabel value="CPF:" />
 				<p:inputMask mask="999.999.999-99" id="cpf"
 					value="#{vendedorMB.vendedor.cpf}" size="15" placeholder="CPF"
-					required="true" />
+					required="true" >
+					<f:validator validatorId="pessoaValidator" />					
+				</p:inputMask>
 
 				<p:outputLabel value="#{msg['pages.comuns.form.nome']}" />
 				<p:inputText value="#{vendedorMB.vendedor.nome}" size="50"
@@ -64,6 +66,9 @@
 				disabled="#{clienteMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				action="#{vendedorMB.cancelar}" update="@all" />
+		</h:form>
+		<h:form>
+			<p:messages id="msgs" showDetail="true" autoUpdate="true" closable="true" />
 		</h:form>
 		<h:form id="formTableVendedor">
 			<p:dataTable id="tableVendedor" var="aux"
