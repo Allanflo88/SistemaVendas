@@ -90,6 +90,7 @@ public class Pessoa implements Serializable{
     }
     
     public static boolean cpfValido(String cpf){
+    	cpf = cpf.replace(".", "").replace("-", "");
         int[] numeros = new int[11];
         int verif1, verif2, soma, contIgual;
         if (cpf.length() != 11){
@@ -113,7 +114,7 @@ public class Pessoa implements Serializable{
             }
             soma = 0;
             for (int c = 0; c < 9; c++){
-                 soma += numeros[c] * (c + 1);
+            	soma += numeros[c] * (c + 1);
             }
             verif1 = (soma % 11) % 10 ;
             if (numeros[9] != verif1){
