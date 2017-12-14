@@ -16,6 +16,7 @@
 	<ui:define name="principal">
 		<h:form id="formTableItens">
 			<p:dataTable var="a" value="#{pedidoMB.pedidos}">
+				<f:facet name="header">Pedidos</f:facet>
 				<p:column headerText="ID">
 					<h:outputText value="#{a.numero}" />
 				</p:column>

@@ -56,24 +56,24 @@
 					<f:facet name="header">Adicionar item</f:facet>
 
 					<p:outputLabel value="Produto" />
-					<p:selectOneMenu value="#{itemPedidoMB.itemPedido.produto}"
+					<p:selectOneMenu value="#{pedidoMB.item.produto}"
 						converter="converterProduto">
 						<f:selectItems value="#{produtoMB.produtos}" var="aux"
 							itemValue="#{aux}" itemLabel="#{aux.descricao}" />
 					</p:selectOneMenu>
 
 					<p:outputLabel value="Quantidade" />
-					<p:inputNumber value="#{itemPedidoMB.itemPedido.qtdeVendida}" />
+					<p:inputNumber value="#{pedidoMB.item.qtdeVendida}" />
 				</p:panelGrid>
 				<!-- Modificar método salvar para inserir número do pedido -->
-				<p:commandButton value="Adicionar" action="#{itemPedidoMB.salvar}"
-					update="@all" />
+				<p:commandButton value="Adicionar" action="#{pedidoMB.addItem}"
+					update=":addItens" />
 				<p:commandButton value="Alterar" update="@all" />
 				<p:commandButton value="Remover" update="@all" />
 			</p:panelGrid>
 			<!-- Alterar DataTable para receber apenas os itens do pedido -->
 			<p:dataTable id="listaItens" var="aux"
-				value="#{itemPedidoMB.itensPedido}">
+				value="#{pedidoMB.itens}">
 				<p:column headerText="Descrição">
 					<p:outputLabel value="#{aux.produto.descricao}" />
 				</p:column>
