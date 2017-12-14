@@ -16,6 +16,23 @@
 	<ui:define name="principal">
 		<h1><h:outputLabel value="#{msg['pages.inicio.welcome']}" /></h1>
 		
+		<p>
+			<p:button style="width:300px;"
+			outcome="Cadastro_cliente.xhtml" value="#{msg['pages.Cadastro_cliente.menu']}" />
+		</p>
+		<p>
+			<p:button style="width:300px;"
+			outcome="Cadastro_produto.xhtml" value="#{msg['pages.Cadastro_produto.menu']}" />
+		</p>
+		<p>	
+			<p:button style="width:300px;"
+			outcome="Cadastro_vendedor.xhtml" value="#{msg['pages.Cadastro_vendedor.menu']}" />
+		</p>
+		<p>
+			<p:button style="width:300px;" outcome="Realizar_Pedido.xhtml" value="#{msg['pages.Realizar_pedido.menu']}" />
+		</p>
+		<!--  <p><p:button outcome="Consulta_Pedido.xhtml" value="#{msg['pages.Consulta_Pedido.facet']}" /></p>  -->
+		
 	</ui:define>
 </ui:composition>
 
