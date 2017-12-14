@@ -27,10 +27,15 @@
 
 				<p:outputLabel value="#{msg['pages.comuns.form.nome']}" />
 				<p:inputText value="#{clienteMB.cliente.nome}" size="50"
-					placeholder="#{msg['pages.comuns.form.nome.placeholder']}" />
+					placeholder="#{msg['pages.comuns.form.nome.placeholder']}" 
+					required="true" requiredMessage="#{msg['messages.error.NomeVazio.detail']}" />
 
 				<p:outputLabel value="#{msg['pages.Cadastro_cliente.LimCredit']}" />
-				<p:inputText value="#{clienteMB.cliente.limiteCred}" />
+				<p:inputNumber value="#{clienteMB.cliente.limiteCred}" />
+				
+				<p:outputLabel value="#{msg['pages.Cadastro_cliente.LimDisp']}" />
+				<p:inputNumber value="#{clienteMB.cliente.limiteDisp}" disabled="#{clienteMB.criacao}" />
+				
 			</p:panelGrid>
 			<p:panelGrid columns="3">
 				<p:outputLabel value="#{msg['pages.comuns.form.Telefone']}" />

@@ -27,7 +27,7 @@
 				<p:outputLabel value="#{msg['pages.comuns.form.nome']}" />
 				<p:inputText value="#{vendedorMB.vendedor.nome}" size="50"
 					placeholder="#{msg['pages.comuns.form.nome.placeholder']}"
-					required="true" />
+					required="true" requiredMessage="#{msg['messages.error.NomeVazio.detail']}" />
 
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.SalBase']}" />
 				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10" 

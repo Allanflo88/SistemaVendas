@@ -43,6 +43,7 @@ public class ClienteMB {
 	}
 
 	public void salvar() {
+		cliente.setLimiteDisp(cliente.getLimiteCred());
 		service.salvar(cliente);
 		cliente = new Cliente();
 	}
