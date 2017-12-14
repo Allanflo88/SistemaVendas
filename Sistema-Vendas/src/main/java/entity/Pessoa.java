@@ -26,10 +26,7 @@ public class Pessoa implements Serializable{
 
 
     public void setCpf(String cpf) {
-    	if(validaCPF(cpf)) {
-    		this.cpf = cpf;
-    	}
-		
+    	this.cpf = cpf;
 	}
 
 	public void setNome(String nome) {
@@ -92,33 +89,48 @@ public class Pessoa implements Serializable{
         this.telefone = telefone;
     }
     
-    public boolean validaCPF(String cpf) {
-    	/*cpf = cpf.replace("-","").replaceAll(".","");
-    	int[] vetor = new int[11];
-    	int dig1 = Integer.parseInt(cpf.substring(8,9));
-    	int dig2 = Integer.parseInt(cpf.substring(9,10));
-    	int i = 2;
-    	for(int c = 0;c < cpf.length();c++) {
-    		vetor[c] = Integer.parseInt(cpf.substring(c, c+1)) * i;
-    		i++;
-    	}
-    	if(dig1 == 1) {
-    		i = 2;
-    		for(int c = 0;c < cpf.length();c++) {
-        		vetor[c] = Integer.parseInt(cpf.substring(c, c+1)) * i;
-        		i++;
-        	}
-    		if(dig2 == 1) {
-    			return true;
-    		}
-    		else {
-    			return false;
-    		}
-    	}
-    	else {
-    		return false;
-    	}*/
-    	return true;
+    public static boolean cpfValido(String cpf){
+        int[] numeros = new int[11];
+        int verif1, verif2, soma, contIgual;
+        if (cpf.length() != 11){
+            return false;
+        } else {
+            for (int c = 0; c < 11; c++){
+                try {
+                    numeros[c] = Integer.parseInt(cpf.substring(c,c+1));
+                } catch (NumberFormatException ex){
+                    return false;
+                }
+            }
+            contIgual = 0;
+            for (int c = 1; c < 11; c++){
+                if (numeros[c] == numeros[c-1]){
+                    contIgual++;
+                }
+            }
+            if (contIgual == 10){
+                return false;
+            }
+            soma = 0;
+            for (int c = 0; c < 9; c++){
+                 soma += numeros[c] * (c + 1);
+            }
+            verif1 = (soma % 11) % 10 ;
+            if (numeros[9] != verif1){
+                return false;
+            } else {
+                soma = 0;
+                for (int c = 0, d = 11; c < 10; c++, d--){
+                    soma += numeros[c] * d;
+                }
+                verif2 = ((soma * 10) % 11) % 10;
+                if (numeros[10] != verif2){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
     }
 
 	@Override
