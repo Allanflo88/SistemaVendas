@@ -1,7 +1,6 @@
 package managedbean;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
