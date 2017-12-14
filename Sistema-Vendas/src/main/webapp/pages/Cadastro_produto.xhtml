@@ -34,16 +34,21 @@
 			</p:panelGrid>
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
 				action="#{produtoMB.salvar}" update="@all" 
-				disabled="#{clienteMB.edicao}" />
+				disabled="#{produtoMB.edicao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
 				action="#{produtoMB.atualizar}" update="@all" 
-				disabled="#{clienteMB.criacao}" />
+				disabled="#{produtoMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
 				action="#{produtoMB.excluir}" update="@all" 
-				disabled="#{clienteMB.criacao}" />
+				disabled="#{produtoMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				action="#{produtoMB.cancelar}" update="@all" />
 		</h:form>
+		
+		<h:form>
+			<p:messages id="msgs" showDetail="true" autoUpdate="true" closable="true" />
+		</h:form>
+		
 		<h:form id="formTableProduto">
 			<p:dataTable id="tableProduto" var="aux"
 				value="#{produtoMB.produtos}" rows="10" paginator="true"
@@ -70,6 +75,16 @@
 					<h:outputText value="#{aux.estoqueMin}" />
 				</p:column>
 
+				<p:column style="width:32px;text-align: center" width="10%">
+					<p:commandButton update="formTableProduto, formProduto"
+						icon="ui-icon-edit" title="Edit"
+						value="#{msg['pages.comuns.form.selecionar']}"
+						action="#{produtoMB.selecionar}">
+						<f:setPropertyActionListener value="#{aux}"
+							target="#{produtoMB.produto}" />
+					</p:commandButton>
+				</p:column>
+				
 			</p:dataTable>
 		</h:form>
 	</ui:define>
