@@ -27,10 +27,15 @@
 
 				<p:outputLabel value="#{msg['pages.comuns.form.nome']}" />
 				<p:inputText value="#{clienteMB.cliente.nome}" size="50"
-					placeholder="#{msg['pages.comuns.form.nome.placeholder']}" />
+					placeholder="#{msg['pages.comuns.form.nome.placeholder']}" 
+					required="true" requiredMessage="#{msg['messages.error.NomeVazio.detail']}" />
 
 				<p:outputLabel value="#{msg['pages.Cadastro_cliente.LimCredit']}" />
-				<p:inputText value="#{clienteMB.cliente.limiteCred}" />
+				<p:inputNumber value="#{clienteMB.cliente.limiteCred}" />
+				
+				<p:outputLabel value="#{msg['pages.Cadastro_cliente.LimDisp']}" />
+				<p:inputNumber value="#{clienteMB.cliente.limiteDisp}" disabled="#{clienteMB.criacao}" />
+				
 			</p:panelGrid>
 			<p:panelGrid columns="3">
 				<p:outputLabel value="#{msg['pages.comuns.form.Telefone']}" />
@@ -60,7 +65,18 @@
 				disabled="#{clienteMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
 				action="#{clienteMB.excluir}" update="@all"
-				disabled="#{clienteMB.criacao}" />
+				disabled="#{clienteMB.criacao}" > 
+				<p:confirm 
+					header="#{msg['messages.confirm.Exclusion.title']}"
+					message="#{msg['messages.confirm.Exclusion.detail']}"
+					icon="ui-icon-alert" />
+			</p:commandButton>
+			
+			<p:confirmDialog global="true" >
+		        <p:commandButton value="#{msg['messages.confirm.Option.yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		        <p:commandButton value="#{msg['messages.confirm.Option.no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    </p:confirmDialog>
+			
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				action="#{clienteMB.cancelar}" update="@all" />
 		</h:form>

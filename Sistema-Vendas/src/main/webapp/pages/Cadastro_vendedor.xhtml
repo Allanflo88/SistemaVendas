@@ -27,7 +27,7 @@
 				<p:outputLabel value="#{msg['pages.comuns.form.nome']}" />
 				<p:inputText value="#{vendedorMB.vendedor.nome}" size="50"
 					placeholder="#{msg['pages.comuns.form.nome.placeholder']}"
-					required="true" />
+					required="true" requiredMessage="#{msg['messages.error.NomeVazio.detail']}" />
 
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.SalBase']}" />
 				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10" 
@@ -63,7 +63,18 @@
 				disabled="#{clienteMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
 				action="#{vendedorMB.excluir}" update="@all" 
-				disabled="#{clienteMB.criacao}" />
+				disabled="#{clienteMB.criacao}" >
+				<p:confirm 
+					header="#{msg['messages.confirm.Exclusion.title']}"
+					message="#{msg['messages.confirm.Exclusion.detail']}"
+					icon="ui-icon-alert" />
+			</p:commandButton>
+			
+			<p:confirmDialog global="true" >
+		        <p:commandButton value="#{msg['messages.confirm.Option.yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		        <p:commandButton value="#{msg['messages.confirm.Option.no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    </p:confirmDialog>
+			
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				action="#{vendedorMB.cancelar}" update="@all" />
 		</h:form>
