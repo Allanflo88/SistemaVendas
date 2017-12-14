@@ -65,7 +65,18 @@
 				disabled="#{clienteMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
 				action="#{clienteMB.excluir}" update="@all"
-				disabled="#{clienteMB.criacao}" />
+				disabled="#{clienteMB.criacao}" > 
+				<p:confirm 
+					header="#{msg['messages.confirm.Exclusion.title']}"
+					message="#{msg['messages.confirm.Exclusion.detail']}"
+					icon="ui-icon-alert" />
+			</p:commandButton>
+			
+			<p:confirmDialog global="true" >
+		        <p:commandButton value="#{msg['messages.confirm.Option.yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		        <p:commandButton value="#{msg['messages.confirm.Option.no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    </p:confirmDialog>
+			
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				action="#{clienteMB.cancelar}" update="@all" />
 		</h:form>
