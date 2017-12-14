@@ -16,7 +16,9 @@
 	<ui:define name="principal">
 		<h:form id="formCliente">
 			<p:panelGrid columns="2">
-				<f:facet name="header"><h:outputText value="#{msg['pages.Cadastro_cliente.facet']}"/></f:facet>
+				<f:facet name="header">
+					<h:outputText value="#{msg['pages.Cadastro_cliente.facet']}" />
+				</f:facet>
 				<p:outputLabel value="CPF:" />
 				<p:inputMask mask="999.999.999-99" value="#{clienteMB.cliente.cpf}"
 					size="15" placeholder="CPF" />
@@ -63,8 +65,10 @@
 		<h:form id="formTableCliente">
 			<p:dataTable id="tableCliente" var="aux"
 				value="#{clienteMB.clientes}" rows="10" paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="5,10,15">
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+				<p:column width="5%">
+					<p:rowToggler />
+				</p:column>
 				<p:column headerText="CPF:" width="12%">
 					<h:outputText value="#{aux.cpf}" />
 				</p:column>
@@ -73,23 +77,39 @@
 					<h:outputText value="#{aux.nome}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_cliente.LimCredit']}" width="10%">
+				<p:column headerText="#{msg['pages.Cadastro_cliente.LimCredit']}"
+					width="10%">
 					<h:outputText value="#{aux.limiteCred}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_cliente.LimDisp']}" width="10%">
+				<p:column headerText="#{msg['pages.Cadastro_cliente.LimDisp']}"
+					width="10%">
 					<h:outputText value="#{aux.limiteDisp}" />
 				</p:column>
 
 				<p:column style="width:32px;text-align: center" width="10%">
 					<p:commandButton update="formTableCliente, formCliente"
-						icon="ui-icon-edit" title="Edit" value="#{msg['pages.comuns.form.selecionar']}"
+						icon="ui-icon-edit" title="Edit"
+						value="#{msg['pages.comuns.form.selecionar']}"
 						action="#{clienteMB.selecionar}">
 						<f:setPropertyActionListener value="#{aux}"
 							target="#{clienteMB.cliente}" />
 					</p:commandButton>
-				</p:column>			
-
+				</p:column>
+				<p:rowExpansion>
+					<p:panelGrid columns="3" style="width:400px">
+						<p:outputLabel value="#{msg['pages.comuns.form.Telefone']}"/>
+						<p:outputLabel value="#{aux.ddd}" />
+						<p:outputLabel value="#{aux.telefone}" />
+					</p:panelGrid>
+					<p:panelGrid columns="5" >
+						<p:outputLabel value="#{msg['pages.comuns.form.Endereco']}"/>
+						<p:outputLabel value="#{aux.endereco}"/>
+						<p:outputLabel value="#{aux.cep}"/>
+						<p:outputLabel value="#{aux.cidade}"/>
+						<p:outputLabel value="#{aux.uf}"/>
+					</p:panelGrid>
+				</p:rowExpansion>
 			</p:dataTable>
 		</h:form>
 	</ui:define>

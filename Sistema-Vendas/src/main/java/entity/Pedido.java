@@ -74,5 +74,7 @@ public class Pedido implements Serializable{
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
     }
+    
+    
 
 }

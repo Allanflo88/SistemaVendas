@@ -1,6 +1,8 @@
 package managedbean;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.event.RowEditEvent;
@@ -17,7 +19,18 @@ public class PedidoMB {
 	private PedidoService service = new PedidoService();
 	private List<ItemPedido> itens = new ArrayList<>();
 	private ItemPedido item = new ItemPedido();
+	private List<Pedido> filteredPedidos;
 	
+	
+	public List<Pedido> getFilteredPedidos() {
+		return filteredPedidos;
+	}
+	public void setFilteredPedidos(List<Pedido> filteredPedidos) {
+		this.filteredPedidos = filteredPedidos;
+	}
+	public void setItens(List<ItemPedido> itens) {
+		this.itens = itens;
+	}
 	public Pedido getPedido() {
 		return pedido;
 	}
@@ -68,6 +81,7 @@ public class PedidoMB {
 		Pedido ped = (Pedido) event.getObject();
 		service.atualizar(ped);
 	}
+	
 	
 	
 }

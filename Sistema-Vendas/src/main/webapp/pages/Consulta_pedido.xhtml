@@ -14,26 +14,38 @@
 
 
 	<ui:define name="principal">
-		<h:form id="formTableItens">
-			<p:dataTable var="a" value="#{pedidoMB.pedidos}">
-				<f:facet name="header"><h:outputText value="#{msg['pages.Realizar_pedido.facet']}"/></f:facet>
-				<p:column headerText="ID">
-					<h:outputText value="#{a.numero}" />
+		<h:form id="formPesq">
+			<p:dataTable var="aux" value="#{pedidoMB.pedidos}"
+				filteredValue="#{pedidoMB.filteredPedidos}" rows="30"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+				<f:facet name="header">
+					<h:outputText value="#{msg['pages.Realizar_pedido.facet']}" />
+				</f:facet>
+
+				<p:column headerText="ID" filterBy="#{aux.numero}"
+					filterMatchMode="exact">
+					<h:outputText value="#{aux.numero}" />
 				</p:column>
-				<p:column headerText="#{msg['pages.Consultar_pedido.emissao']}">
-					<h:outputText value="#{a.dataEmissaoPedido}" />
+				<p:column headerText="#{msg['pages.Cadastro_cliente.facet']}"
+					filterBy="#{aux.cliente.nome}" filterMatchMode="contains">
+					<h:outputText value="#{aux.cliente.nome}" />
 				</p:column>
-				<p:column headerText="#{msg['pages.Consultar_pedido.pagamento']}">
-					<h:outputText value="#{a.dataPagto}" />
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.facet']}"
+					filterBy="#{aux.vendedor.nome}" filterMatchMode="contains">
+					<h:outputText value="#{aux.vendedor.nome}" />
 				</p:column>
-				<p:column headerText="#{msg['pages.Cadastro_cliente.facet']}">
-					<h:outputText value="#{a.cliente.nome}" />
+				<p:column headerText="#{msg['pages.Consultar_pedido.emissao']}"
+					filterBy="#{aux.dataEmissaoPedido}" filterMatchMode="exact">
+					<h:outputText value="#{aux.dataEmissaoPedido}" />
 				</p:column>
-				<p:column headerText="#{msg['pages.Cadastro_vendedor.facet']}">
-					<h:outputText value="#{a.vendedor.nome}" />
+				<p:column headerText="#{msg['pages.Consultar_pedido.pagamento']}"
+					filterBy="#{aux.dataPagto}" filterMatchMode="exact">
+					<h:outputText value="#{aux.dataPagto}" />
 				</p:column>
 
 			</p:dataTable>
+
 		</h:form>
 
 	</ui:define>
