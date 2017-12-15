@@ -109,13 +109,17 @@
 				<p:column headerText="#{msg['pages.Cadastro_vendedor.Comissao']}"
 					sortBy="#{aux.comissao}" filterBy="#{aux.comissao}"
 					filterMatchMode="exact">
-					<h:outputText value="#{aux.comissao}" />
+					<h:outputText value="#{aux.comissao}">
+						<f:convertNumber pattern="##0.00" />
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="#{msg['pages.Cadastro_vendedor.SalBase']}"
 					sortBy="#{aux.salarioBase}" filterBy="#{aux.salarioBase}"
 					filterMatchMode="exact">
-					<h:outputText value="#{aux.salarioBase}" />
+					<h:outputText value="#{aux.salarioBase}">
+						<f:convertNumber pattern="R$ ##,##0.00" />
+					</h:outputText>
 				</p:column>
 				<p:rowExpansion>
 					<p:panelGrid columns="3" style="width:400px">

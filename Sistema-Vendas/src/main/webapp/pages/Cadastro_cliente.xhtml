@@ -27,15 +27,17 @@
 
 				<p:outputLabel value="#{msg['pages.comuns.form.nome']}" />
 				<p:inputText value="#{clienteMB.cliente.nome}" size="50"
-					placeholder="#{msg['pages.comuns.form.nome.placeholder']}" 
-					required="true" requiredMessage="#{msg['messages.error.NomeVazio.detail']}" />
+					placeholder="#{msg['pages.comuns.form.nome.placeholder']}"
+					required="true"
+					requiredMessage="#{msg['messages.error.NomeVazio.detail']}" />
 
 				<p:outputLabel value="#{msg['pages.Cadastro_cliente.LimCredit']}" />
 				<p:inputNumber value="#{clienteMB.cliente.limiteCred}" />
-				
+
 				<p:outputLabel value="#{msg['pages.Cadastro_cliente.LimDisp']}" />
-				<p:inputNumber value="#{clienteMB.cliente.limiteDisp}" disabled="#{clienteMB.criacao}" />
-				
+				<p:inputNumber value="#{clienteMB.cliente.limiteDisp}"
+					disabled="#{clienteMB.criacao}" />
+
 			</p:panelGrid>
 			<p:panelGrid columns="3">
 				<p:outputLabel value="#{msg['pages.comuns.form.Telefone']}" />
@@ -65,48 +67,61 @@
 				disabled="#{clienteMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
 				action="#{clienteMB.excluir}" update="@all"
-				disabled="#{clienteMB.criacao}" > 
-				<p:confirm 
-					header="#{msg['messages.confirm.Exclusion.title']}"
+				disabled="#{clienteMB.criacao}">
+				<p:confirm header="#{msg['messages.confirm.Exclusion.title']}"
 					message="#{msg['messages.confirm.Exclusion.detail']}"
 					icon="ui-icon-alert" />
 			</p:commandButton>
-			
-			<p:confirmDialog global="true" >
-		        <p:commandButton value="#{msg['messages.confirm.Option.yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-		        <p:commandButton value="#{msg['messages.confirm.Option.no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-		    </p:confirmDialog>
-			
+
+			<p:confirmDialog global="true">
+				<p:commandButton value="#{msg['messages.confirm.Option.yes']}"
+					type="button" styleClass="ui-confirmdialog-yes"
+					icon="ui-icon-check" />
+				<p:commandButton value="#{msg['messages.confirm.Option.no']}"
+					type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				action="#{clienteMB.cancelar}" update="@all" />
 		</h:form>
 		<h:form>
-			<p:messages id="msgs" showDetail="true" autoUpdate="true" closable="true" />
+			<p:messages id="msgs" showDetail="true" autoUpdate="true"
+				closable="true" />
 		</h:form>
-		
+
 		<h:form id="formTableCliente">
 			<p:dataTable id="tableCliente" var="aux"
 				value="#{clienteMB.clientes}" rows="10" paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" filteredValue="#{clienteMB.filter}">
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				filteredValue="#{clienteMB.filter}">
 				<p:column width="5%">
 					<p:rowToggler />
 				</p:column>
-				<p:column headerText="CPF:" width="12%" sortBy="#{aux.cpf}" filterBy="#{aux.cpf}" filterMatchMode="contains">
+				<p:column headerText="CPF:" width="12%" sortBy="#{aux.cpf}"
+					filterBy="#{aux.cpf}" filterMatchMode="contains">
 					<h:outputText value="#{aux.cpf}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.comuns.form.nome']}" width="30%" sortBy="#{aux.nome}" filterBy="#{aux.nome}" filterMatchMode="contains">
+				<p:column headerText="#{msg['pages.comuns.form.nome']}" width="30%"
+					sortBy="#{aux.nome}" filterBy="#{aux.nome}"
+					filterMatchMode="contains">
 					<h:outputText value="#{aux.nome}" />
 				</p:column>
 
 				<p:column headerText="#{msg['pages.Cadastro_cliente.LimCredit']}"
-					width="10%" sortBy="#{aux.limiteCred}" filterBy="#{aux.limiteCred}" filterMatchMode="exact">
-					<h:outputText value="#{aux.limiteCred}" />
+					width="10%" sortBy="#{aux.limiteCred}" filterBy="#{aux.limiteCred}"
+					filterMatchMode="exact">
+					<h:outputText value="#{aux.limiteCred}">
+						<f:convertNumber pattern="R$ ###,##0.00" />
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="#{msg['pages.Cadastro_cliente.LimDisp']}"
-					width="10%" sortBy="#{aux.limiteDisp}" filterBy="#{aux.limiteDisp}" filterMatchMode="exact">
-					<h:outputText value="#{aux.limiteDisp}" />
+					width="10%" sortBy="#{aux.limiteDisp}" filterBy="#{aux.limiteDisp}"
+					filterMatchMode="exact">
+					<h:outputText value="#{aux.limiteDisp}" >
+					<f:convertNumber pattern="R$ ###,##0.00" />
+					</h:outputText>
 				</p:column>
 
 				<p:column style="width:32px;text-align: center" width="10%">
@@ -120,16 +135,16 @@
 				</p:column>
 				<p:rowExpansion>
 					<p:panelGrid columns="3" style="width:400px">
-						<p:outputLabel value="#{msg['pages.comuns.form.Telefone']}"/>
+						<p:outputLabel value="#{msg['pages.comuns.form.Telefone']}" />
 						<p:outputLabel value="#{aux.ddd}" />
 						<p:outputLabel value="#{aux.telefone}" />
 					</p:panelGrid>
-					<p:panelGrid columns="5" >
-						<p:outputLabel value="#{msg['pages.comuns.form.Endereco']}"/>
-						<p:outputLabel value="#{aux.endereco}"/>
-						<p:outputLabel value="#{aux.cep}"/>
-						<p:outputLabel value="#{aux.cidade}"/>
-						<p:outputLabel value="#{aux.uf}"/>
+					<p:panelGrid columns="5">
+						<p:outputLabel value="#{msg['pages.comuns.form.Endereco']}" />
+						<p:outputLabel value="#{aux.endereco}" />
+						<p:outputLabel value="#{aux.cep}" />
+						<p:outputLabel value="#{aux.cidade}" />
+						<p:outputLabel value="#{aux.uf}" />
 					</p:panelGrid>
 				</p:rowExpansion>
 			</p:dataTable>
