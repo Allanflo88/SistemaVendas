@@ -75,20 +75,20 @@
 					update="@all" />
 			</p:panelGrid>
 			<p:dataTable id="listaItens" var="aux" value="#{pedidoMB.itens}">
-				<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}" sortBy="#{aux.produto.descricao}">
 					<p:outputLabel value="#{aux.produto.descricao}" />
 				</p:column>
-				<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}" sortBy="#{aux.produto.precoUnit}">
 					<p:outputLabel value="#{aux.produto.precoUnit}">
 						<f:convertNumber pattern="R$ #,##0.00" />
 					</p:outputLabel>
 				</p:column>
 				<p:column
-					headerText="#{msg['pages.Realizar_pedido.additem.quantidade']}">
+					headerText="#{msg['pages.Realizar_pedido.additem.quantidade']}" sortBy="#{aux.qtdeVendida}">
 					<p:outputLabel value="#{aux.qtdeVendida}" />
 				</p:column>
 				<p:column
-					headerText="#{msg['pages.Realizar_pedido.additem.valortot']}">
+					headerText="#{msg['pages.Realizar_pedido.additem.valortot']}" sortBy="#{aux.produto.precoUnit * aux.qtdeVendida}">
 					<p:outputLabel value="#{aux.produto.precoUnit * aux.qtdeVendida}">
 						<f:convertNumber pattern="R$ #,##0.00" />
 					</p:outputLabel>

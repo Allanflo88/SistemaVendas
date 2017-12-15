@@ -64,25 +64,25 @@
 			<p:dataTable id="tableProduto" var="aux"
 				value="#{produtoMB.produtos}" rows="10" paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
-				<p:column headerText="#{msg['pages.Cadastro_produto.codigo']}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.codigo']}" sortBy="#{aux.codigo}">
 					<h:outputText value="#{aux.codigo}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}" sortBy="#{aux.descricao}">
 					<h:outputText value="#{aux.descricao}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}" sortBy="#{aux.precoUnit}">
 					<h:outputText value="#{aux.precoUnit}">
 						<f:convertNumber pattern="R$ #,##0.00" />
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_produto.qtdDisp']}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.qtdDisp']}" sortBy="#{aux.qtdeDisponivel}">
 					<h:outputText value="#{aux.qtdeDisponivel}" />
 				</p:column>
 				
-				<p:column headerText="#{msg['pages.Cadastro_produto.estqMin']}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.estqMin']}" sortBy="#{aux.estoqueMin}">
 					<h:outputText value="#{aux.estoqueMin}" />
 				</p:column>
 

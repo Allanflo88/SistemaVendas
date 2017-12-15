@@ -91,21 +91,21 @@
 				<p:column width="5%">
 					<p:rowToggler />
 				</p:column>
-				<p:column headerText="CPF:" width="12%">
+				<p:column headerText="CPF:" width="12%" sortBy="#{aux.cpf}">
 					<h:outputText value="#{aux.cpf}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.comuns.form.nome']}" width="30%">
+				<p:column headerText="#{msg['pages.comuns.form.nome']}" width="30%" sortBy="#{aux.nome}">
 					<h:outputText value="#{aux.nome}" />
 				</p:column>
 
 				<p:column headerText="#{msg['pages.Cadastro_cliente.LimCredit']}"
-					width="10%">
+					width="10%" sortBy="#{aux.limiteCred}">
 					<h:outputText value="#{aux.limiteCred}" />
 				</p:column>
 
 				<p:column headerText="#{msg['pages.Cadastro_cliente.LimDisp']}"
-					width="10%">
+					width="10%" sortBy="#{aux.limiteDisp}">
 					<h:outputText value="#{aux.limiteDisp}" />
 				</p:column>
 

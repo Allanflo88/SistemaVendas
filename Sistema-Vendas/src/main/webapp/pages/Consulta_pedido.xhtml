@@ -23,26 +23,26 @@
 					<h:outputText value="#{msg['pages.Realizar_pedido.facet']}" />
 				</f:facet>
 
-				<p:column headerText="ID" filterBy="#{aux.numero}"
-					filterMatchMode="exact" width="5%">
+				<p:column headerText="ID" filterBy="#{aux.numero}" sortBy="#{aux.numero}"
+					filterMatchMode="exact" width="10%" >
 					<h:outputText value="#{aux.numero}" />
 				</p:column>
 				<p:column headerText="#{msg['pages.Cadastro_cliente.facet']}"
-					filterBy="#{aux.cliente.nome}" filterMatchMode="contains">
+					filterBy="#{aux.cliente.nome}" filterMatchMode="contains" sortBy="#{aux.cliente.nome}">
 					<h:outputText value="#{aux.cliente.nome}" />
 				</p:column>
 				<p:column headerText="#{msg['pages.Cadastro_vendedor.facet']}"
-					filterBy="#{aux.vendedor.nome}" filterMatchMode="contains">
+					filterBy="#{aux.vendedor.nome}" filterMatchMode="contains" sortBy="#{aux.vendedor.nome}">
 					<h:outputText value="#{aux.vendedor.nome}" />
 				</p:column>
 				<p:column headerText="#{msg['pages.Consultar_pedido.emissao']}"
-					filterBy="#{aux.dataEmissaoPedido}" filterMatchMode="exact">
+					filterBy="#{aux.dataEmissaoPedido}" filterMatchMode="exact" sortBy="#{aux.dataEmissaoPedido}">
 					<h:outputLabel value="#{aux.dataEmissaoPedido}" >
 						<f:convertDateTime pattern="#{msg['config.datelocale.pattern.date']}" />
 					</h:outputLabel>
 				</p:column>
 				<p:column headerText="#{msg['pages.Consultar_pedido.pagamento']}"
-					filterBy="#{aux.dataPagto}" filterMatchMode="exact">
+					filterBy="#{aux.dataPagto}" filterMatchMode="exact" sortBy="#{aux.dataPagto}">
 					<h:outputLabel value="#{aux.dataPagto}" >
 						<f:convertDateTime pattern="#{msg['config.datelocale.pattern.date']}" />
 					</h:outputLabel>

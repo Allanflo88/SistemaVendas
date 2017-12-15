@@ -88,19 +88,19 @@
 				<p:column width="5%">
 					<p:rowToggler />
 				</p:column>
-				<p:column headerText="CPF:">
+				<p:column headerText="CPF:" sortBy="#{aux.cpf}">
 					<h:outputText value="#{aux.cpf}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.comuns.form.nome']}">
+				<p:column headerText="#{msg['pages.comuns.form.nome']}" sortBy="#{aux.nome}" >
 					<h:outputText value="#{aux.nome}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_vendedor.Comissao']}">
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.Comissao']}" sortBy="#{aux.comissao}">
 					<h:outputText value="#{aux.comissao}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_vendedor.SalBase']}">
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.SalBase']}" sortBy="#{aux.salarioBase}">
 					<h:outputText value="#{aux.salarioBase}" />
 				</p:column>
 				<p:rowExpansion>
