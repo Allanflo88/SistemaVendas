@@ -16,15 +16,19 @@
 	<ui:define name="principal">
 		<h:form id="formPedido">
 			<p:panelGrid columns="2">
-				<f:facet name="header"><h:outputText value="#{msg['pages.Realizar_pedido.facet']}"/></f:facet>
+				<f:facet name="header">
+					<h:outputText value="#{msg['pages.Realizar_pedido.facet']}" />
+				</f:facet>
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.pedido']}" />
 				<p:inputText id="Pedido" value="#{pedidoMB.pedido.numero}" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataEmissao']}" />
-				<p:calendar value="#{pedidoMB.pedido.dataEmissaoPedido}" pattern="dd/MM/yyyy" mask="true"/>
+				<p:calendar value="#{pedidoMB.pedido.dataEmissaoPedido}"
+					pattern="dd/MM/yyyy" mask="true" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataPagamento']}" />
-				<p:calendar value="#{pedidoMB.pedido.dataPagto}" pattern="dd/MM/yyyy" mask="true" />
+				<p:calendar value="#{pedidoMB.pedido.dataPagto}"
+					pattern="dd/MM/yyyy" mask="true" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.cliente']}" />
 				<p:selectOneMenu value="#{pedidoMB.pedido.cliente}"
@@ -40,48 +44,64 @@
 						itemValue="#{aux}" itemLabel="#{aux.nome}" />
 				</p:selectOneMenu>
 			</p:panelGrid>
-		
-			<p:messages id="msgs" showDetail="true" autoUpdate="true" closable="true" />
+
+			<p:messages id="msgs" showDetail="true" autoUpdate="true"
+				closable="true" />
 
 			<p:panelGrid>
 				<p:panelGrid columns="2">
-					<f:facet name="header"><h:outputText value="#{msg['pages.Realizar_pedido.additem.facet']}"/></f:facet>
+					<f:facet name="header">
+						<h:outputText
+							value="#{msg['pages.Realizar_pedido.additem.facet']}" />
+					</f:facet>
 
-					<p:outputLabel value="#{msg['pages.Realizar_pedido.additem.produto']}" />
+					<p:outputLabel
+						value="#{msg['pages.Realizar_pedido.additem.produto']}" />
 					<p:selectOneMenu value="#{pedidoMB.item.produto}"
 						converter="converterProduto">
 						<f:selectItems value="#{produtoMB.produtos}" var="aux"
 							itemValue="#{aux}" itemLabel="#{aux.descricao}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel value="#{msg['pages.Realizar_pedido.additem.quantidade']}" />
+					<p:outputLabel
+						value="#{msg['pages.Realizar_pedido.additem.quantidade']}" />
 					<p:spinner value="#{pedidoMB.item.qtdeVendida}" min="0" />
 				</p:panelGrid>
-				<p:commandButton value="#{msg['pages.comuns.form.adicionar']}" action="#{pedidoMB.addItem}"
+				<p:commandButton value="#{msg['pages.comuns.form.adicionar']}"
+					action="#{pedidoMB.addItem}" update="@all" />
+				<p:commandButton value="#{msg['pages.comuns.form.alterar']}" action="#{pedidoMB.alterItem}"
 					update="@all" />
-				<p:commandButton value="#{msg['pages.comuns.form.alterar']}" update="@all" />
-				<p:commandButton value="#{msg['pages.comuns.form.remover']}" update="@all" />
+				<p:commandButton value="#{msg['pages.comuns.form.remover']}" action="#{pedidoMB.removeItem}"
+					update="@all" />
 			</p:panelGrid>
-			<p:dataTable id="listaItens" var="aux"
-				value="#{pedidoMB.itens}">
+			<p:dataTable id="listaItens" var="aux" value="#{pedidoMB.itens}">
 				<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}">
 					<p:outputLabel value="#{aux.produto.descricao}" />
 				</p:column>
 				<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}">
-					<p:outputLabel value="#{aux.produto.precoUnit}" >
+					<p:outputLabel value="#{aux.produto.precoUnit}">
 						<f:convertNumber pattern="R$ #,##0.00" />
 					</p:outputLabel>
 				</p:column>
-				<p:column headerText="#{msg['pages.Realizar_pedido.additem.quantidade']}">
+				<p:column
+					headerText="#{msg['pages.Realizar_pedido.additem.quantidade']}">
 					<p:outputLabel value="#{aux.qtdeVendida}" />
 				</p:column>
-				<p:column headerText="#{msg['pages.Realizar_pedido.additem.valortot']}">
-					<p:outputLabel value="#{aux.produto.precoUnit * aux.qtdeVendida}" >
+				<p:column
+					headerText="#{msg['pages.Realizar_pedido.additem.valortot']}">
+					<p:outputLabel value="#{aux.produto.precoUnit * aux.qtdeVendida}">
 						<f:convertNumber pattern="R$ #,##0.00" />
 					</p:outputLabel>
 				</p:column>
-				<p:column headerText="#{msg['pages.commus.form.opcoes']}">
-					
+				<p:column headerText="#{msg['pages.commus.form.opcoes']}"
+					style="width:32px;text-align: center" width="10%">
+					<p:commandButton update="@all"
+						icon="ui-icon-edit" title="Edit"
+						value="#{msg['pages.comuns.form.selecionar']}"
+						action="#{pedidoMB.selecionar}">
+						<f:setPropertyActionListener value="#{aux}"
+							target="#{pedidoMB.item}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 
@@ -89,10 +109,8 @@
 
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
 				action="#{pedidoMB.salvar}" update="@all" />
-			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
-				update="@all" />
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
-				update="@all" />
+				update="@all"/>
 		</h:form>
 
 	</ui:define>

@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
-
 import org.primefaces.event.RowEditEvent;
 
 import entity.ItemPedido;
@@ -20,14 +18,8 @@ public class PedidoMB {
 	private PedidoService service = new PedidoService();
 	private List<ItemPedido> itens = new ArrayList<>();
 	private ItemPedido item = new ItemPedido();
-	private List<Pedido> filteredPedidos;
+	private boolean edicao = false;
 	
-	public List<Pedido> getFilteredPedidos() {
-		return filteredPedidos;
-	}
-	public void setFilteredPedidos(List<Pedido> filteredPedidos) {
-		this.filteredPedidos = filteredPedidos;
-	}
 	public void setItens(List<ItemPedido> itens) {
 		this.itens = itens;
 	}
@@ -56,8 +48,34 @@ public class PedidoMB {
 	public void setItem(ItemPedido itemPedido) {
 		this.item = itemPedido;
 	}
+	
+	public boolean isEdicao() {
+		return edicao;
+	}
+	public void setEdicao(boolean edicao) {
+		this.edicao = edicao;
+	}
+	public boolean isCriacao() {
+		return !edicao;
+	}
+
+	public void setCriacao(boolean criacao) {
+		this.edicao = !criacao;
+	}
+	public void selecionar() {
+		edicao = true;
+	}
+	
 	public void addItem() {
 		item.setPedido(pedido);
+		itens.add(item);
+		item = new ItemPedido();
+	}
+	public void removeItem(ItemPedido rmv) {
+		itens.remove(rmv);
+	}
+	public void alterItem() {
+		itens.remove(item);
 		itens.add(item);
 		item = new ItemPedido();
 	}
