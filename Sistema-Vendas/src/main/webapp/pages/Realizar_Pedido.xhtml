@@ -40,13 +40,9 @@
 						itemValue="#{aux}" itemLabel="#{aux.nome}" />
 				</p:selectOneMenu>
 			</p:panelGrid>
-		</h:form>
 		
-		<h:form>
 			<p:messages id="msgs" showDetail="true" autoUpdate="true" closable="true" />
-		</h:form>
-		
-		<h:form id="addItens">
+
 			<p:panelGrid>
 				<p:panelGrid columns="2">
 					<f:facet name="header"><h:outputText value="#{msg['pages.Realizar_pedido.additem.facet']}"/></f:facet>
@@ -59,10 +55,10 @@
 					</p:selectOneMenu>
 
 					<p:outputLabel value="#{msg['pages.Realizar_pedido.additem.quantidade']}" />
-					<p:spinner value="#{pedidoMB.item.qtdeVendida}" min="1" max="#{pedidoMB.qtdProduto}" />
+					<p:spinner value="#{pedidoMB.item.qtdeVendida}" min="0" />
 				</p:panelGrid>
 				<p:commandButton value="#{msg['pages.comuns.form.adicionar']}" action="#{pedidoMB.addItem}"
-					update=":addItens" />
+					update="@all" />
 				<p:commandButton value="#{msg['pages.comuns.form.alterar']}" update="@all" />
 				<p:commandButton value="#{msg['pages.comuns.form.remover']}" update="@all" />
 			</p:panelGrid>
@@ -72,20 +68,25 @@
 					<p:outputLabel value="#{aux.produto.descricao}" />
 				</p:column>
 				<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}">
-					<p:outputLabel value="#{aux.produto.precoUnit}" />
+					<p:outputLabel value="#{aux.produto.precoUnit}" >
+						<f:convertNumber pattern="R$ #,##0.00" />
+					</p:outputLabel>
 				</p:column>
 				<p:column headerText="#{msg['pages.Realizar_pedido.additem.quantidade']}">
 					<p:outputLabel value="#{aux.qtdeVendida}" />
 				</p:column>
+				<p:column headerText="#{msg['pages.Realizar_pedido.additem.valortot']}">
+					<p:outputLabel value="#{aux.produto.precoUnit * aux.qtdeVendida}" >
+						<f:convertNumber pattern="R$ #,##0.00" />
+					</p:outputLabel>
+				</p:column>
+				<p:column headerText="#{msg['pages.commus.form.opcoes']}">
+					
+				</p:column>
 			</p:dataTable>
-		</h:form>
-		
-		<h:form>
-			<p:messages id="msgs" showDetail="true" autoUpdate="true" closable="true" />
-		</h:form>
-		
-		<br></br>
-		<h:form id="buttons">
+
+			<br></br>
+
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
 				action="#{pedidoMB.salvar}" update="@all" />
 			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
