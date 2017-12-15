@@ -24,11 +24,11 @@
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataEmissao']}" />
 				<p:calendar value="#{pedidoMB.pedido.dataEmissaoPedido}"
-					pattern="dd/MM/yyyy" mask="true" />
+					 pattern="dd/MM/yy" mask="true" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataPagamento']}" />
 				<p:calendar value="#{pedidoMB.pedido.dataPagto}"
-					pattern="dd/MM/yyyy" mask="true" />
+					 pattern="dd/MM/yy" mask="true" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.cliente']}" />
 				<p:selectOneMenu value="#{pedidoMB.pedido.cliente}"
@@ -49,7 +49,7 @@
 				closable="true" />
 
 			<p:panelGrid>
-				<p:panelGrid columns="2">
+				<p:panelGrid columns="2" id="selecItem">
 					<f:facet name="header">
 						<h:outputText
 							value="#{msg['pages.Realizar_pedido.additem.facet']}" />
@@ -68,11 +68,12 @@
 					<p:spinner value="#{pedidoMB.item.qtdeVendida}" min="0" />
 				</p:panelGrid>
 				<p:commandButton value="#{msg['pages.comuns.form.adicionar']}"
-					action="#{pedidoMB.addItem}" update="@all" />
+					action="#{pedidoMB.addItem}" update=":formPedido:listaItens,:formPedido:selecItem" 
+					disabled="#{pedidoMB.criacao}" />
 				<p:commandButton value="#{msg['pages.comuns.form.alterar']}" action="#{pedidoMB.alterItem}"
-					update="@all" />
+					update=":formPedido:listaItens,:formPedido:selecItem" disabled="#{pedidoMB.edicao}" />
 				<p:commandButton value="#{msg['pages.comuns.form.remover']}" action="#{pedidoMB.removeItem}"
-					update="@all" />
+					update=":formPedido:listaItens,:formPedido:selecItem" disabled="#{pedidoMB.edicao}"/>
 			</p:panelGrid>
 			<p:dataTable id="listaItens" var="aux" value="#{pedidoMB.itens}">
 				<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}" sortBy="#{aux.produto.descricao}">
