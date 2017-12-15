@@ -1,60 +1,36 @@
 package services;
 
-
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
-import javax.persistence.Query;
+import DAO.ClienteDAO;
 import entity.Cliente;
 
-public class ClienteService extends Service{
+public class ClienteService extends Service {
 
+	ClienteDAO dao = new ClienteDAO();
 
-	@SuppressWarnings("unchecked")
 	public List<Cliente> getClientes() {
-		EntityManager em = emf.createEntityManager();
-		try {
-			Query q = em.createQuery("select c from Cliente c", Cliente.class);
-			return q.getResultList();
-		} finally {
-			em.close();
-		}
+		List<Cliente> clientes = dao.getAll(Cliente.class);
+		dao.closeEntityManager();
+		return clientes;
+
 	}
-	
-	public void salvar(Cliente cliente) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			em.persist(cliente);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
+
+	public Cliente salvar(Cliente cliente) {
+		cliente = dao.save(cliente);
+		dao.closeEntityManager();
+		return cliente;
 	}
-	
+
 	public void excluir(Cliente cliente) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			Cliente rmv;
-			em.getTransaction().begin();
-			rmv = em.find(Cliente.class, cliente.getCpf());
-			em.remove(rmv);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
+		cliente = dao.getById(Cliente.class, cliente.getCpf());
+		dao.remove(cliente);
+		dao.closeEntityManager();
 	}
-	
+
 	public void atualizar(Cliente cliente) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			em.merge(cliente);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
+		dao.save(cliente);
+		dao.closeEntityManager();
 	}
-	
+
 }

@@ -30,7 +30,7 @@ public class ItemPedidoMB {
 	}
 
 	public List<ItemPedido> getItensPedido() {
-		return service.getItemPedidos();
+		return service.getItensPedido();
 	}
 
 	public void salvar() {

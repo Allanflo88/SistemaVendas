@@ -1,57 +1,35 @@
 package services;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+
+import DAO.ItemPedidoDAO;
+
 import entity.ItemPedido;
 
-public class ItemPedidoService extends Service {
+public class ItemPedidoService extends Service{
+	ItemPedidoDAO dao = new ItemPedidoDAO();
 
-	@SuppressWarnings("unchecked")
-	public List<ItemPedido> getItemPedidos() {
-		EntityManager em = emf.createEntityManager();
-		try {
-			Query q = em.createQuery("select ip from ItemPedido ip", ItemPedido.class);
-			return q.getResultList();
-		} finally {
-			em.close();
-		}
-	}
-	
-	public void salvar(ItemPedido itemPedido) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			em.persist(itemPedido);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
-	}
-	
-	public void excluir(ItemPedido itemPedido) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			ItemPedido rmv;
-			em.getTransaction().begin();
-			rmv = em.find(ItemPedido.class, itemPedido.getId());
-			em.remove(rmv);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
-	}
-	
-	public void atualizar(ItemPedido itemPedido) {;
-		EntityManager em = emf.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			em.merge(itemPedido);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
-	}
-	
+	public List<ItemPedido> getItensPedido() {
+		List<ItemPedido> itens = dao.getAll(ItemPedido.class);
+		dao.closeEntityManager();
+		return itens;
 
+	}
+
+	public ItemPedido salvar(ItemPedido item) {
+		item = dao.save(item);
+		dao.closeEntityManager();
+		return item;
+	}
+
+	public void excluir(ItemPedido item) {
+		item = dao.getById(ItemPedido.class, item.getId());
+		dao.remove(item);
+		dao.closeEntityManager();
+	}
+
+	public void atualizar(ItemPedido item) {
+		dao.save(item);
+		dao.closeEntityManager();
+	}
 }

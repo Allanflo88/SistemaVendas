@@ -1,56 +1,35 @@
 package services;
 
+
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import DAO.PedidoDAO;
 
 import entity.Pedido;
 
 public class PedidoService extends Service{
-	
-	@SuppressWarnings("unchecked")
+	PedidoDAO dao = new PedidoDAO();
+
 	public List<Pedido> getPedidos() {
-		EntityManager em = emf.createEntityManager();
-		try {
-			Query q = em.createQuery("select p from Pedido p", Pedido.class);
-			return q.getResultList();
-		} finally {
-			em.close();
-		}
+		List<Pedido> pedidos = dao.getAll(Pedido.class);
+		dao.closeEntityManager();
+		return pedidos;
+
 	}
-	
-	public void salvar(Pedido pedido) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			em.persist(pedido);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
+
+	public Pedido salvar(Pedido pedido) {
+		pedido = dao.save(pedido);
+		dao.closeEntityManager();
+		return pedido;
 	}
-	
+
 	public void excluir(Pedido pedido) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			Pedido rmv;
-			em.getTransaction().begin();
-			rmv = em.find(Pedido.class, pedido.getNumero());
-			em.remove(rmv);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
+		pedido = dao.getById(Pedido.class, pedido.getNumero());
+		dao.remove(pedido);
+		dao.closeEntityManager();
 	}
-	
-	public void atualizar(Pedido pedido) {;
-		EntityManager em = emf.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			em.merge(pedido);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
+
+	public void atualizar(Pedido pedido) {
+		dao.save(pedido);
+		dao.closeEntityManager();
 	}
 }
