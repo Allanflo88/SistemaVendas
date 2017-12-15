@@ -71,8 +71,6 @@ public class PedidoMB {
 			itemPedido.salvar();
 			System.out.println(item.getProduto().getQtdeDisponivel());
 		}
-		
-		
 		pedido = new Pedido();
 		itens = new ArrayList<>();
 	}
@@ -88,9 +86,9 @@ public class PedidoMB {
 	
 	public int getQtdProduto(){
 		if (item.getProduto() == null){
-			FacesContext fc = FacesContext.getCurrentInstance();
-			fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Selecione um produto primeiro"));
-			return 0;
+			//FacesContext fc = FacesContext.getCurrentInstance();
+			//fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Selecione um produto primeiro"));
+			return 15000;
 		} else {
 			return item.getProduto().getQtdeDisponivel() - item.getProduto().getEstoqueMin();
 		}
