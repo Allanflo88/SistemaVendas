@@ -16,21 +16,24 @@
 	<ui:define name="principal">
 		<h:form id="formVendedor">
 			<p:panelGrid columns="2">
-				<f:facet name="header"><h:outputText value="#{msg['pages.Cadastro_vendedor.facet']}"/></f:facet>
+				<f:facet name="header">
+					<h:outputText value="#{msg['pages.Cadastro_vendedor.facet']}" />
+				</f:facet>
 				<p:outputLabel value="CPF:" />
 				<p:inputMask mask="999.999.999-99" id="cpf"
 					value="#{vendedorMB.vendedor.cpf}" size="15" placeholder="CPF"
-					required="true" >
-					<f:validator validatorId="pessoaValidator" />					
+					required="true">
+					<f:validator validatorId="pessoaValidator" />
 				</p:inputMask>
 
 				<p:outputLabel value="#{msg['pages.comuns.form.nome']}" />
 				<p:inputText value="#{vendedorMB.vendedor.nome}" size="50"
 					placeholder="#{msg['pages.comuns.form.nome.placeholder']}"
-					required="true" requiredMessage="#{msg['messages.error.NomeVazio.detail']}" />
+					required="true"
+					requiredMessage="#{msg['messages.error.NomeVazio.detail']}" />
 
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.SalBase']}" />
-				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10" 
+				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10"
 					required="true" />
 
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Comissao']}" />
@@ -56,65 +59,76 @@
 				</p:selectOneMenu>
 			</p:panelGrid>
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
-				action="#{vendedorMB.salvar}" update="@all" 
+				action="#{vendedorMB.salvar}" update="@all"
 				disabled="#{clienteMB.edicao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
-				action="#{vendedorMB.atualizar}" update="@all" 
+				action="#{vendedorMB.atualizar}" update="@all"
 				disabled="#{clienteMB.criacao}" />
 			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
-				action="#{vendedorMB.excluir}" update="@all" 
-				disabled="#{clienteMB.criacao}" >
-				<p:confirm 
-					header="#{msg['messages.confirm.Exclusion.title']}"
+				action="#{vendedorMB.excluir}" update="@all"
+				disabled="#{clienteMB.criacao}">
+				<p:confirm header="#{msg['messages.confirm.Exclusion.title']}"
 					message="#{msg['messages.confirm.Exclusion.detail']}"
 					icon="ui-icon-alert" />
 			</p:commandButton>
-			
-			<p:confirmDialog global="true" >
-		        <p:commandButton value="#{msg['messages.confirm.Option.yes']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-		        <p:commandButton value="#{msg['messages.confirm.Option.no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-		    </p:confirmDialog>
-			
+
+			<p:confirmDialog global="true">
+				<p:commandButton value="#{msg['messages.confirm.Option.yes']}"
+					type="button" styleClass="ui-confirmdialog-yes"
+					icon="ui-icon-check" />
+				<p:commandButton value="#{msg['messages.confirm.Option.no']}"
+					type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				action="#{vendedorMB.cancelar}" update="@all" />
 		</h:form>
 		<h:form>
-			<p:messages id="msgs" showDetail="true" autoUpdate="true" closable="true" />
+			<p:messages id="msgs" showDetail="true" autoUpdate="true"
+				closable="true" />
 		</h:form>
 		<h:form id="formTableVendedor">
 			<p:dataTable id="tableVendedor" var="aux"
 				value="#{vendedorMB.vendedores}" rows="10" paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				filteredValue="#{vendedorMB.filter}">
 				<p:column width="5%">
 					<p:rowToggler />
 				</p:column>
-				<p:column headerText="CPF:" sortBy="#{aux.cpf}">
+				<p:column headerText="CPF:" sortBy="#{aux.cpf}"
+					filterBy="#{aux.cpf}" filterMatchMode="contains">
 					<h:outputText value="#{aux.cpf}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.comuns.form.nome']}" sortBy="#{aux.nome}" >
+				<p:column headerText="#{msg['pages.comuns.form.nome']}"
+					sortBy="#{aux.nome}" filterBy="#{aux.nome}"
+					filterMatchMode="contains">
 					<h:outputText value="#{aux.nome}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_vendedor.Comissao']}" sortBy="#{aux.comissao}">
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.Comissao']}"
+					sortBy="#{aux.comissao}" filterBy="#{aux.comissao}"
+					filterMatchMode="exact">
 					<h:outputText value="#{aux.comissao}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_vendedor.SalBase']}" sortBy="#{aux.salarioBase}">
+				<p:column headerText="#{msg['pages.Cadastro_vendedor.SalBase']}"
+					sortBy="#{aux.salarioBase}" filterBy="#{aux.salarioBase}"
+					filterMatchMode="exact">
 					<h:outputText value="#{aux.salarioBase}" />
 				</p:column>
 				<p:rowExpansion>
 					<p:panelGrid columns="3" style="width:400px">
-						<p:outputLabel value="#{msg['pages.comuns.form.Telefone']}"/>
+						<p:outputLabel value="#{msg['pages.comuns.form.Telefone']}" />
 						<p:outputLabel value="#{aux.ddd}" />
 						<p:outputLabel value="#{aux.telefone}" />
 					</p:panelGrid>
-					<p:panelGrid columns="5" >
-						<p:outputLabel value="#{msg['pages.comuns.form.Endereco']}"/>
-						<p:outputLabel value="#{aux.endereco}"/>
-						<p:outputLabel value="#{aux.cep}"/>
-						<p:outputLabel value="#{aux.cidade}"/>
-						<p:outputLabel value="#{aux.uf}"/>
+					<p:panelGrid columns="5">
+						<p:outputLabel value="#{msg['pages.comuns.form.Endereco']}" />
+						<p:outputLabel value="#{aux.endereco}" />
+						<p:outputLabel value="#{aux.cep}" />
+						<p:outputLabel value="#{aux.cidade}" />
+						<p:outputLabel value="#{aux.uf}" />
 					</p:panelGrid>
 				</p:rowExpansion>
 

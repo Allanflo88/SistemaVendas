@@ -13,7 +13,26 @@ public class ClienteMB {
 	private Cliente cliente = new Cliente();
 	private ClienteService service = new ClienteService();
 	private boolean edicao = false;
+	private List<Cliente> filter;
 	
+	
+
+	public List<Cliente> getFilter() {
+		return filter;
+	}
+
+	public void setFilter(List<Cliente> filter) {
+		this.filter = filter;
+	}
+	public ClienteService getService() {
+		return service;
+	}
+
+	public void setService(ClienteService service) {
+		this.service = service;
+	}
+
+
 	public Cliente getCliente() {
 		return cliente;
 	}

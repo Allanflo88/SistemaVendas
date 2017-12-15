@@ -13,7 +13,26 @@ public class VendedorMB {
 	private Vendedor vendedor = new Vendedor();
 	private VendedorService service = new VendedorService();
 	private boolean edicao = false;
+	private List<Vendedor> filter;
 	
+	
+	
+	public VendedorService getService() {
+		return service;
+	}
+
+	public void setService(VendedorService service) {
+		this.service = service;
+	}
+
+	public List<Vendedor> getFilter() {
+		return filter;
+	}
+
+	public void setFilter(List<Vendedor> filter) {
+		this.filter = filter;
+	}
+
 	public Vendedor getVendedor() {
 		return vendedor;
 	}

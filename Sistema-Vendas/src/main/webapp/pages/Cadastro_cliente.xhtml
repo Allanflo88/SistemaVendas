@@ -87,25 +87,25 @@
 		<h:form id="formTableCliente">
 			<p:dataTable id="tableCliente" var="aux"
 				value="#{clienteMB.clientes}" rows="10" paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" filteredValue="#{clienteMB.filter}">
 				<p:column width="5%">
 					<p:rowToggler />
 				</p:column>
-				<p:column headerText="CPF:" width="12%" sortBy="#{aux.cpf}">
+				<p:column headerText="CPF:" width="12%" sortBy="#{aux.cpf}" filterBy="#{aux.cpf}" filterMatchMode="contains">
 					<h:outputText value="#{aux.cpf}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.comuns.form.nome']}" width="30%" sortBy="#{aux.nome}">
+				<p:column headerText="#{msg['pages.comuns.form.nome']}" width="30%" sortBy="#{aux.nome}" filterBy="#{aux.nome}" filterMatchMode="contains">
 					<h:outputText value="#{aux.nome}" />
 				</p:column>
 
 				<p:column headerText="#{msg['pages.Cadastro_cliente.LimCredit']}"
-					width="10%" sortBy="#{aux.limiteCred}">
+					width="10%" sortBy="#{aux.limiteCred}" filterBy="#{aux.limiteCred}" filterMatchMode="exact">
 					<h:outputText value="#{aux.limiteCred}" />
 				</p:column>
 
 				<p:column headerText="#{msg['pages.Cadastro_cliente.LimDisp']}"
-					width="10%" sortBy="#{aux.limiteDisp}">
+					width="10%" sortBy="#{aux.limiteDisp}" filterBy="#{aux.limiteDisp}" filterMatchMode="exact">
 					<h:outputText value="#{aux.limiteDisp}" />
 				</p:column>
 

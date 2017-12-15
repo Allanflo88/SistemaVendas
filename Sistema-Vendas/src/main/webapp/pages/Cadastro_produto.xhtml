@@ -63,26 +63,26 @@
 		<h:form id="formTableProduto">
 			<p:dataTable id="tableProduto" var="aux"
 				value="#{produtoMB.produtos}" rows="10" paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
-				<p:column headerText="#{msg['pages.Cadastro_produto.codigo']}" sortBy="#{aux.codigo}">
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" filteredValue="#{produtoMB.filter}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.codigo']}" sortBy="#{aux.codigo}" filterBy="#{aux.codigo}" filterMatchMode="contains">
 					<h:outputText value="#{aux.codigo}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}" sortBy="#{aux.descricao}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}" sortBy="#{aux.descricao}" filterBy="#{aux.descricao}" filterMatchMode="contains">
 					<h:outputText value="#{aux.descricao}" />
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}" sortBy="#{aux.precoUnit}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}" sortBy="#{aux.precoUnit}" filterBy="#{aux.precoUnit}" filterMatchMode="contains">
 					<h:outputText value="#{aux.precoUnit}">
 						<f:convertNumber pattern="R$ #,##0.00" />
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="#{msg['pages.Cadastro_produto.qtdDisp']}" sortBy="#{aux.qtdeDisponivel}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.qtdDisp']}" sortBy="#{aux.qtdeDisponivel}" filterBy="#{aux.qtdeDisponivel}" filterMatchMode="exact">
 					<h:outputText value="#{aux.qtdeDisponivel}" />
 				</p:column>
 				
-				<p:column headerText="#{msg['pages.Cadastro_produto.estqMin']}" sortBy="#{aux.estoqueMin}">
+				<p:column headerText="#{msg['pages.Cadastro_produto.estqMin']}" sortBy="#{aux.estoqueMin}" filterBy="#{aux.estoqueMin}" filterMatchMode="exact">
 					<h:outputText value="#{aux.estoqueMin}" />
 				</p:column>
 

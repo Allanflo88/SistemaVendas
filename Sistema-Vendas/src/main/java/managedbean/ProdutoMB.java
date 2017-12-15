@@ -13,7 +13,24 @@ public class ProdutoMB {
 	private Produto produto = new Produto();
 	private ProdutoService service = new ProdutoService();
 	private boolean edicao = false;
+	private List<Produto> filter;
 	
+	public ProdutoService getService() {
+		return service;
+	}
+
+	public void setService(ProdutoService service) {
+		this.service = service;
+	}
+
+	public List<Produto> getFilter() {
+		return filter;
+	}
+
+	public void setFilter(List<Produto> filter) {
+		this.filter = filter;
+	}
+
 	public Produto getProduto() {
 		return produto;
 	}
