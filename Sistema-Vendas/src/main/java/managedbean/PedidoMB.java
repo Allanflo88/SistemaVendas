@@ -2,10 +2,9 @@ package managedbean;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+
 
 import org.primefaces.event.RowEditEvent;
 
