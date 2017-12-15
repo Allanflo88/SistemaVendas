@@ -18,13 +18,13 @@
 			<p:panelGrid columns="2">
 				<f:facet name="header"><h:outputText value="#{msg['pages.Realizar_pedido.facet']}"/></f:facet>
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.pedido']}" />
-				<p:inputText id="Pedido" value="#{pedidoMB.pedido.numero}" readonly="true" disabled="true" />
+				<p:inputText id="Pedido" value="#{pedidoMB.pedido.numero}" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataEmissao']}" />
-				<p:calendar value="#{pedidoMB.pedido.dataEmissaoPedido}" pattern="#{msg['config.datelocale.pattern.date']}" />
+				<p:calendar value="#{pedidoMB.pedido.dataEmissaoPedido}" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataPagamento']}" />
-				<p:calendar value="#{pedidoMB.pedido.dataPagto}" pattern="#{msg['config.datelocale.pattern.date']}"/>
+				<p:calendar value="#{pedidoMB.pedido.dataPagto}" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.cliente']}" />
 				<p:selectOneMenu value="#{pedidoMB.pedido.cliente}"
@@ -90,8 +90,6 @@
 			<p:commandButton value="#{msg['pages.comuns.form.Salvar']}"
 				action="#{pedidoMB.salvar}" update="@all" />
 			<p:commandButton value="#{msg['pages.comuns.form.Atualizar']}"
-				update="@all" />
-			<p:commandButton value="#{msg['pages.comuns.form.Excluir']}"
 				update="@all" />
 			<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}"
 				update="@all" />
