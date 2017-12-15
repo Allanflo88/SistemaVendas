@@ -65,11 +65,9 @@ public class PedidoMB {
 	public void salvar() {
 		ItemPedidoMB itemPedido = new ItemPedidoMB();
 		service.salvar(pedido);
-		System.out.println(pedido.getCliente().getLimiteDisp());
 		for(ItemPedido i : itens) {
 			itemPedido.setItemPedido(i);
 			itemPedido.salvar();
-			System.out.println(item.getProduto().getQtdeDisponivel());
 		}
 		pedido = new Pedido();
 		itens = new ArrayList<>();
@@ -83,16 +81,5 @@ public class PedidoMB {
 		Pedido ped = (Pedido) event.getObject();
 		service.atualizar(ped);
 	}
-	
-	public int getQtdProduto(){
-		if (item.getProduto() == null){
-			//FacesContext fc = FacesContext.getCurrentInstance();
-			//fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Selecione um produto primeiro"));
-			return 15000;
-		} else {
-			return item.getProduto().getQtdeDisponivel() - item.getProduto().getEstoqueMin();
-		}
-	}
-	
 	
 }
