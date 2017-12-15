@@ -8,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
-
 @Entity
 public class ItemPedido implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -17,7 +15,9 @@ public class ItemPedido implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int Id;
-	@ManyToOne private Produto produto;
+	@ManyToOne 
+	private Produto produto;
+	@ManyToOne
 	private Pedido pedido;
     private int qtdeVendida;
     
@@ -35,6 +35,7 @@ public class ItemPedido implements Serializable{
     }
     
     public void setQtdeVendida(int qtdeVendida) {
+    	System.out.println("Before = " + produto.getQtdeDisponivel());
         produto.setQtdeDisponivel(produto.getQtdeDisponivel() + (this.qtdeVendida - qtdeVendida));
         this.qtdeVendida = qtdeVendida;
     }

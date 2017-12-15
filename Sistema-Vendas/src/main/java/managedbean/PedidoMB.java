@@ -2,8 +2,11 @@ package managedbean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import org.primefaces.event.RowEditEvent;
 
 import entity.ItemPedido;
@@ -19,7 +22,6 @@ public class PedidoMB {
 	private List<ItemPedido> itens = new ArrayList<>();
 	private ItemPedido item = new ItemPedido();
 	private List<Pedido> filteredPedidos;
-	
 	
 	public List<Pedido> getFilteredPedidos() {
 		return filteredPedidos;
@@ -63,10 +65,13 @@ public class PedidoMB {
 	public void salvar() {
 		ItemPedidoMB itemPedido = new ItemPedidoMB();
 		service.salvar(pedido);
-		for(int c = 0; c < itens.size();c++) {
-			itemPedido.setItemPedido(itens.get(c));
+		System.out.println(pedido.getCliente().getLimiteDisp());
+		for(ItemPedido i : itens) {
+			itemPedido.setItemPedido(i);
 			itemPedido.salvar();
+			System.out.println(item.getProduto().getQtdeDisponivel());
 		}
+		
 		
 		pedido = new Pedido();
 		itens = new ArrayList<>();
@@ -81,6 +86,15 @@ public class PedidoMB {
 		service.atualizar(ped);
 	}
 	
+	public int getQtdProduto(){
+		if (item.getProduto() == null){
+			FacesContext fc = FacesContext.getCurrentInstance();
+			fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Selecione um produto primeiro"));
+			return 0;
+		} else {
+			return item.getProduto().getQtdeDisponivel() - item.getProduto().getEstoqueMin();
+		}
+	}
 	
 	
 }

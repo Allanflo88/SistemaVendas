@@ -1,11 +1,13 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -20,8 +22,9 @@ public class Produto implements Serializable{
     private int qtdeDisponivel;
     private double precoUnit;
     private int estoqueMin;
-
-
+    @OneToMany (mappedBy="produto")
+    private List<ItemPedido> itensPedidos;
+    
     public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
@@ -62,6 +65,14 @@ public class Produto implements Serializable{
         return descricao;
     }
 
+    public List<ItemPedido> getItensPedidos(){
+    	return itensPedidos;
+    }
+    
+    public void setItensPedidos(List<ItemPedido> itensPedidos){
+    	this.itensPedidos = itensPedidos;
+    }
+    
 	@Override
 	public int hashCode() {
 		final int prime = 31;

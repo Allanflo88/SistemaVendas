@@ -1,6 +1,6 @@
 package entity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -13,14 +13,14 @@ public class Cliente extends Pessoa{
     private double limiteCred;
     private double limiteDisp;
     @OneToMany(mappedBy="cliente")
-    private ArrayList<Pedido> pedidos;
+    private List<Pedido> pedidos;
    
 
-	public ArrayList<Pedido> getPedidos() {
+	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
 
-	public void setPedidos(ArrayList<Pedido> pedidos) {
+	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
 
