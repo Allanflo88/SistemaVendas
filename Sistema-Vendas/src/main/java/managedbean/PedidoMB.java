@@ -19,7 +19,14 @@ public class PedidoMB {
 	private List<ItemPedido> itens = new ArrayList<>();
 	private ItemPedido item = new ItemPedido();
 	private boolean edicao = false;
+	private List<Pedido> filteredPedidos;
 	
+	public List<Pedido> getFilteredPedidos() {
+		return filteredPedidos;
+	}
+	public void setFilteredPedidos(List<Pedido> filteredPedidos) {
+		this.filteredPedidos = filteredPedidos;
+	}
 	public void setItens(List<ItemPedido> itens) {
 		this.itens = itens;
 	}
