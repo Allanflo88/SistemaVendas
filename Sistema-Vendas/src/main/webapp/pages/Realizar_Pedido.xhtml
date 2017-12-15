@@ -21,10 +21,10 @@
 				<p:inputText id="Pedido" value="#{pedidoMB.pedido.numero}" />
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataEmissao']}" />
-				<p:calendar value="#{pedidoMB.pedido.dataEmissaoPedido}" />
+				<p:calendar value="#{pedidoMB.pedido.dataEmissaoPedido}" pattern="dd/MM/yyyy" mask="true"/>
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataPagamento']}" />
-				<p:calendar value="#{pedidoMB.pedido.dataPagto}" />
+				<p:calendar value="#{pedidoMB.pedido.dataPagto}" pattern="dd/MM/yyyy" mask="true"/>
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.cliente']}" />
 				<p:selectOneMenu value="#{pedidoMB.pedido.cliente}"
