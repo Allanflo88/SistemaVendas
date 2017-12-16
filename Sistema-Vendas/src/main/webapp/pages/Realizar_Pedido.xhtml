@@ -24,13 +24,13 @@
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataEmissao']}" />
 				<p:calendar value="#{pedidoMB.pedido.dataEmissaoPedido}"
-					 pattern="dd/MM/yy" mask="true" />
-					locale="#{localeBean.locale}" mask="true" pattern="#{msg['config.datelocale.pattern.date']}"/>
+					converter="converterData"
+					mask="true" pattern="#{msg['config.datelocale.pattern.date']}"/>
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataPagamento']}" />
 				<p:calendar value="#{pedidoMB.pedido.dataPagto}"
-					 pattern="dd/MM/yy" mask="true" />
-					locale="#{localeBean.locale}" mask="true" pattern="#{msg['config.datelocale.pattern.date']}"/>
+					converter="converterData"
+					mask="true" pattern="#{msg['config.datelocale.pattern.date']}"/>
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.cliente']}" />
 				<p:selectOneMenu value="#{pedidoMB.pedido.cliente}"
@@ -69,13 +69,17 @@
 						value="#{msg['pages.Realizar_pedido.additem.quantidade']}" />
 					<p:spinner value="#{pedidoMB.item.qtdeVendida}" min="0" />
 				</p:panelGrid>
-				<p:commandButton value="#{msg['pages.comuns.form.adicionar']}"
-					action="#{pedidoMB.addItem}" update=":formPedido:listaItens,:formPedido:selecItem" 
-					disabled="#{pedidoMB.criacao}" />
+				<p:commandButton value="#{msg['pages.comuns.form.adicionar']}" action="#{pedidoMB.addItem}" 
+					update="@all"
+					disabled="#{pedidoMB.edicao}" />
 				<p:commandButton value="#{msg['pages.comuns.form.alterar']}" action="#{pedidoMB.alterItem}"
-					update=":formPedido:listaItens,:formPedido:selecItem" disabled="#{pedidoMB.edicao}" />
+					update="@all"
+					disabled="#{pedidoMB.criacao}" />
 				<p:commandButton value="#{msg['pages.comuns.form.remover']}" action="#{pedidoMB.removeItem}"
-					update=":formPedido:listaItens,:formPedido:selecItem" disabled="#{pedidoMB.edicao}"/>
+					update="@all"
+					disabled="#{pedidoMB.criacao}"/>
+				<p:commandButton value="#{msg['pages.comuns.form.Cancelar']}" action="#{pedidoMB.cancelaItem}"
+					update="@all" />
 			</p:panelGrid>
 			<p:dataTable id="listaItens" var="aux" value="#{pedidoMB.itens}">
 				<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}" sortBy="#{aux.produto.descricao}">
@@ -110,7 +114,7 @@
 
 			<br></br>
 
-			<p:panelGrid columns="2">
+			<p:panelGrid columns="2" id="valortotal">
 				<p:outputLabel
 					value="#{msg['pages.Realizar_pedido.additem.valortot']}" />
 				<p:outputLabel value="#{pedidoMB.valorTotal}">
