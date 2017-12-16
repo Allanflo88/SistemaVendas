@@ -1,9 +1,13 @@
 package managedbean;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import org.primefaces.event.RowEditEvent;
 
 import entity.Cliente;
@@ -83,6 +87,7 @@ public class PedidoMB {
 	public void removeItem(ItemPedido rmv) {
 		itens.remove(rmv);
 		valorTotal -= rmv.getQtdeVendida() * rmv.getProduto().getPrecoUnit();
+		cancelaItem();
 	}
 	public void alterItem() {
 		itens.remove(item);
@@ -90,18 +95,33 @@ public class PedidoMB {
 		itens.add(item);
 		valorTotal += item.getQtdeVendida() * item.getProduto().getPrecoUnit();
 		item = new ItemPedido();
+		cancelaItem();
 	}
+	
 	public void salvar() {
-		pedidoService.salvar(pedido);
-		for(ItemPedido i : itens) {
-			itemService.salvar(i);
-			produtoService.atualizar(i.getProduto());
+		if (itens.isEmpty()){
+			FacesContext fc = FacesContext.getCurrentInstance();
+			ResourceBundle rb = ResourceBundle.getBundle("application", fc.getViewRoot().getLocale());
+			
+			FacesMessage msg = new FacesMessage(
+				FacesMessage.SEVERITY_WARN,
+				rb.getString("messages.error.VendaSemItens.title"),
+				rb.getString("messages.error.VendaSemItens.detail")
+			);
+			
+			fc.addMessage(null, msg);	
+		} else {
+			pedidoService.salvar(pedido);
+			for(ItemPedido i : itens) {
+				itemService.salvar(i);
+				produtoService.atualizar(i.getProduto());
+			}
+			Cliente cli = pedido.getCliente();
+			cli.setLimiteDisp(cli.getLimiteDisp() - valorTotal);
+			clienteService.atualizar(pedido.getCliente());
+			pedido = new Pedido();
+			itens = new ArrayList<>();
 		}
-		Cliente cli = pedido.getCliente();
-		cli.setLimiteDisp(cli.getLimiteDisp() - valorTotal);
-		clienteService.atualizar(pedido.getCliente());
-		pedido = new Pedido();
-		itens = new ArrayList<>();
 	}
 	
 	public void excluir(Pedido pedido) {
@@ -112,7 +132,10 @@ public class PedidoMB {
 		Pedido ped = (Pedido) event.getObject();
 		pedidoService.atualizar(ped);
 	}
-	
+	public void cancelaItem(){
+		edicao = false;
+		item = new ItemPedido();
+	}
 	public double getValorTotal(){
 		return valorTotal;
 	}

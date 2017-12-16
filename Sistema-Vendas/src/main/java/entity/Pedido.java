@@ -85,4 +85,11 @@ public class Pedido implements Serializable{
     	this.itensPedidos = itensPedidos;
     }
 
+    public double getValorTotal(){
+    	double total = 0;
+    	for (ItemPedido item : itensPedidos){
+    		total += item.getQtdeVendida() * item.getProduto().getPrecoUnit();
+    	}
+    	return total;
+    }
 }
