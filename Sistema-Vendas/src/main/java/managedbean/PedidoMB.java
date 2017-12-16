@@ -28,6 +28,7 @@ public class PedidoMB {
 	private ProdutoService produtoService = new ProdutoService();
 	private List<ItemPedido> itens = new ArrayList<>();
 	private ItemPedido item = new ItemPedido();
+	private ItemPedido itemSelec = new ItemPedido();
 	private boolean edicao = false;
 	private List<Pedido> filteredPedidos;
 	private double valorTotal = 0;
@@ -76,6 +77,7 @@ public class PedidoMB {
 	}
 	public void selecionar() {
 		edicao = true;
+		itemSelec = item;
 	}
 	
 	public void addItem() {
@@ -90,8 +92,10 @@ public class PedidoMB {
 		cancelaItem();
 	}
 	public void alterItem() {
-		itens.remove(item);
-		valorTotal -= item.getQtdeVendida() * item.getProduto().getPrecoUnit();
+		itens.remove(itemSelec);
+		valorTotal -= itemSelec.getQtdeVendida() * itemSelec.getProduto().getPrecoUnit();
+		itemSelec = new ItemPedido();
+		
 		itens.add(item);
 		valorTotal += item.getQtdeVendida() * item.getProduto().getPrecoUnit();
 		item = new ItemPedido();
@@ -135,6 +139,7 @@ public class PedidoMB {
 	public void cancelaItem(){
 		edicao = false;
 		item = new ItemPedido();
+		itemSelec = new ItemPedido();
 	}
 	public double getValorTotal(){
 		return valorTotal;
