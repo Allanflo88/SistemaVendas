@@ -16,41 +16,50 @@
 	<ui:define name="principal">
 		<h:form id="formPesq">
 			<p:dataTable var="aux" value="#{pedidoMB.pedidos}"
-				filteredValue="#{pedidoMB.filteredPedidos}" rows="30"
-				paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+				rows="20" paginator="true"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+				currentPageReportTemplate="#{msg['pages.comuns.table.paginator.page']} {currentPage} 
+							#{msg['pages.comuns.table.paginator.connector']} {totalPages}
+							(#{msg['pages.comuns.table.paginator.lines']} {startRecord}-{endRecord}
+							#{msg['pages.comuns.table.paginator.connector']} {totalRecords})"
+				emptyMessage="#{msg['pages.comuns.table.empty']}" >
+				
 				<f:facet name="header">
 					<p:outputLabel value="#{msg['pages.Realizar_pedido.facet']}" />
 				</f:facet>
 
 				<p:column headerText="ID" filterBy="#{aux.numero}" sortBy="#{aux.numero}"
-					filterMatchMode="exact" width="10%" >
-					<p:outputLabel value="#{aux.numero}" />
+					filterMatchMode="exact" width="9%" >
+					<h:outputText value="#{aux.numero}" />
 				</p:column>
+				
 				<p:column headerText="#{msg['pages.Cadastro_cliente.facet']}"
 					filterBy="#{aux.cliente.nome}" filterMatchMode="contains" sortBy="#{aux.cliente.nome}">
-					<p:outputLabel value="#{aux.cliente.nome}" />
+					<h:outputText value="#{aux.cliente.nome}" />
 				</p:column>
+				
 				<p:column headerText="#{msg['pages.Cadastro_vendedor.facet']}"
 					filterBy="#{aux.vendedor.nome}" filterMatchMode="contains" sortBy="#{aux.vendedor.nome}">
-					<p:outputLabel value="#{aux.vendedor.nome}" />
+					<h:outputText value="#{aux.vendedor.nome}" />
 				</p:column>
-				<p:column headerText="#{msg['pages.Consultar_pedido.emissao']}">
-					<p:outputLabel value="#{aux.dataEmissaoPedido}">
-						<f:convertDateTime type="date" dateStyle="full" />
-					</p:outputLabel>
-						
+				
+				<p:column headerText="#{msg['pages.Consultar_pedido.emissao']}"
+					filterBy="#{aux.dataEmissaoPedido}" filterMatchMode="contains" sortBy="#{aux.dataEmissaoPedido}">
+					<h:outputText value="#{aux.dataEmissaoPedido}">
+						<f:convertDateTime pattern="dd" />
+					</h:outputText>
 				</p:column>
+				
 				<p:column headerText="#{msg['pages.Consultar_pedido.pagamento']}">
-					<p:outputLabel value="#{aux.dataPagto}" >
-						
-					</p:outputLabel>
+					<h:outputText value="#{aux.dataPagto}" >
+						<f:convertDateTime pattern="dd" />
+					</h:outputText>
 				</p:column>
 				<p:column headerText="#{msg['pages.Realizar_pedido.additem.valortot']}"
 					sortBy="#{aux.valorTotal}">
-					<p:outputLabel value="#{aux.valorTotal}" >
+					<h:outputText value="#{aux.valorTotal}" >
 						<f:convertNumber pattern="R$ #,##0.00" />
-					</p:outputLabel>
+					</h:outputText>
 				</p:column>
 				<p:column style="width:32px;text-align: center" width="10%">
 					<p:commandButton id="ItensBtn" 
@@ -62,32 +71,39 @@
         				<p:dataTable id="listaItens" var="aux2"
         					value="#{aux.itensPedidos}">
         					<f:facet name="header">
-								<p:outputLabel value="#{msg['pages.Consultar_pedido.itens']}" />
+								<h:outputText value="#{msg['pages.Consultar_pedido.itens']}" />
 							</f:facet>
 							<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}">
-								<p:outputLabel value="#{aux2.produto.descricao}" />
+								<h:outputText value="#{aux2.produto.descricao}" />
 							</p:column>
 							<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}">
-								<p:outputLabel value="#{aux2.produto.precoUnit}" >
+								<h:outputText value="#{aux2.produto.precoUnit}" >
 									<f:convertNumber pattern="R$ #,##0.00" />
-								</p:outputLabel>
+								</h:outputText>
 							</p:column>
 							<p:column headerText="#{msg['pages.Realizar_pedido.additem.quantidade']}">
-								<p:outputLabel value="#{aux2.qtdeVendida}" />
+								<h:outputText value="#{aux2.qtdeVendida}" />
 							</p:column>
 							<p:column
 								headerText="#{msg['pages.Realizar_pedido.additem.valortot']}">
-								<p:outputLabel value="#{aux2.produto.precoUnit * aux2.qtdeVendida}">
+								<h:outputText value="#{aux2.produto.precoUnit * aux2.qtdeVendida}">
 									<f:convertNumber pattern="R$ #,##0.00" />
-								</p:outputLabel>
+								</h:outputText>
+							</p:column>
+							<p:column headerText="#{msg['pages.Consultar_pedido.pagamento']}">
+								<h:outputText value="#{aux.dataPagto}" >
+									<f:convertDateTime pattern="dd" />
+								</h:outputText>
 							</p:column>
 						</p:dataTable>
-						<p:panelGrid columns="2" id="valortotal">
+						<p:panelGrid columns="4" id="valortotal">
+							<p:outputLabel value=""/>
+							<p:outputLabel value=""/>
 							<p:outputLabel
-								value="#{msg['pages.Realizar_pedido.additem.valortot']}" />
-							<p:outputLabel value="#{aux.valorTotal}">
+								value="#{msg['pages.Realizar_pedido.additem.valortot']}" style="font-weight:bold" />
+							<h:outputText value="#{aux.valorTotal}" style="font-weight:bold">
 								<f:convertNumber pattern="R$ #,##0.00" />
-							</p:outputLabel>
+							</h:outputText>
 						</p:panelGrid>
 			   		</p:overlayPanel>
     				
