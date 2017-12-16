@@ -90,10 +90,15 @@
 		</h:form>
 
 		<h:form id="formTableCliente">
-			<p:dataTable id="tableCliente" var="aux"
+			<p:dataTable id="tableCliente" var="aux" sortBy="#{aux.nome}" 
 				value="#{clienteMB.clientes}" rows="10" paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-				filteredValue="#{clienteMB.filter}">
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+				currentPageReportTemplate="#{msg['pages.comuns.table.paginator.page']} {currentPage} 
+							#{msg['pages.comuns.table.paginator.connector']} {totalPages}
+							(#{msg['pages.comuns.table.paginator.lines']} {startRecord}-{endRecord}
+							#{msg['pages.comuns.table.paginator.connector']} {totalRecords})"
+				emptyMessage="#{msg['pages.comuns.table.empty']}"
+				>
 				<p:column width="5%">
 					<p:rowToggler />
 				</p:column>

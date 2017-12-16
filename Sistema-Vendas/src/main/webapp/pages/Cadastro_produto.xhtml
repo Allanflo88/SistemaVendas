@@ -63,7 +63,13 @@
 		<h:form id="formTableProduto">
 			<p:dataTable id="tableProduto" var="aux"
 				value="#{produtoMB.produtos}" rows="10" paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" filteredValue="#{produtoMB.filter}">
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+				currentPageReportTemplate="#{msg['pages.comuns.table.paginator.page']} {currentPage} 
+							#{msg['pages.comuns.table.paginator.connector']} {totalPages}
+							(#{msg['pages.comuns.table.paginator.lines']} {startRecord}-{endRecord}
+							#{msg['pages.comuns.table.paginator.connector']} {totalRecords})"
+				emptyMessage="#{msg['pages.comuns.table.empty']}"
+				>
 				<p:column headerText="#{msg['pages.Cadastro_produto.codigo']}" sortBy="#{aux.codigo}" filterBy="#{aux.codigo}" filterMatchMode="contains">
 					<h:outputText value="#{aux.codigo}" />
 				</p:column>
