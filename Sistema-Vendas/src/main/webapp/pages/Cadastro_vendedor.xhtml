@@ -34,10 +34,10 @@
 
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.SalBase']}" />
 				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10"
-					required="true" />
+					required="true" symbol="%" symbolPosition="s"/>
 
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Comissao']}" />
-				<p:inputNumber value="#{vendedorMB.vendedor.comissao}" size="10" />
+				<p:inputNumber value="#{vendedorMB.vendedor.comissao}" size="10" symbol="R$ "/>
 			</p:panelGrid>
 			<p:panelGrid columns="3">
 				<p:outputLabel value="#{msg['pages.comuns.form.Telefone']}" />
@@ -114,7 +114,7 @@
 					sortBy="#{aux.comissao}" filterBy="#{aux.comissao}"
 					filterMatchMode="exact">
 					<h:outputText value="#{aux.comissao}">
-						<f:convertNumber pattern="##0.00" />
+						<f:convertNumber pattern="##0.00"/>
 					</h:outputText>
 				</p:column>
 

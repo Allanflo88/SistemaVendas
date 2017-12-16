@@ -125,6 +125,7 @@ public class PedidoMB {
 			clienteService.atualizar(pedido.getCliente());
 			pedido = new Pedido();
 			itens = new ArrayList<>();
+			valorTotal = 0;
 		}
 	}
 	
@@ -144,5 +145,4 @@ public class PedidoMB {
 	public double getValorTotal(){
 		return valorTotal;
 	}
-	
 }
