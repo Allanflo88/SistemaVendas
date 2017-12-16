@@ -24,12 +24,10 @@
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataEmissao']}" />
 				<p:calendar value="#{pedidoMB.pedido.dataEmissaoPedido}"
-					converter="converterData"
 					mask="true" pattern="#{msg['config.datelocale.pattern.date']}"/>
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.dataPagamento']}" />
 				<p:calendar value="#{pedidoMB.pedido.dataPagto}"
-					converter="converterData"
 					mask="true" pattern="#{msg['config.datelocale.pattern.date']}"/>
 
 				<p:outputLabel value="#{msg['pages.Realizar_pedido.cliente']}" />
