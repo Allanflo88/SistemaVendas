@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -13,53 +12,56 @@ import javax.faces.convert.FacesConverter;
 
 @FacesConverter("converterData")
 public class DateConverter implements Converter{
-	private SimpleDateFormat sdf;
+	private SimpleDateFormat format;
+	private SimpleDateFormat parse;
 	
 	public DateConverter(){
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ResourceBundle rb = ResourceBundle.getBundle("application", fc.getViewRoot().getLocale());
-		sdf = new SimpleDateFormat(rb.getString("config.datelocale.pattern.date"));
+		format = new SimpleDateFormat(rb.getString("config.datelocale.pattern.date"));
+		parse = new SimpleDateFormat("EEE MMM dd HH:mm:ss zz yyyy", fc.getViewRoot().getLocale());
 	}
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Date date = null;
-		FacesContext fc = FacesContext.getCurrentInstance();
-		ResourceBundle rb = ResourceBundle.getBundle("application", fc.getViewRoot().getLocale());
 		if(value != null && !value.isEmpty()) {
 			try {
-				date = sdf.parse(value);
+				date = parse.parse(value);
 			} catch (ParseException ex){
-				fc.addMessage(null, new FacesMessage(
-						FacesMessage.SEVERITY_WARN,
-						rb.getString("messages.error.DataInvalida.title"),
-						"\"" + value + "\" " + rb.getString("messages.error.DataInvalida.detail")
-				));
+				System.out.println("1 " + ex.getMessage());
+			}
+			if (date == null){
+				try {
+					date = format.parse(value);
+				} catch (ParseException ex){
+					System.out.println("2 " + ex.getMessage());
+				}
 			}
 		}
 		return date;
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Object data) {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		ResourceBundle rb = ResourceBundle.getBundle("application", fc.getViewRoot().getLocale());
-		String date = "";
+	public String getAsString(FacesContext context, UIComponent component, Object obj) {
+		String value = "";
+		Date date = null;
 		try {
-			date = sdf.format((Date)data);
-		} catch (Exception ex){
-			System.out.println(ex.getMessage());
-			if (data != null){
-				date = data.toString();
-			}
-			fc.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_WARN,
-					rb.getString("messages.error.DataInvalida.title"),
-					"\"" + date + "\" " + rb.getString("messages.error.DataInvalida.detail")
-			));
-			date = "";
+			date = parse.parse((String)obj);
+		} catch (ParseException ex){
+			System.out.println("3 " + ex.getMessage());
 		}
-		return date;
+		if (date == null){
+			try {
+				date = format.parse(value);
+			} catch (ParseException ex){
+				System.out.println("4 " + ex.getMessage());
+			}
+		}
+		if (date != null){
+			value = format.format(date);
+		}
+		return value;
 	}
 	
 	
