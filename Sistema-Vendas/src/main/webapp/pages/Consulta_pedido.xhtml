@@ -20,57 +20,83 @@
 				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
 				<f:facet name="header">
-					<h:outputText value="#{msg['pages.Realizar_pedido.facet']}" />
+					<p:outputLabel value="#{msg['pages.Realizar_pedido.facet']}" />
 				</f:facet>
 
 				<p:column headerText="ID" filterBy="#{aux.numero}" sortBy="#{aux.numero}"
 					filterMatchMode="exact" width="10%" >
-					<h:outputText value="#{aux.numero}" />
+					<p:outputLabel value="#{aux.numero}" />
 				</p:column>
 				<p:column headerText="#{msg['pages.Cadastro_cliente.facet']}"
 					filterBy="#{aux.cliente.nome}" filterMatchMode="contains" sortBy="#{aux.cliente.nome}">
-					<h:outputText value="#{aux.cliente.nome}" />
+					<p:outputLabel value="#{aux.cliente.nome}" />
 				</p:column>
 				<p:column headerText="#{msg['pages.Cadastro_vendedor.facet']}"
 					filterBy="#{aux.vendedor.nome}" filterMatchMode="contains" sortBy="#{aux.vendedor.nome}">
-					<h:outputText value="#{aux.vendedor.nome}" />
+					<p:outputLabel value="#{aux.vendedor.nome}" />
 				</p:column>
-				<p:column headerText="#{msg['pages.Consultar_pedido.emissao']}"
-					filterBy="#{aux.dataEmissaoPedido}" filterMatchMode="exact" sortBy="#{aux.dataEmissaoPedido}">
-					<h:outputLabel value="#{aux.dataEmissaoPedido}" >
-						<f:convertDateTime pattern="#{msg['config.datelocale.pattern.date']}" />
-					</h:outputLabel>
+				<p:column headerText="#{msg['pages.Consultar_pedido.emissao']}">
+					<p:outputLabel value="#{aux.dataEmissaoPedido}">
+						<f:convertDateTime type="date" dateStyle="full" />
+					</p:outputLabel>
+						
 				</p:column>
-				<p:column headerText="#{msg['pages.Consultar_pedido.pagamento']}"
-					filterBy="#{aux.dataPagto}" filterMatchMode="exact" sortBy="#{aux.dataPagto}">
-					<h:outputLabel value="#{aux.dataPagto}" >
-						<f:convertDateTime pattern="#{msg['config.datelocale.pattern.date']}" />
-					</h:outputLabel>
+				<p:column headerText="#{msg['pages.Consultar_pedido.pagamento']}">
+					<p:outputLabel value="#{aux.dataPagto}" >
+						
+					</p:outputLabel>
+				</p:column>
+				<p:column headerText="#{msg['pages.Realizar_pedido.additem.valortot']}"
+					sortBy="#{aux.valorTotal}">
+					<p:outputLabel value="#{aux.valorTotal}" >
+						<f:convertNumber pattern="R$ #,##0.00" />
+					</p:outputLabel>
 				</p:column>
 				<p:column style="width:32px;text-align: center" width="10%">
 					<p:commandButton id="ItensBtn" 
 					value="#{msg['pages.comuns.form.verItens']}" icon="ui-icon-search" title="VerItens" />
-					<p:overlayPanel id="imagePanel" for="ItensBtn">
-        				<p:dataTable id="listaItens" var="aux"
-							value="#{pedidoMB.pedido.itensPedidos}">
+					
+					<p:overlayPanel id="PanelItens" for="ItensBtn"
+						hideEffect="fade" dynamic="true" style="width:600px"
+						showCloseIcon="true" >
+        				<p:dataTable id="listaItens" var="aux2"
+        					value="#{aux.itensPedidos}">
+        					<f:facet name="header">
+								<p:outputLabel value="Items" />
+							</f:facet>
 							<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}">
-								<p:outputLabel value="#{aux.produto.descricao}" />
+								<p:outputLabel value="#{aux2.produto.descricao}" />
 							</p:column>
 							<p:column headerText="#{msg['pages.Cadastro_produto.precoUni']}">
-								<p:outputLabel value="#{aux.produto.precoUnit}" />
+								<p:outputLabel value="#{aux2.produto.precoUnit}" >
+									<f:convertNumber pattern="R$ #,##0.00" />
+								</p:outputLabel>
 							</p:column>
 							<p:column headerText="#{msg['pages.Realizar_pedido.additem.quantidade']}">
-								<p:outputLabel value="#{aux.qtdeVendida}" />
+								<p:outputLabel value="#{aux2.qtdeVendida}" />
+							</p:column>
+							<p:column
+								headerText="#{msg['pages.Realizar_pedido.additem.valortot']}">
+								<p:outputLabel value="#{aux2.produto.precoUnit * aux2.qtdeVendida}">
+									<f:convertNumber pattern="R$ #,##0.00" />
+								</p:outputLabel>
 							</p:column>
 						</p:dataTable>
-    				</p:overlayPanel>
+						<p:panelGrid columns="2" id="valortotal">
+							<p:outputLabel
+								value="#{msg['pages.Realizar_pedido.additem.valortot']}" />
+							<p:outputLabel value="#{aux.valorTotal}">
+								<f:convertNumber pattern="R$ #,##0.00" />
+							</p:outputLabel>
+						</p:panelGrid>
+			   		</p:overlayPanel>
     				
-				    <p:commandButton update="formPesq"
+				    <!-- <p:commandButton update="formPesq"
 						icon="ui-icon ui-icon-trash" title="Remover"
 						value="#{msg['pages.Consultar_pedido.opcoes.cancel']}"
 						disabled="true"
-						>
-					</p:commandButton>
+						> 
+					</p:commandButton> -->
 				</p:column>
 
 			</p:dataTable>
