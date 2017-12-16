@@ -32,11 +32,11 @@
 					requiredMessage="#{msg['messages.error.NomeVazio.detail']}" />
 
 				<p:outputLabel value="#{msg['pages.Cadastro_cliente.LimCredit']}" />
-				<p:inputNumber value="#{clienteMB.cliente.limiteCred}" />
+				<p:inputNumber value="#{clienteMB.cliente.limiteCred}" symbol="R$ "/>
 
 				<p:outputLabel value="#{msg['pages.Cadastro_cliente.LimDisp']}" />
 				<p:inputNumber value="#{clienteMB.cliente.limiteDisp}"
-					disabled="#{clienteMB.criacao}" />
+					disabled="#{clienteMB.criacao}" symbol="R$ "/>
 
 			</p:panelGrid>
 			<p:panelGrid columns="3">

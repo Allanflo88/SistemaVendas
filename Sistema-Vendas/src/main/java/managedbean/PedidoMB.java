@@ -116,5 +116,4 @@ public class PedidoMB {
 	public double getValorTotal(){
 		return valorTotal;
 	}
-	
 }
