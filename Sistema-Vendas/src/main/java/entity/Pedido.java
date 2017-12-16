@@ -1,5 +1,6 @@
 package entity;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -18,8 +21,10 @@ public class Pedido implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int numero;
 	
-    private String dataEmissaoPedido;
-    private String dataPagto;
+	@Temporal(TemporalType.DATE)
+    private Date dataEmissaoPedido;
+	@Temporal(TemporalType.DATE)
+    private Date dataPagto;
     private boolean status;
     @ManyToOne
     private Cliente cliente;
@@ -32,15 +37,15 @@ public class Pedido implements Serializable{
 		this.numero = numero;
 	}
 
-	public void setDataEmissaoPedido(String dataEmissaoPedido) {
+	public void setDataEmissaoPedido(Date dataEmissaoPedido) {
 		this.dataEmissaoPedido = dataEmissaoPedido;
 	}
 
-	public String getDataPagto() {
+	public Date getDataPagto() {
         return dataPagto;
     }
 
-    public void setDataPagto(String dataPagto) {
+    public void setDataPagto(Date dataPagto) {
         this.dataPagto = dataPagto;
         status = true;
     }
@@ -57,7 +62,7 @@ public class Pedido implements Serializable{
         return numero;
     }
 
-    public String getDataEmissaoPedido() {
+    public Date getDataEmissaoPedido() {
         return dataEmissaoPedido;
     }
     
