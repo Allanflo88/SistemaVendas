@@ -46,13 +46,13 @@
 				<p:column headerText="#{msg['pages.Consultar_pedido.emissao']}"
 					filterBy="#{aux.dataEmissaoPedido}" filterMatchMode="contains" sortBy="#{aux.dataEmissaoPedido}">
 					<h:outputText value="#{aux.dataEmissaoPedido}">
-						<f:convertDateTime pattern="dd" />
+						<f:convertDateTime pattern="#{msg['config.datelocale.pattern.date']}" />
 					</h:outputText>
 				</p:column>
 				
 				<p:column headerText="#{msg['pages.Consultar_pedido.pagamento']}">
 					<h:outputText value="#{aux.dataPagto}" >
-						<f:convertDateTime pattern="dd" />
+						<f:convertDateTime pattern="#{msg['config.datelocale.pattern.date']}"/>
 					</h:outputText>
 				</p:column>
 				<p:column headerText="#{msg['pages.Realizar_pedido.additem.valortot']}"
@@ -88,11 +88,6 @@
 								headerText="#{msg['pages.Realizar_pedido.additem.valortot']}">
 								<h:outputText value="#{aux2.produto.precoUnit * aux2.qtdeVendida}">
 									<f:convertNumber pattern="R$ #,##0.00" />
-								</h:outputText>
-							</p:column>
-							<p:column headerText="#{msg['pages.Consultar_pedido.pagamento']}">
-								<h:outputText value="#{aux.dataPagto}" >
-									<f:convertDateTime pattern="dd" />
 								</h:outputText>
 							</p:column>
 						</p:dataTable>
