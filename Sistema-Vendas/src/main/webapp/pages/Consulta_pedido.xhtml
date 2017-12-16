@@ -57,12 +57,12 @@
 					value="#{msg['pages.comuns.form.verItens']}" icon="ui-icon-search" title="VerItens" />
 					
 					<p:overlayPanel id="PanelItens" for="ItensBtn"
-						hideEffect="fade" dynamic="true" style="width:600px"
+						dynamic="true" style="width:600px"
 						showCloseIcon="true" >
         				<p:dataTable id="listaItens" var="aux2"
         					value="#{aux.itensPedidos}">
         					<f:facet name="header">
-								<p:outputLabel value="Items" />
+								<p:outputLabel value="#{msg['pages.Consultar_pedido.itens']}" />
 							</f:facet>
 							<p:column headerText="#{msg['pages.Cadastro_produto.descricao']}">
 								<p:outputLabel value="#{aux2.produto.descricao}" />
