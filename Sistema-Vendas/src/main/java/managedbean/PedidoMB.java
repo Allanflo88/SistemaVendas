@@ -121,6 +121,7 @@ public class PedidoMB {
 			clienteService.atualizar(pedido.getCliente());
 			pedido = new Pedido();
 			itens = new ArrayList<>();
+			valorTotal = 0;
 		}
 	}
 	
