@@ -137,6 +137,16 @@ public class PedidoMB {
 				pedido = new Pedido();
 				itens = new ArrayList<>();
 				valorTotal = 0;
+				
+				FacesContext fc = FacesContext.getCurrentInstance();
+				ResourceBundle rb = ResourceBundle.getBundle("application", fc.getViewRoot().getLocale());
+				
+				FacesMessage msg = new FacesMessage(
+					FacesMessage.SEVERITY_INFO,
+					rb.getString("messages.info.VendaRealizada.title"),
+					rb.getString("messages.info.VendaRealizada.detail")
+				);
+				fc.addMessage(null, msg);
 			}
 		}
 	}
