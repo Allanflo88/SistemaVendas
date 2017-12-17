@@ -34,10 +34,10 @@
 
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.SalBase']}" />
 				<p:inputNumber value="#{vendedorMB.vendedor.salarioBase}" size="10"
-					required="true" symbol="%" symbolPosition="s"/>
+					required="true"  symbol="R$ "/>
 
 				<p:outputLabel value="#{msg['pages.Cadastro_vendedor.Comissao']}" />
-				<p:inputNumber value="#{vendedorMB.vendedor.comissao}" size="10" symbol="R$ "/>
+				<p:inputNumber value="#{vendedorMB.vendedor.comissao}" size="10" symbol="%" symbolPosition="s"/>
 			</p:panelGrid>
 			<p:panelGrid columns="3">
 				<p:outputLabel value="#{msg['pages.comuns.form.Telefone']}" />
