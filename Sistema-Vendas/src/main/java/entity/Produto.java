@@ -95,5 +95,8 @@ public class Produto implements Serializable{
 		return true;
 	}
     
-    
+    @Override
+    public String toString(){
+    	return descricao;
+    }
 }
