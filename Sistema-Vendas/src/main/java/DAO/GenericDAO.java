@@ -63,7 +63,6 @@ public abstract class GenericDAO <T, I extends Serializable>{
 
 		try {
 			T t = getEntityManager().find(classe, pk);
-			getEntityManager().refresh(t);
 			return t;
 		} catch (NoResultException e) {
 			return null;
