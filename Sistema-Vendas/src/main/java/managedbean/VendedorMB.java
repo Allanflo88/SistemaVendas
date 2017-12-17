@@ -21,8 +21,6 @@ public class VendedorMB {
 	private boolean edicao = false;
 	private List<Vendedor> filter;
 	
-	
-	
 	public VendedorService getService() {
 		return service;
 	}
