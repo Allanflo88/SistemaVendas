@@ -1,8 +1,13 @@
 package managedbean;
 
 import java.util.List;
+import java.util.ResourceBundle;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import org.primefaces.event.RowEditEvent;
 import entity.Produto;
 import services.ProdutoService;
@@ -60,8 +65,20 @@ public class ProdutoMB {
 	}
 	
 	public void salvar() {
-		service.salvar(produto);
-		produto = new Produto();
+		if (service.consultar(produto.getCodigo()) != null){
+			FacesContext fc = FacesContext.getCurrentInstance();
+			ResourceBundle rb = ResourceBundle.getBundle("application", fc.getViewRoot().getLocale());
+			
+			FacesMessage msg = new FacesMessage(
+				FacesMessage.SEVERITY_WARN,
+				rb.getString("messages.error.Erro.title"),
+				rb.getString("messages.error.ProdutoExiste.detail")
+			);
+			fc.addMessage(null, msg);
+		} else {
+			service.salvar(produto);
+			produto = new Produto();
+		}
 	}
 	
 	public void excluir() {

@@ -32,4 +32,9 @@ public class PedidoService extends Service{
 		dao.save(pedido);
 		dao.closeEntityManager();
 	}
+	
+	public Pedido consultar (int numero){
+		Pedido pedido = dao.getById(Pedido.class, numero);
+		return pedido;
+	}
 }

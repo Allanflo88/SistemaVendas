@@ -1,8 +1,13 @@
 package managedbean;
 
 import java.util.List;
+import java.util.ResourceBundle;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import org.primefaces.event.RowEditEvent;
 import entity.Cliente;
 import services.ClienteService;
@@ -62,9 +67,21 @@ public class ClienteMB {
 	}
 
 	public void salvar() {
-		cliente.setLimiteDisp(cliente.getLimiteCred());
-		service.salvar(cliente);
-		cliente = new Cliente();
+		if (service.consultar(cliente.getCpf()) != null){
+			FacesContext fc = FacesContext.getCurrentInstance();
+			ResourceBundle rb = ResourceBundle.getBundle("application", fc.getViewRoot().getLocale());
+			
+			FacesMessage msg = new FacesMessage(
+				FacesMessage.SEVERITY_WARN,
+				rb.getString("messages.error.Erro.title"),
+				rb.getString("messages.error.ClienteExiste.detail")
+			);
+			fc.addMessage(null, msg);
+		} else {
+			cliente.setLimiteDisp(cliente.getLimiteCred());
+			service.salvar(cliente);
+			cliente = new Cliente();
+		}
 	}
 	
 	public void excluir() {
