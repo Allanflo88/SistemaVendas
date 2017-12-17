@@ -33,4 +33,8 @@ public class ClienteService extends Service {
 		dao.closeEntityManager();
 	}
 
+	public Cliente consultar(String cpf){
+		Cliente cliente = dao.getById(Cliente.class, cpf);
+		return cliente;
+	}
 }
