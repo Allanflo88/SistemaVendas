@@ -1,56 +1,40 @@
 package services;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+
+import DAO.VendedorDAO;
 import entity.Vendedor;
 
 public class VendedorService extends Service {
 	
-	@SuppressWarnings("unchecked")
+	VendedorDAO dao = new VendedorDAO();
+	
 	public List<Vendedor> getVendedores() {
-		EntityManager em = emf.createEntityManager();
-		try {
-			Query q = em.createQuery("select v from Vendedor v", Vendedor.class);
-			return q.getResultList();
-		} finally {
-			em.close();
-		}
+		List<Vendedor> vendedores = dao.getAll(Vendedor.class);
+		dao.closeEntityManager();
+		return vendedores;
 	}
 	
-	public void salvar(Vendedor vendedor) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			em.persist(vendedor);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
+	public Vendedor salvar(Vendedor vendedor) {
+		vendedor = dao.save(vendedor);
+		dao.closeEntityManager();
+		return vendedor;
 	}
 	
 	public void excluir(Vendedor vendedor) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			Vendedor rmv;
-			em.getTransaction().begin();
-			rmv = em.find(Vendedor.class, vendedor.getCpf());
-			em.remove(rmv);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
+		vendedor = dao.getById(Vendedor.class, vendedor.getCpf());
+		dao.remove(vendedor);
+		dao.closeEntityManager();
 	}
 	
-	public void atualizar(Vendedor vendedor) {;
-		EntityManager em = emf.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			em.merge(vendedor);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
+	public void atualizar(Vendedor vendedor) {
+		dao.save(vendedor);
+		dao.closeEntityManager();
+	}
+	
+	public Vendedor consultar(String cpf) {
+		Vendedor vendedor = dao.getById(Vendedor.class, cpf);
+		return vendedor;
 	}
 
 }
