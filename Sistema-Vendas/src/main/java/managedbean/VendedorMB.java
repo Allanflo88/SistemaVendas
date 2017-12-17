@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
-import entity.Cliente;
 import entity.Vendedor;
 import services.VendedorService;
 
