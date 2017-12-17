@@ -30,4 +30,9 @@ public class ProdutoService extends Service {
 		dao.save(produto);
 		dao.closeEntityManager();
 	}
+	
+	public Produto consultar(int codigo){
+		Produto produto = dao.getById(Produto.class, codigo);
+		return produto;
+	}
 }
