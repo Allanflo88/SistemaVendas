@@ -115,17 +115,29 @@ public class PedidoMB {
 			
 			fc.addMessage(null, msg);	
 		} else {
-			pedidoService.salvar(pedido);
-			for(ItemPedido i : itens) {
-				itemService.salvar(i);
-				produtoService.atualizar(i.getProduto());
+			if (pedidoService.consultar(pedido.getNumero()) != null){
+				FacesContext fc = FacesContext.getCurrentInstance();
+				ResourceBundle rb = ResourceBundle.getBundle("application", fc.getViewRoot().getLocale());
+				
+				FacesMessage msg = new FacesMessage(
+					FacesMessage.SEVERITY_WARN,
+					rb.getString("messages.error.Erro.title"),
+					rb.getString("messages.error.PedidoExiste.detail")
+				);
+				fc.addMessage(null, msg);
+			} else {
+				pedidoService.salvar(pedido);
+				for(ItemPedido i : itens) {
+					itemService.salvar(i);
+					produtoService.atualizar(i.getProduto());
+				}
+				Cliente cli = pedido.getCliente();
+				cli.setLimiteDisp(cli.getLimiteDisp() - valorTotal);
+				clienteService.atualizar(pedido.getCliente());
+				pedido = new Pedido();
+				itens = new ArrayList<>();
+				valorTotal = 0;
 			}
-			Cliente cli = pedido.getCliente();
-			cli.setLimiteDisp(cli.getLimiteDisp() - valorTotal);
-			clienteService.atualizar(pedido.getCliente());
-			pedido = new Pedido();
-			itens = new ArrayList<>();
-			valorTotal = 0;
 		}
 	}
 	
