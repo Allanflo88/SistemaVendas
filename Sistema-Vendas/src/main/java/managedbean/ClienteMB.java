@@ -85,8 +85,20 @@ public class ClienteMB {
 	}
 	
 	public void excluir() {
-		service.excluir(cliente);
-		cancelar();
+		if (!cliente.getPedidos().isEmpty()){
+			FacesContext fc = FacesContext.getCurrentInstance();
+			ResourceBundle rb = ResourceBundle.getBundle("application", fc.getViewRoot().getLocale());
+			
+			FacesMessage msg = new FacesMessage(
+				FacesMessage.SEVERITY_ERROR,
+				rb.getString("messages.error.NaoPodeExcluir.title"),
+				rb.getString("messages.error.NaoPodeExcluir.cliente.detail")
+			);
+			fc.addMessage(null, msg);
+		} else {
+			service.excluir(cliente);
+			cancelar();			
+		}
 	}
 	
 	public void atualizar(RowEditEvent event) {

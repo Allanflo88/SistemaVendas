@@ -82,8 +82,20 @@ public class ProdutoMB {
 	}
 	
 	public void excluir() {
-		service.excluir(produto);
-		cancelar();
+		if (!produto.getItensPedidos().isEmpty()){
+			FacesContext fc = FacesContext.getCurrentInstance();
+			ResourceBundle rb = ResourceBundle.getBundle("application", fc.getViewRoot().getLocale());
+			
+			FacesMessage msg = new FacesMessage(
+				FacesMessage.SEVERITY_ERROR,
+				rb.getString("messages.error.NaoPodeExcluir.title"),
+				rb.getString("messages.error.NaoPodeExcluir.produto.detail")
+			);
+			fc.addMessage(null, msg);
+		} else {
+			service.excluir(produto);
+			cancelar();			
+		}
 	}
 	
 	public void atualizar(RowEditEvent event) {
