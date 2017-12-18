@@ -14,6 +14,11 @@
 
 
 	<ui:define name="principal">
+		<h:form>
+			<p:messages id="msgs" showDetail="true" autoUpdate="true"
+				closable="true" />
+		</h:form>
+	
 		<h:form id="formPesq">
 			<p:dataTable var="aux" value="#{pedidoMB.pedidos}"
 				rows="20" paginator="true"
@@ -102,16 +107,27 @@
 						</p:panelGrid>
 			   		</p:overlayPanel>
     				
-				    <!-- <p:commandButton update="formPesq"
+				    <p:commandButton update="@all"
 						icon="ui-icon ui-icon-trash" title="Remover"
 						value="#{msg['pages.Consultar_pedido.opcoes.cancel']}"
-						disabled="true"
+						action="#{pedidoMB.excluir(aux)}"
 						> 
-					</p:commandButton> -->
+						<p:confirm header="#{msg['messages.confirm.CancelaPedido.title']}"
+							message="#{msg['messages.confirm.CancelaPedido.detail']}"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+					
+					<p:confirmDialog global="true">
+						<p:commandButton value="#{msg['messages.confirm.Option.yes']}"
+							type="button" styleClass="ui-confirmdialog-yes"
+							icon="ui-icon-check" />
+						<p:commandButton value="#{msg['messages.confirm.Option.no']}"
+							type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
 				</p:column>
 
 			</p:dataTable>
-
+			
 		</h:form>
 
 	</ui:define>

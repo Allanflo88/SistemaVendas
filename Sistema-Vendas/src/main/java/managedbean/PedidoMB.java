@@ -13,6 +13,7 @@ import org.primefaces.event.RowEditEvent;
 import entity.Cliente;
 import entity.ItemPedido;
 import entity.Pedido;
+import entity.Produto;
 import services.ClienteService;
 import services.ItemPedidoService;
 import services.PedidoService;
@@ -158,13 +159,34 @@ public class PedidoMB {
 	}
 	
 	public void excluir(Pedido pedido) {
+		double valor = pedido.getValorTotal();
+		for (ItemPedido item : pedido.getItensPedidos()){
+			Produto prod = item.getProduto();
+			prod.setQtdeDisponivel(prod.getQtdeDisponivel() + item.getQtdeVendida()); //Devolução...
+			produtoService.atualizar(prod);
+			itemService.excluir(item);
+		}
+		Cliente cli = pedido.getCliente();
+		cli.setLimiteDisp(cli.getLimiteDisp() + valor);
+		clienteService.atualizar(cli);
 		pedidoService.excluir(pedido);
+		
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ResourceBundle rb = ResourceBundle.getBundle("application", fc.getViewRoot().getLocale());
+		
+		FacesMessage msg = new FacesMessage(
+			FacesMessage.SEVERITY_INFO,
+			rb.getString("messages.info.VendaCancelada.title"),
+			rb.getString("messages.info.VendaCancelada.detail")
+		);
+		fc.addMessage(null, msg);
 	}
 	
 	public void atualizar(RowEditEvent event) {
 		Pedido ped = (Pedido) event.getObject();
 		pedidoService.atualizar(ped);
 	}
+	
 	public void cancelaItem(){
 		edicao = false;
 		item = new ItemPedido();
