@@ -49,7 +49,13 @@ public class PedidoMB {
 		this.pedido = pedido;
 	}
 	public List<Pedido> getPedidos() {
-		return pedidoService.getPedidos();
+		List<Pedido> lista = pedidoService.getPedidos();
+		for (Pedido p : lista){
+			if (p.getItensPedidos() == null || p.getItensPedidos().isEmpty()){
+				p.setItensPedidos(itemService.getItensPedido(p));
+			}
+		}
+		return lista;
 	}
 	
 	public List<ItemPedido> getItens() {
@@ -86,9 +92,9 @@ public class PedidoMB {
 		valorTotal += item.getQtdeVendida() * item.getProduto().getPrecoUnit();
 		item = new ItemPedido();
 	}
-	public void removeItem(ItemPedido rmv) {
-		itens.remove(rmv);
-		valorTotal -= rmv.getQtdeVendida() * rmv.getProduto().getPrecoUnit();
+	public void removeItem() {
+		itens.remove(itemSelec);
+		valorTotal -= itemSelec.getQtdeVendida() * itemSelec.getProduto().getPrecoUnit();
 		cancelaItem();
 	}
 	public void alterItem() {
