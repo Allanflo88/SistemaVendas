@@ -35,10 +35,8 @@ public class ItemPedido implements Serializable{
     }
     
     public void setQtdeVendida(int qtdeVendida) {
-    	System.out.println("Before = " + produto.getQtdeDisponivel());
         produto.setQtdeDisponivel(produto.getQtdeDisponivel() + (this.qtdeVendida - qtdeVendida));
         this.qtdeVendida = qtdeVendida;
-        System.out.println("After = " + produto.getQtdeDisponivel());
     }
 
 	public Produto getProduto() {
